@@ -14,15 +14,12 @@ const ReviewCardBack = ({ codeReview }: Props) => {
       height="100%"
       backfaceVisibility="hidden"
       transform="rotateY(180deg)"
-      rounded="xl"
-      boxShadow="xl"
       borderRadius={40}
       p={4}
       overflowY="auto"
     >
       <Card.Root
         height="100%"
-        borderColor="white"
         border="solid"
         borderRadius={30}
       >

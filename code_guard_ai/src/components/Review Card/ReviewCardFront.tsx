@@ -21,14 +21,11 @@ const ReviewCardFront = ({ codeReview }: Props) => {
       width="100%"
       height="100%"
       backfaceVisibility="hidden"
-      rounded="xl"
-      boxShadow="xl"
       borderRadius={40}
       p={4}
     >
       <Card.Root
         height="100%"
-        borderColor="white"
         border="solid"
         borderRadius={30}
       >
@@ -38,9 +35,9 @@ const ReviewCardFront = ({ codeReview }: Props) => {
             programmingLanguage={codeReview.programmingLanguage}
           />
         </Card.Header>
-        <Card.Body justifyContent="center" alignItems="center">
+        <Card.Body>
           <Stack
-            gap={10}
+            gap={16}
             alignItems="center"
             justifyContent="center"
             paddingTop={2}
