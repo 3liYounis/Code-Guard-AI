@@ -6,10 +6,10 @@ const MotionBox = motion(Box);
 
 interface Props {
     children: ReactNode;
+    width: number;
+    height: number;
 }
-const CARD_WIDTH = "535px";
-const CARD_HEIGHT = "640px";
-const AnimatedBox = ({ children }: Props) => {
+const AnimatedBox = ({ children, width, height }: Props) => {
     const [flipped, setFlipped] = useState(false);
     return (
         <MotionBox
@@ -18,15 +18,15 @@ const AnimatedBox = ({ children }: Props) => {
             transition={{ duration: 0.4 }}
         >
             <Flex
-                width="100%"
-                height="100%"
+                width={width}
+                height={height}
                 justify="center"
                 align="center"
                 py={8}
                 onClick={() => setFlipped((flipped) => !flipped)}
                 cursor="pointer"
             >
-                <Box perspective="3000px" width={CARD_WIDTH} height={CARD_HEIGHT}>
+                <Box perspective="3000px" width={width} height={height}>
                     <MotionBox
                         position="relative"
                         width="100%"

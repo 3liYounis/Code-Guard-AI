@@ -11,7 +11,7 @@ const Emoji = ({ type }: Props) => {
         "security": { src: security_lock, alt: 'security', boxSize: "20px" },
         "cleanliness": { src: clean, alt: 'cleanliness', boxSize: "20px" },
         "maintainability": { src: maintain, alt: 'maintainability', boxSize: "20px" },
-        "other": { src: bulb, alt: 'maintainability', boxSize: "20px" },
+        "other": { src: bulb, alt: 'maintainability', boxSize: "25px", marginTop: 0 },
     }
     return (
         <Image marginTop={2} {...emojiMap[type]} />

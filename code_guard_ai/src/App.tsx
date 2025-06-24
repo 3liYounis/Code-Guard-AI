@@ -4,8 +4,8 @@ import './App.css'
 const codeReview: CodeReview = {
   name: 'Behavioral Analysis',
   programmingLanguage: "Python",
-  security: 90,
-  cleanliness: 52,
+  security: 60,
+  cleanliness: 72,
   maintainability: 95,
   recommendations: [
     { id: 1, type: "security", content: "If anyone thinks he is something when he is nothing, he deceives himself. Each one should test his own actions. Then he can take pride in himself, without comparing himself to anyone else.", cite: "Chat GPT" },
