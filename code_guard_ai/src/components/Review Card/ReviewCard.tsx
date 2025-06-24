@@ -10,6 +10,7 @@ export interface Suggestion {
 }
 
 export interface CodeReview {
+  id: number;
   name: string;
   programmingLanguage: string;
   security: number;

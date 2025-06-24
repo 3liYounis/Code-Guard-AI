@@ -1,5 +1,5 @@
 import type { CodeReview } from "./ReviewCard";
-import { Box, Card } from "@chakra-ui/react";
+import { Card } from "@chakra-ui/react";
 import ReviewHeader from "./ReviewHeader";
 import RecommendationsList from "./RecommendationsList";
 
@@ -8,32 +8,21 @@ interface Props {
 }
 const ReviewCardBack = ({ codeReview }: Props) => {
   return (
-    <Box
-      position="absolute"
-      width="100%"
+    <Card.Root
       height="100%"
-      backfaceVisibility="hidden"
-      transform="rotateY(180deg)"
-      borderRadius={40}
-      p={4}
-      overflowY="auto"
+      border="solid"
+      borderRadius={30}
     >
-      <Card.Root
-        height="100%"
-        border="solid"
-        borderRadius={30}
-      >
-        <Card.Header>
-          <ReviewHeader
-            name={codeReview.name}
-            programmingLanguage={codeReview.programmingLanguage}
-          />
-        </Card.Header>
-        <Card.Body justifyContent="center" alignItems="center">
-          <RecommendationsList recommendations={codeReview.recommendations} />
-        </Card.Body>
-      </Card.Root>
-    </Box>
+      <Card.Header>
+        <ReviewHeader
+          name={codeReview.name}
+          programmingLanguage={codeReview.programmingLanguage}
+        />
+      </Card.Header>
+      <Card.Body justifyContent="center" alignItems="center">
+        <RecommendationsList recommendations={codeReview.recommendations} />
+      </Card.Body>
+    </Card.Root>
   );
 };
 
