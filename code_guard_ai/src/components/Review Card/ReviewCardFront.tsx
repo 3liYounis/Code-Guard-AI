@@ -29,7 +29,7 @@ const ReviewCardFront = ({ codeReview }: Props) => {
       </Card.Header>
       <Card.Body>
         <Stack
-          gap={16}
+          gap={8}
           alignItems="center"
           justifyContent="center"
           paddingTop={2}

@@ -27,7 +27,7 @@ const statusMap: { [key: string]: StatusMap } = {
   warning: {
     icon: TiWarning,
     color: "yellow.600",
-    description: "Take a look at the missing parts and act upon!",
+    description: "Revise what makes your code imperfect!",
   },
   error: {
     icon: MdOutlineDangerous,
@@ -43,7 +43,7 @@ const TotalScore = ({ totalScore }: Props) => {
   const iconSource = (statusMap[status?.toString()] ?? statusMap["other"]).icon;
   const color = (statusMap[status?.toString()] ?? statusMap["other"]).color;
   return (
-    <Alert.Root status={status} width={400} variant="outline" color={color}>
+    <Alert.Root status={status} width={370} variant="outline" color={color}>
       <Alert.Indicator>
         <Icon as={iconSource} boxSize={5} color={color} />
       </Alert.Indicator>

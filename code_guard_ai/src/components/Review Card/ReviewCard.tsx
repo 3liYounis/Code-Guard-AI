@@ -25,7 +25,7 @@ interface Props {
 
 const ReviewCard = ({ codeReview }: Props) => {
   return (
-    <AnimatedBox width={500} height={600} frontText="Recommendations 💡" backText="Score Chart 📊">
+    <AnimatedBox width={450} height={530} frontText="Recommendations 💡" backText="Score Chart 📊">
       <ReviewCardFront codeReview={codeReview} />
       <ReviewCardBack codeReview={codeReview} />
     </AnimatedBox >

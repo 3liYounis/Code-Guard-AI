@@ -17,9 +17,10 @@ const AnimatedBox = ({ children, width, height, frontText, backText }: Props) =>
         <MotionBox initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4 }}>
-            <Box perspective="3000px"
+            <Box
+                perspective="3000px"
                 width={width}
-                height={height + 30}
+                height={height + 50}
                 position="relative">
                 <MotionBox
                     position="relative"
@@ -57,7 +58,7 @@ const AnimatedBox = ({ children, width, height, frontText, backText }: Props) =>
                     bottom="10px"
                     left="50%"
                     transform="translateX(-50%)"
-                    marginBottom={3}
+                    marginBottom={5}
                     onClick={() => setFlipped(f => !f)}>
                     {flipped ? backText : frontText}
                 </Button>
