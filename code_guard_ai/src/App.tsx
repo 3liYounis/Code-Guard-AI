@@ -6,8 +6,8 @@ import Home from "./components/Home";
 const codeReview: CodeReview = {
   name: "Behavioral Analysis",
   programmingLanguage: "Python",
-  security: 90,
-  cleanliness: 52,
+  security: 60,
+  cleanliness: 72,
   maintainability: 95,
   recommendations: [
     {
