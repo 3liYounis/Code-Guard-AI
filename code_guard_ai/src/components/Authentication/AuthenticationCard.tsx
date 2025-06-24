@@ -11,21 +11,17 @@ export default function AuthenticationCard() {
   const flip = () => setShowSignIn((v) => !v);
 
   return (
-    <Box
-      h="100dvh"
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      px={4}
-    >
+    <Box display="flex" alignItems="center" justifyContent="center">
       <MotionBox
-        width="50%"
+        width="100%"
         display="grid"
         transformStyle="preserve-3d"
         animate={{ rotateY: showSignIn ? 180 : 0 }}
         transition={{ duration: 0.6, ease: "easeInOut" }}
+        justifyItems="center"
+        alignItems="center"
       >
-        <Box gridArea="1 / 1" p={8} backfaceVisibility="hidden">
+        <Box width="100%" gridArea="1 / 1" p={8} backfaceVisibility="hidden">
           <SignUpForm onSwitch={flip} />
         </Box>
 
@@ -34,6 +30,7 @@ export default function AuthenticationCard() {
           p={8}
           backfaceVisibility="hidden"
           transform="rotateY(180deg)"
+          width="100%"
         >
           <SignInForm onSwitch={flip} />
         </Box>

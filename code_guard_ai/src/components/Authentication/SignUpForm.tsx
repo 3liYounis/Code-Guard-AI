@@ -29,6 +29,8 @@ function SignUpForm({ onSwitch }: Props) {
 
   return (
     <Box
+      border="solid"
+      borderRadius={10}
       rounded="2xl"
       shadow="lg"
       p={8}
