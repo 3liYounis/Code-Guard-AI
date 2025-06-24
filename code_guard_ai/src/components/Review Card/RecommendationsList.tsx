@@ -1,9 +1,9 @@
 import { List, Stack, Heading, HStack } from "@chakra-ui/react";
 import Recommendation from "./Recommendation";
 import type { Suggestion } from "../Review Card/ReviewCard";
-import Emoji from "../Emoji";
+import Emoji from "../ui/Emoji";
 interface Props {
-  recommendations: Suggestion[];
+    recommendations: Suggestion[];
 }
 const RecommendationsList = ({ recommendations }: Props) => {
     return (
