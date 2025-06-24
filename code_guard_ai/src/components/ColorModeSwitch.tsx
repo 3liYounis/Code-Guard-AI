@@ -7,7 +7,7 @@ const ColorModeSwitch = () => {
     const { toggleColorMode, colorMode } = useColorMode();
     var inverseMode = colorMode == "dark" ? "light" : "dark";
     inverseMode = inverseMode.charAt(0).toUpperCase() + inverseMode.slice(1);
-    var color = colorMode == 'light' ? "white" : "yellow";
+    var color = colorMode == 'light' ? "white" : "white";
     return (
         <HStack>
             <Button size="sm" onClick={toggleColorMode} colorPalette={color}>
