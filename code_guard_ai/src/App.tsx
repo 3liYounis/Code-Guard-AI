@@ -35,7 +35,7 @@ function App() {
   return (
     <>
       <Home></Home>
-      {/* <ReviewCard codeReview={codeReview} /> */}
+      <ReviewCard codeReview={codeReview} />
     </>
   );
 }
