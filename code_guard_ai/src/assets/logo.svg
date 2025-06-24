@@ -1,0 +1,22 @@
+<!--?xml version="1.0" encoding="UTF-8"?-->
+<svg width="500" height="500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2C3E50"></stop>
+      <stop offset="100%" stop-color="#34495E"></stop>
+    </linearGradient>
+  </defs>
+  <!-- Shield -->
+  <path d="M250,50 L400,150 L350,400 L250,500 L150,400 L100,150 Z" fill="url(#shieldGradient)"></path>
+  <!-- Code brackets -->
+  <text x="250" y="280" text-anchor="middle" font-family="Arial" font-size="160" fill="#2ECC71" font-weight="bold">
+    &lt;/&gt;
+  </text>
+  <!-- Magnifying glass -->
+  <circle cx="360" cy="360" r="70" stroke="#ECF0F1" stroke-width="16" fill="none"></circle>
+  <line x1="412" y1="412" x2="470" y2="470" stroke="#ECF0F1" stroke-width="16" stroke-linecap="round"></line>
+  <!-- Company name -->
+  <text x="250" y="460" text-anchor="middle" font-family="Arial" font-size="48" fill="#2C3E50">
+    AI Code Auditor
+  </text>
+</svg>
