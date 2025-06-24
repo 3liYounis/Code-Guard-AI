@@ -1,6 +1,6 @@
 import { Blockquote, Float, Text } from "@chakra-ui/react";
-import type { Suggestion } from "./ReviewCard";
-import Emoji from "../ui/Emoji";
+import type { Suggestion } from "../ReviewCard";
+import Emoji from "../../../ui/Emoji";
 interface Props {
   recommendation: Suggestion;
 }

@@ -1,7 +1,7 @@
 import type { CodeReview } from "./ReviewCard";
 import { Card } from "@chakra-ui/react";
 import ReviewHeader from "./ReviewHeader";
-import RecommendationsList from "./RecommendationsList";
+import RecommendationsList from "./Recommendation/RecommendationsList";
 
 interface Props {
   codeReview: CodeReview;

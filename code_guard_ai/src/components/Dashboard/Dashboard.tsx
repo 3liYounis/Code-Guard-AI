@@ -1,6 +1,6 @@
 import { SimpleGrid } from "@chakra-ui/react";
-import ReviewCard, { type CodeReview } from "../Review Card/ReviewCard";
-import ReviewCardSkeleton from "./ReviewCardSkeleton";
+import ReviewCard, { type CodeReview } from "./Review Card/ReviewCard";
+import ReviewCardSkeleton from "./Review Card/ReviewCardSkeleton";
 import StaticCodeReviews from "@/Data/StaticCodeReviews";
 import AddCodeReview from "./AddCodeReview";
 const staticData: CodeReview[] = StaticCodeReviews;
