@@ -1,6 +1,6 @@
 import { Button, Grid, GridItem } from "@chakra-ui/react";
 import NavBar from "./NavBar";
-import AuthenticationCard from "./Authentication Cards/AuthenticationCard";
+import AuthenticationCard from "../Authentication Cards/AuthenticationCard";
 import About from "./About";
 
 const Home = () => {

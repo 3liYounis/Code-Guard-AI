@@ -1,8 +1,8 @@
 import { Image, type ImageProps } from "@chakra-ui/react";
-import security_lock from "../assets/security_lock.png"
-import clean from "../assets/clean.png"
-import maintain from "../assets/maintain.png"
-import bulb from "../assets/bulb.png"
+import security_lock from "../../assets/security_lock.png"
+import clean from "../../assets/clean.png"
+import maintain from "../../assets/maintain.png"
+import bulb from "../../assets/bulb.png"
 interface Props {
     type: string;
 }
