@@ -1,5 +1,5 @@
 import type { CodeReview } from "./ReviewCard";
-import { Box, Card, Stack } from "@chakra-ui/react";
+import { Box, Card, Stack, Button } from "@chakra-ui/react";
 import ReviewHeader from "./ReviewHeader";
 import TotalScore from "./TotalScore";
 import ReviewChart from "./Charts/ReviewChart";
