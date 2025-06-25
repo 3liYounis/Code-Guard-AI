@@ -3,7 +3,7 @@ import ReviewCard, { type CodeReview } from "./Review Card/ReviewCard";
 import ReviewCardSkeleton from "./Review Card/ReviewCardSkeleton";
 import StaticCodeReviews from "@/Data/StaticCodeReviews";
 import NewFileDialog from "./File Dialog/NewFileDialog";
-const staticData: CodeReview[] = StaticCodeReviews;
+const staticData: CodeReview[] = StaticCodeReviews.sort((e1, e2) => e2.modificationDate.getTime() - e1.modificationDate.getTime());
 const Dashboard = () => {
     const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
     const isLoading = false;
