@@ -58,13 +58,13 @@ const ReviewHeader = ({ name, programmingLanguage, modificationDate }: Props) =>
       <Avatar.Root css={ringCss} size="xl">
         <Icon as={iconSource} boxSize={7} />
       </Avatar.Root>
-      <Stack gap={0} padding={4}>
+      <Stack gap={0} padding={4} fontWeight="bold">
         <Text fontWeight="bold">{name}</Text>
-        <Stack gap={0}>
-          <Text color="fg.muted" textStyle="sm">
+        <Stack gap={0} color="fg.muted">
+          <Text textStyle="sm">
             {programmingLanguage}
           </Text>
-          <Text color="fg.muted" textStyle="sm" fontStyle="italic">
+          <Text fontWeight="normal" textStyle="sm" fontStyle="italic">
             {formattedDate}
           </Text>
         </Stack>

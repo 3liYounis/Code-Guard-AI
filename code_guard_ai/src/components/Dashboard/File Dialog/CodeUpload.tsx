@@ -9,13 +9,13 @@ const FileUploadList = () => {
     return (
         <FileUpload.ItemGroup justifyContent="center" alignItems="center">
             {files.map((file) => (
-                <FileUpload.Item width="fit-content" file={file} key={file.name} justifyContent="space-between" borderColor="ActiveBorder" backgroundColor="bg.muted" >
+                <FileUpload.Item gap={8} width="fit-content" file={file} key={file.name} justifyContent="space-between" borderColor="ActiveBorder" >
                     <HStack gap={3}>
                         <Icon as={BsFileEarmarkCode} boxSize="6" />
                         <Text fontFamily="cursive" fontSize={16}>{file.name}</Text>
                     </HStack>
-                    <FileUpload.ItemDeleteTrigger boxSize="6" layerStyle="fill.solid">
-                        <LuX />
+                    <FileUpload.ItemDeleteTrigger boxSize="7">
+                        <Icon as={LuX} boxSize={5} color="red.500" />
                     </FileUpload.ItemDeleteTrigger>
                 </FileUpload.Item>
             ))}
