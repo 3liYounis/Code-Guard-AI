@@ -1,6 +1,7 @@
 import AnimatedBox from "./AnimatedBox";
 import ReviewCardFront from "./ReviewCardFront";
 import ReviewCardBack from "./ReviewCardBack";
+import { code } from "framer-motion/client";
 
 export interface Suggestion {
   id: number;
@@ -25,10 +26,7 @@ interface Props {
 
 const ReviewCard = ({ codeReview }: Props) => {
   return (
-    <AnimatedBox width={450} height={530} frontText="Recommendations 💡" backText="Score Chart 📊">
-      <ReviewCardFront codeReview={codeReview} />
-      <ReviewCardBack codeReview={codeReview} />
-    </AnimatedBox >
+    <AnimatedBox codeReview={codeReview} width={450} height={530}></AnimatedBox>
   );
 };
 

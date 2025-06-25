@@ -1,4 +1,4 @@
-import { Button, Heading, Icon, Stack } from "@chakra-ui/react";
+import { Button, Heading, Stack } from "@chakra-ui/react";
 import Emoji from "../ui/Emoji";
 interface Props {
     onClick: () => void;

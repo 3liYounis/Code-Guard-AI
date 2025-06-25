@@ -1,5 +1,5 @@
 import type { CodeReview } from "./ReviewCard";
-import { Card, Stack } from "@chakra-ui/react";
+import { Button, Card, Stack } from "@chakra-ui/react";
 import ReviewHeader from "./ReviewHeader";
 import TotalScore from "./TotalScore";
 import ReviewChart from "./Charts/ReviewChart";
@@ -7,20 +7,17 @@ import ReviewBar from "./Charts/ReviewBar";
 
 interface Props {
   codeReview: CodeReview;
+  onSwitch: () => void;
 }
 
-const ReviewCardFront = ({ codeReview }: Props) => {
+const ReviewCardFront = ({ codeReview, onSwitch }: Props) => {
   const total =
     (codeReview.security +
       codeReview.cleanliness +
       codeReview.maintainability) /
     3;
   return (
-    <Card.Root
-      height="100%"
-      border="solid"
-      borderRadius={30}
-    >
+    <Card.Root height="100%" border="solid" borderRadius={30}>
       <Card.Header>
         <ReviewHeader
           name={codeReview.name}
@@ -40,6 +37,15 @@ const ReviewCardFront = ({ codeReview }: Props) => {
           <ReviewBar codeReview={codeReview} />
         </Stack>
       </Card.Body>
+      <Button
+        position="absolute"
+        bottom="10px"
+        left="50%"
+        transform="translateX(-50%)"
+        onClick={onSwitch}
+      >
+        Recommendations 💡
+      </Button>
     </Card.Root>
   );
 };

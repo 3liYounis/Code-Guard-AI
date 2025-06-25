@@ -8,7 +8,7 @@ const MotionBox = motion.create(Box);
 
 export default function AuthenticationCard() {
   const [showSignIn, setShowSignIn] = useState(false);
-  const flip = () => setShowSignIn((v) => !v);
+  const flip = () => setShowSignIn(!showSignIn);
 
   return (
     <Box display="flex" alignItems="center" justifyContent="center">
@@ -17,7 +17,7 @@ export default function AuthenticationCard() {
         display="grid"
         transformStyle="preserve-3d"
         animate={{ rotateY: showSignIn ? 180 : 0 }}
-        transition={{ duration: 0.6, ease: "easeInOut" }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
         justifyItems="center"
         alignItems="center"
       >
