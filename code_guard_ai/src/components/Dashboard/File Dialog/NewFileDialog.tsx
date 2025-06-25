@@ -3,7 +3,7 @@ import AddCodeReview from "./AddCodeReview";
 import CodeUpload from "./CodeUpload";
 const NewFileDialog = () => {
     return (
-        <HStack wrap="wrap" gap="4" justifyContent="center" alignItems="center">
+        <HStack wrap="wrap" gap="4" justifyContent="center" alignItems="center" width={470}>
             <Dialog.Root
                 placement="center"
                 motionPreset="slide-in-bottom"
