@@ -1,7 +1,4 @@
 import AnimatedBox from "./AnimatedBox";
-import ReviewCardFront from "./ReviewCardFront";
-import ReviewCardBack from "./ReviewCardBack";
-import { code } from "framer-motion/client";
 
 export interface Suggestion {
   id: number;

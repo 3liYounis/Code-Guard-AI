@@ -10,7 +10,7 @@ const ColorModeSwitch = () => {
     var color = colorMode == 'light' ? "white" : "white";
     return (
         <HStack>
-            <Button size="sm" onClick={toggleColorMode} colorPalette={color}>
+            <Button onClick={toggleColorMode} colorPalette={color}>
                 <Icon
                     as={colorMode === "light" ? FaMoon : FaSun}
                     boxSize="1.25em"

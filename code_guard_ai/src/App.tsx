@@ -25,20 +25,19 @@ function App() {
         lg: "1fr 1fr 1fr",
       }}
       gap={5}
-      p={4}
     >
       <GridItem area="nav">
         <NavBar />
       </GridItem>
 
-      <GridItem area="about">
+      <GridItem pl={4} area="about">
         <About />
       </GridItem>
 
-      <GridItem area="authentication">
+      <GridItem pr={4} area="authentication">
         <AuthenticationCard />
       </GridItem>
-      <GridItem area="main">
+      <GridItem px={4} area="main">
         <Dashboard />
       </GridItem>
     </Grid>
