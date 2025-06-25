@@ -14,6 +14,7 @@ import { TbBrandCSharp, TbBrandKotlin } from "react-icons/tb";
 import { GrStatusUnknown } from "react-icons/gr";
 import { IoLogoReact } from "react-icons/io5";
 import { FaVuejs } from "react-icons/fa";
+import CardButtonList from "./Buttons/CardButtonList";
 
 interface Props {
   name: string;
@@ -54,22 +55,25 @@ const ReviewHeader = ({ name, programmingLanguage, modificationDate }: Props) =>
   const formattedDate =
     modificationDate instanceof Date && !isNaN(modificationDate.getTime()) ? `${formatDate(modificationDate)} - ${formatTime(modificationDate)}` : "Unknown date";
   return (
-    <HStack>
-      <Avatar.Root css={ringCss} size="xl">
-        <Icon as={iconSource} boxSize={7} />
-      </Avatar.Root>
-      <Stack gap={0} padding={4} fontWeight="bold">
-        <Text fontWeight="bold">{name}</Text>
-        <Stack gap={0} color="fg.muted">
-          <Text textStyle="sm">
-            {programmingLanguage}
-          </Text>
-          <Text fontWeight="normal" textStyle="sm" fontStyle="italic">
-            {formattedDate}
-          </Text>
+    <HStack width="100%" justifyContent="space-between">
+      <HStack>
+        <Avatar.Root css={ringCss} size="xl">
+          < Icon as={iconSource} boxSize={7} />
+        </Avatar.Root >
+        <Stack gap={0.5} padding={4} width="200px" fontWeight="bold" >
+          <Text fontWeight="bold" whiteSpace="nowrap" fontSize="lg">{name}</Text>
+          <Stack gap={0} color="fg.muted">
+            <Text textStyle="sm">
+              {programmingLanguage}
+            </Text>
+            <Text fontWeight="normal" textStyle="sm" fontStyle="italic">
+              {formattedDate}
+            </Text>
+          </Stack>
         </Stack>
-      </Stack>
-    </HStack>
+      </HStack >
+      <CardButtonList />
+    </HStack >
   );
 };
 
