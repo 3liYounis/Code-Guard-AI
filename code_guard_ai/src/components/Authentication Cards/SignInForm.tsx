@@ -11,12 +11,14 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signInSchema, type SignInData } from "./schemas";
 import { PasswordInput } from "../ui/password-input";
+import type { User } from "@/App";
 
 interface Props {
   onSwitch: () => void;
+  onSignIn: (user: User) => void;
 }
 
-function SignInForm({ onSwitch }: Props) {
+function SignInForm({ onSwitch, onSignIn }: Props) {
   const {
     register,
     handleSubmit,
@@ -25,6 +27,10 @@ function SignInForm({ onSwitch }: Props) {
 
   const submit = (data: SignInData) => {
     console.log("sign-in", data);
+    if (true /* if SignIn was successful */) {
+      let username = "Example"; // fetch username from backend
+      onSignIn({ username: username, email: data.email });
+    }
   };
 
   return (

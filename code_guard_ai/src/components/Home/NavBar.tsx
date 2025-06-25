@@ -1,13 +1,25 @@
 import { HStack, Image, Heading } from "@chakra-ui/react";
 import logo from "../../assets/logo.svg";
 import ColorModeSwitch from "./ColorModeSwitch";
+import ProfileIcon from "../Authentication Cards/ProfileIcon";
+import type { User } from "@/App";
 
-const NavBar = () => {
+interface Props {
+  user: User | undefined;
+  onSignOut: () => void;
+}
+
+const NavBar = ({ user, onSignOut }: Props) => {
   return (
-    <HStack padding="10px" justifyContent="space-between">
-      <Image src={logo} boxSize="60px"></Image>
-      <Heading>Code Guard AI</Heading>
-      <ColorModeSwitch />
+    <HStack mt={-3} justifyContent="space-between" p={5}>
+      <HStack>
+        <Image src={logo} boxSize="60px"></Image>
+        <Heading fontSize="3xl">Code Guard AI</Heading>
+      </HStack>
+      <HStack>
+        {user && <ProfileIcon user={user} onSignOut={onSignOut}></ProfileIcon>}
+        <ColorModeSwitch />
+      </HStack>
     </HStack>
   );
 };

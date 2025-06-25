@@ -1,11 +1,11 @@
-import { Box, Heading, Stack, Text } from "@chakra-ui/react";
+import { Heading, Stack, Text } from "@chakra-ui/react";
 const About = () => {
   return (
-    <Stack height="100%" justifyContent="center" alignItems="center">
+    <Stack p={20} height="100%" justifyContent="center" alignItems="center">
       <Heading mb={5} fontSize={30}>
         About
       </Heading>
-      <Text>
+      <Text fontSize='20px'>
         this app is designed by HANDS DOWN the best programmer in the world
         (Yazan Abomokh, king of the andels and protector of the realm)
         <br />
