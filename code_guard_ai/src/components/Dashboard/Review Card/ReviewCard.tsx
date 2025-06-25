@@ -10,11 +10,13 @@ export interface Suggestion {
 export interface CodeReview {
   id: number;
   name: string;
+  File: File;
   programmingLanguage: string;
   security: number;
   cleanliness: number;
   maintainability: number;
   recommendations: Suggestion[];
+  modificationDate: Date;
 }
 
 interface Props {
@@ -23,7 +25,7 @@ interface Props {
 
 const ReviewCard = ({ codeReview }: Props) => {
   return (
-    <AnimatedBox codeReview={codeReview} width={450} height={530}></AnimatedBox>
+    <AnimatedBox codeReview={codeReview} width={470} height={530}></AnimatedBox>
   );
 };
 

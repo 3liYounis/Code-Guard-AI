@@ -7,7 +7,7 @@ interface Props {
 }
 const RecommendationsList = ({ recommendations }: Props) => {
     return (
-        <Stack justifyContent="center" alignItems="center">
+        <Stack justifyContent="center" alignItems="center" gap={0}>
             <HStack>
                 <Heading>Recommendations</Heading>
                 <Emoji type="other" />

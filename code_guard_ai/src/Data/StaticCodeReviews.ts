@@ -6,6 +6,8 @@ export default [
         security: 10,
         cleanliness: 15,
         maintainability: 20,
+        File: new File(["export const add = (a: number, b: number): number => a + b;"], "code.ts", { type: "text/plain" }),
+        modificationDate: new Date("2024-10-11T13:50:58.352Z"),
         recommendations: [
             {
                 id: 1,
@@ -34,6 +36,8 @@ export default [
         security: 20,
         cleanliness: 30,
         maintainability: 40,
+        File: new File(["def add(a, b):\n    return a + b"], "code.py", { type: "text/plain" }),
+        modificationDate: new Date("2024-12-10T09:12:44.000Z"),
         recommendations: [
             {
                 id: 4,
@@ -62,6 +66,8 @@ export default [
         security: 40,
         cleanliness: 50,
         maintainability: 60,
+        File: new File(["function add(a, b) {\n  return a + b;\n}"], "code.js", { type: "text/plain" }),
+        modificationDate: new Date("2024-08-18T15:44:01.000Z"),
         recommendations: [
             {
                 id: 7,
@@ -90,6 +96,8 @@ export default [
         security: 60,
         cleanliness: 70,
         maintainability: 80,
+        File: new File(["fun add(a: Int, b: Int): Int = a + b"], "code.kt", { type: "text/plain" }),
+        modificationDate: new Date("2024-11-30T10:21:31.000Z"),
         recommendations: [
             {
                 id: 10,
@@ -118,6 +126,8 @@ export default [
         security: 80,
         cleanliness: 90,
         maintainability: 100,
+        File: new File(["public int add(int a, int b) { return a + b; }"], "code.java", { type: "text/plain" }),
+        modificationDate: new Date("2025-02-05T20:00:00.000Z"),
         recommendations: [
             {
                 id: 13,
@@ -146,6 +156,8 @@ export default [
         security: 12,
         cleanliness: 15,
         maintainability: 18,
+        File: new File(["public int Add(int a, int b) => a + b;"], "code.cs", { type: "text/plain" }),
+        modificationDate: new Date("2025-03-01T13:00:00.000Z"),
         recommendations: [
             {
                 id: 16,
@@ -174,6 +186,8 @@ export default [
         security: 25,
         cleanliness: 30,
         maintainability: 35,
+        File: new File(["const Add = ({ a, b }) => a + b;"], "code.jsx", { type: "text/plain" }),
+        modificationDate: new Date("2024-10-19T08:30:00.000Z"),
         recommendations: [
             {
                 id: 19,
@@ -202,6 +216,8 @@ export default [
         security: 45,
         cleanliness: 50,
         maintainability: 55,
+        File: new File(["<script>\nexport default {\n  methods: {\n    add(a, b) { return a + b; }\n  }\n}\n</script>"], "code.vue", { type: "text/plain" }),
+        modificationDate: new Date("2025-01-01T17:20:00.000Z"),
         recommendations: [
             {
                 id: 22,
@@ -230,6 +246,8 @@ export default [
         security: 65,
         cleanliness: 70,
         maintainability: 75,
+        File: new File(["def add(a, b)\n  a + b\nend"], "code.rb", { type: "text/plain" }),
+        modificationDate: new Date("2024-09-15T22:05:00.000Z"),
         recommendations: [
             {
                 id: 25,
@@ -258,6 +276,8 @@ export default [
         security: 85,
         cleanliness: 90,
         maintainability: 95,
+        File: new File(["fun add(a: Int, b: Int): Int = a + b"], "code.kt", { type: "text/plain" }),
+        modificationDate: new Date("2025-06-18T12:00:00.000Z"),
         recommendations: [
             {
                 id: 28,
