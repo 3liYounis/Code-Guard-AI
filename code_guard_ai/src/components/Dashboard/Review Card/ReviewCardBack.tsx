@@ -17,7 +17,7 @@ const ReviewCardBack = ({ codeReview, onSwitch }: Props) => {
           modificationDate={codeReview.modificationDate}
         />
       </Card.Header>
-      <Card.Body justifyContent="center" alignItems="center">
+      <Card.Body alignItems="center">
         <RecommendationsList recommendations={codeReview.recommendations} />
       </Card.Body>
       <Button
