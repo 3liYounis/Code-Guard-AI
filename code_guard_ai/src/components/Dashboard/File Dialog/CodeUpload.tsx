@@ -1,4 +1,4 @@
-import { Text, FileUpload, Float, useFileUploadContext, Icon, Box, Button, HStack } from "@chakra-ui/react"
+import { Text, FileUpload, useFileUploadContext, Icon, Box, HStack } from "@chakra-ui/react"
 import { LuX, LuUpload } from "react-icons/lu"
 import { BsFileEarmarkCode } from "react-icons/bs";
 const supportedFileExtensions = [".py", ".c", ".java", ".cs", ".js", ".ts", ".jsx", ".vue", ".kt", ".rb"];
@@ -24,7 +24,8 @@ const FileUploadList = () => {
 }
 const CodeUpload = () => {
     return (
-        <FileUpload.Root maxW="xl" alignItems="stretch" maxFiles={1} >
+        <FileUpload.Root accept={supportedFileExtensions.join(',')} maxW="xl" alignItems="stretch" maxFiles={1}
+        >
             <FileUpload.HiddenInput />
             <FileUpload.Dropzone borderColor="ActiveBorder">
                 <Icon size="md">
