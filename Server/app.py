@@ -1,8 +1,9 @@
 import base64
+from datetime import datetime
 from flask import Flask, request, jsonify
-from firebase_manager import firestore, db, auth
+from firebase_manager import firestore, db
 from data_models import *
-
+from auth_decorator import require_auth
 app = Flask(__name__)
 
 
@@ -31,15 +32,13 @@ def parse_code_reviews(reviews_data):
 
 
 @app.route('/codeReview', methods=['POST'])
+@require_auth
 def add_code_review():
     try:
         data = request.get_json()
-        id_token = data.get('idToken')
         review_data = data.get('codeReview')
-        decoded_token = auth.verify_id_token(id_token)
-        uid = decoded_token['uid']
         review_data['upload_date'] = datetime.now().isoformat()
-        user_ref = db.collection('users').document(uid)
+        user_ref = db.collection('users').document(request.uid)
         user_ref.update({
             'code_reviews': firestore.ArrayUnion([review_data])
         })
@@ -49,14 +48,12 @@ def add_code_review():
 
 
 @app.route('/codeReview', methods=['PUT'])
+@require_auth
 def update_code_review():
     try:
         review_id = request.args.get('id')
         if review_id is None:
             return jsonify({'error': 'Missing query parameter: id'}), 400
-        user_id = request.args.get('uid')
-        if user_id is None:
-            return jsonify({'error': 'Missing query parameter: uid'}), 400
         data = request.get_json()
         updated_review = {
             'id': int(review_id),
@@ -69,7 +66,7 @@ def update_code_review():
             'recommendations': data.get('recommendations', []),
             'upload_date': data['upload_date'],
         }
-        user_ref = db.collection('users').document(user_id)
+        user_ref = db.collection('users').document(request.uid)
         user_doc = user_ref.get()
         if not user_doc.exists:
             return jsonify({'error': 'User not found'}), 404
@@ -83,15 +80,13 @@ def update_code_review():
 
 
 @app.route('/codeReview', methods=['DELETE'])
+@require_auth
 def delete_code_review():
     try:
         review_id = request.args.get('id')
         if review_id is None:
             return jsonify({'error': 'Missing query parameter: id'}), 400
-        user_id = request.args.get('uid')
-        if user_id is None:
-            return jsonify({'error': 'Missing query parameter: uid'}), 400
-        user_ref = db.collection('users').document(user_id)
+        user_ref = db.collection('users').document(request.uid)
         user_doc = user_ref.get()
         if not user_doc.exists:
             return jsonify({'error': 'User not found'}), 404
