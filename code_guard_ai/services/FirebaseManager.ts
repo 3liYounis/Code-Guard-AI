@@ -61,3 +61,21 @@ export const validatePasswordPolicy = async (passwordFromUser: string) => {
         return { shorterThanMin }
     }
 }
+export const getIdToken = async (): Promise<string | null> => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    if (user) {
+        try {
+            const token = await user.getIdToken();
+            return token;
+        }
+        catch (error) {
+            console.error("Failed to get ID token:", error);
+            return null;
+        }
+    }
+    else {
+        console.warn("No user is currently signed in.");
+        return null;
+    }
+};
