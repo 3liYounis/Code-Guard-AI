@@ -1,5 +1,5 @@
 "use client";
-import type { User } from "../../../services/FirebaseManager";
+import type { User } from "../../services/FirebaseManager";
 import { Menu, Portal, Box, Text, Icon, Button } from "@chakra-ui/react";
 import { FaUser } from "react-icons/fa";
 

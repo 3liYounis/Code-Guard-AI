@@ -3,7 +3,7 @@ import { Box } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import SignUpForm from "./SignUpForm";
 import SignInForm from "./SignInForm";
-import type { UserFromFields } from "../../../services/FirebaseManager";
+import type { UserFromFields } from "../../services/FirebaseManager";
 
 const MotionBox = motion.create(Box);
 

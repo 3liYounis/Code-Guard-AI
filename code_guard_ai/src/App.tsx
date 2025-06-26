@@ -5,7 +5,7 @@ import About from "./components/Home/About";
 import "./App.css";
 import { useState } from "react";
 import Dashboard from "./components/Dashboard/Dashboard";
-import { signUp, signIn, signOutUser, type User } from "../services/FirebaseManager"
+import { signUp, signIn, signOutUser, type User } from "./services/FirebaseManager"
 function App() {
   const [user, setUser] = useState<User | undefined>(undefined);
   if (user) {

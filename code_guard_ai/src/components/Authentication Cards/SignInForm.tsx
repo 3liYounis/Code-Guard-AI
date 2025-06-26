@@ -11,7 +11,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signInSchema, type SignInData } from "./schemas";
 import { PasswordInput } from "../ui/password-input";
-import type { UserFromFields } from "../../../services/FirebaseManager";
+import type { UserFromFields } from "../../services/FirebaseManager";
 
 interface Props {
   onSwitch: () => void;
