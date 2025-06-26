@@ -1,28 +1,57 @@
-import { Heading, Stack, Text } from "@chakra-ui/react";
-const About = () => {
+// src/components/About/About.tsx
+import { Heading, SimpleGrid, Stack, Text } from "@chakra-ui/react";
+import { FaLinkedin, FaGithub } from "react-icons/fa";
+import Portfolio from "./Portfolio";
+import AliYounis from "../../assets/Ali-Younis.png";
+import YazanAbomokh from "../../assets/Yazan-Abomokh.jpg";
+
+const profiles = [
+  {
+    name: "Yazan Abomokh",
+    image: YazanAbomokh,
+    links: [
+      {
+        href: "https://www.linkedin.com/in/yazan-a-390840292/",
+        icon: FaLinkedin,
+      },
+      { href: "https://github.com/Yazanabomokh", icon: FaGithub },
+    ],
+  },
+  {
+    name: "Ali Younis",
+    image: AliYounis,
+    links: [
+      { href: "https://www.linkedin.com/in/aliyounis20/", icon: FaLinkedin },
+      { href: "https://github.com/3liYounis", icon: FaGithub },
+    ],
+  },
+];
+
+export default function About() {
   return (
-    <Stack p={20} height="100%" justifyContent="center" alignItems="center">
-      <Heading mb={5} fontSize={30}>
-        About
+    <Stack p={20} height="100%" justify="center" align="center" gap={10}>
+      <Heading fontSize="3xl" textAlign="center">
+        About Code Guard AI
       </Heading>
-      <Text fontSize='20px'>
-        this app is designed by HANDS DOWN the best programmer in the world
-        (Yazan Abomokh, king of the andels and protector of the realm)
-        <br />
-        <br />
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam ea
-        quasi recusandae reprehenderit repellendus laudantium distinctio eveniet
-        cumque laboriosam! Inventore voluptatibus qui atque nesciunt sed nisi
-        facere corporis quasi illum. Lorem, ipsum dolor sit amet consectetur
-        adipisicing elit. Id, laborum odit. Voluptate iusto nulla soluta animi?
-        At debitis earum molestiae omnis accusamus numquam atque cum
-        perspiciatis vel asperiores, laudantium enim? Lorem ipsum dolor sit,
-        amet consectetur adipisicing elit. Ipsam at cumque iste doloremque
-        laudantium nesciunt atque fugiat, quos sequi? Sint rem illo aut voluptas
-        blanditiis facere obcaecati inventore, nisi libero?
+
+      <Text fontSize="lg" maxW="800px" textAlign="center">
+        Code Guard AI is an AI-powered code auditing platform designed to help
+        developers identify security vulnerabilities, enforce best practices,
+        and maintain clean, high-quality codebases. Our intuitive dashboard and
+        automated analysis tools provide real-time feedback on pull requests and
+        commits, making it easier than ever to ship secure, robust software.
       </Text>
+
+      <SimpleGrid columns={{ base: 1, lg: 2 }} gap={10} w="full" maxW="800px">
+        {profiles.map((p) => (
+          <Portfolio
+            key={p.name}
+            name={p.name}
+            image={p.image}
+            links={p.links}
+          />
+        ))}
+      </SimpleGrid>
     </Stack>
   );
-};
-
-export default About;
+}

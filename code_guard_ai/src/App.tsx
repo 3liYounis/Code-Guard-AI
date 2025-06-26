@@ -26,16 +26,16 @@ function App() {
       height="100dvh"
       templateAreas={{
         base: `
-          "nav nav"
-          "about authentication"
+          "nav"
+          "authentication"
         `,
         lg: `
           "nav nav"
-          "aboutauthentication"
+          "about authentication"
         `,
       }}
       templateColumns={{
-        base: "1fr 1fr",
+        base: "1fr",
         lg: "1.5fr 1fr",
       }}
       templateRows="100px 1fr"
@@ -49,11 +49,11 @@ function App() {
         />
       </GridItem>
 
-      <GridItem ml={4} area="about">
+      <GridItem ml={4} area="about" display={{base: 'none', lg: 'block'}}>
         <About />
       </GridItem>
 
-      <GridItem mr={4} area="authentication">
+      <GridItem area="authentication">
         <AuthenticationCard onSignIn={(user) => setUser(user)} />
       </GridItem>
     </Grid>
