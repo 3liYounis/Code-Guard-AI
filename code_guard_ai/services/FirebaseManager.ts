@@ -1,5 +1,5 @@
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, validatePassword, signOut, updateProfile } from "firebase/auth";
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+import { getFirestore, collection, getDoc, setDoc, doc } from "firebase/firestore/lite";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "./FirebaseConfig";
 import type { CodeReview } from "@/components/Dashboard/Review Card/ReviewCard";
@@ -23,21 +23,31 @@ export const signUp = async (user: UserFromFields): Promise<User> => {
     await updateProfile(firebaseUser, {
         displayName: user.displayName,
     });
-    return {
+    const userDoc: User = {
         email: firebaseUser.email ?? "",
         displayName: user.displayName,
         code_reviews: [],
     };
+    await setDoc(doc(db, "users", firebaseUser.uid), userDoc);
+    return userDoc;
 };
 export const signIn = async (email: string, password: string): Promise<User> => {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
+    const userDocRef = doc(db, "users", user.uid);
+    const userDocSnap = await getDoc(userDocRef);
+    let codeReviews: CodeReview[] = [];
+    if (userDocSnap.exists()) {
+        const data = userDocSnap.data();
+        codeReviews = data.code_reviews ?? [];
+    }
     return {
         email: user.email ?? "",
         displayName: user.displayName ?? "",
-        code_reviews: [],
+        code_reviews: codeReviews,
     };
 };
+
 export const signOutUser = async () => {
     signOut(auth).then().catch((error) => console.log(error))
 }

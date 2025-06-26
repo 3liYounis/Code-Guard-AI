@@ -30,44 +30,6 @@ def parse_code_reviews(reviews_data):
     return reviews
 
 
-@app.route('/signUp', methods=['POST'])
-def sign_up():
-    try:
-        data = request.get_json()
-        user_obj = User(
-            email=data['email'],
-            password=data['password'],
-            display_name=data.get('display_name'),
-            uid=data.get('uid'),
-            code_reviews=[]
-        )
-        user_doc = {
-            'email': user_obj.email,
-            'display_name': user_obj.display_name,
-            'code_reviews': []
-        }
-        db.collection('users').document(user_obj.uid).set(user_doc)
-        return jsonify({"user": user_obj}), 201
-    except Exception as e:
-        return jsonify({'error': str(e)}), 400
-
-
-@app.route('/signIn', methods=['GET', 'POST'])
-def sign_in():
-    try:
-        id_token = request.args.get("IDToken")
-        if not id_token:
-            return jsonify({"error": "ID token not provided."}), 400
-        decoded_token = auth.verify_id_token(id_token)
-        uid = decoded_token["uid"]
-        user_doc = db.collection("users").document(uid).get()
-        if not user_doc.exists:
-            return jsonify({"user": None}), 404
-        return jsonify({"user": user_doc.to_dict()}), 200
-    except Exception as e:
-        return jsonify({"error": str(e)}), 400
-
-
 @app.route('/codeReview', methods=['POST'])
 def add_code_review():
     try:
