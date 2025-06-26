@@ -13,28 +13,19 @@ CORS(app, origins="http://localhost:5173",
      methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"])
 
 
-def parse_suggestions(suggestions_data):
-    return [Suggestion(**s) for s in suggestions_data]
+@app.route('/codeReview', methods=['GET'])
+@require_auth
+def get_code_reviews():
+    try:
+        user_ref = db.collection('users').document(request.uid)
+        user_doc = user_ref.get()
+        if not user_doc.exists:
+            return jsonify({'error': 'User not found'}), 404
+        reviews = user_doc.to_dict().get('code_reviews', [])
+        return jsonify(reviews), 200
 
-
-def parse_code_reviews(reviews_data):
-    reviews = []
-    for r in reviews_data:
-        recommendations = parse_suggestions(r.get('recommendations', []))
-        upload_date = datetime.fromisoformat(r['upload_date'])
-        review = CodeReview(
-            id=r['id'],
-            name=r['name'],
-            file_content=base64.b64decode(r['file_content']).decode('utf-8'),
-            programming_language=r['programming_language'],
-            security=r['security'],
-            cleanliness=r['cleanliness'],
-            maintainability=r['maintainability'],
-            recommendations=recommendations,
-            upload_date=upload_date
-        )
-        reviews.append(review)
-    return reviews
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 
 @app.route('/codeReview', methods=['POST'])
