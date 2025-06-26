@@ -6,6 +6,8 @@ from firebase_manager import auth
 def require_auth(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
+        if request.method == "OPTIONS":
+            return '', 200
         try:
             id_token = None
             auth_header = request.headers.get("Authorization", "")

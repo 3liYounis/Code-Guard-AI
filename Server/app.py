@@ -4,7 +4,13 @@ from flask import Flask, request, jsonify
 from firebase_manager import firestore, db
 from data_models import *
 from auth_decorator import require_auth
+from flask_cors import CORS
+
 app = Flask(__name__)
+CORS(app, origins="http://localhost:5173",
+     supports_credentials=True,
+     allow_headers=["Content-Type", "Authorization"],
+     methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"])
 
 
 def parse_suggestions(suggestions_data):
@@ -35,14 +41,27 @@ def parse_code_reviews(reviews_data):
 @require_auth
 def add_code_review():
     try:
-        data = request.get_json()
-        review_data = data.get('codeReview')
-        review_data['upload_date'] = datetime.now().isoformat()
+        if 'file' not in request.files:
+            return jsonify({'error': 'No file provided'}), 400
+        file = request.files['file']
+        file_content = base64.b64encode(file.read()).decode('utf-8')
+        review = {
+            'id': int(datetime.now().timestamp() * 1000),
+            'name': file.filename,
+            'file_content': file_content,
+            'programming_language': infer_language(file.filename),
+            'security': 0,
+            'cleanliness': 0,
+            'maintainability': 0,
+            'recommendations': [],
+            'upload_date': int(datetime.now().timestamp() * 1000)
+        }
         user_ref = db.collection('users').document(request.uid)
         user_ref.update({
-            'code_reviews': firestore.ArrayUnion([review_data])
+            'code_reviews': firestore.ArrayUnion([review])
         })
-        return jsonify({'message': 'Code review added successfully.'}), 201
+        print(review['name'])
+        return jsonify(review), 201
     except Exception as e:
         return jsonify({'error': str(e)}), 400
 
@@ -52,29 +71,34 @@ def add_code_review():
 def update_code_review():
     try:
         review_id = request.args.get('id')
-        if review_id is None:
+        if not review_id:
             return jsonify({'error': 'Missing query parameter: id'}), 400
-        data = request.get_json()
+        if 'file' not in request.files:
+            return jsonify({'error': 'No file provided'}), 400
+        file = request.files['file']
+        file_content = base64.b64encode(file.read()).decode('utf-8')
         updated_review = {
             'id': int(review_id),
-            'name': data['name'],
-            'file_content': data['file_content'],
-            'programming_language': data['programming_language'],
-            'security': data['security'],
-            'cleanliness': data['cleanliness'],
-            'maintainability': data['maintainability'],
-            'recommendations': data.get('recommendations', []),
-            'upload_date': data['upload_date'],
+            'name': file.filename,
+            'file_content': file_content,
+            'programming_language': infer_language(file.filename),
+            'security': 0,
+            'cleanliness': 0,
+            'maintainability': 0,
+            'recommendations': [],
+            'upload_date': int(datetime.now().timestamp() * 1000)
         }
         user_ref = db.collection('users').document(request.uid)
         user_doc = user_ref.get()
         if not user_doc.exists:
             return jsonify({'error': 'User not found'}), 404
         reviews = user_doc.to_dict().get('code_reviews', [])
-        updated_reviews = [updated_review if str(
-            r['id']) == review_id else r for r in reviews]
+        updated_reviews = [
+            updated_review if str(r['id']) == review_id else r for r in reviews
+        ]
         user_ref.update({'code_reviews': updated_reviews})
-        return jsonify({'message': f'Review with id {review_id} updated successfully'}), 200
+        print(updated_review['name'])
+        return jsonify(updated_review), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
@@ -84,7 +108,7 @@ def update_code_review():
 def delete_code_review():
     try:
         review_id = request.args.get('id')
-        if review_id is None:
+        if not review_id:
             return jsonify({'error': 'Missing query parameter: id'}), 400
         user_ref = db.collection('users').document(request.uid)
         user_doc = user_ref.get()
@@ -93,9 +117,29 @@ def delete_code_review():
         reviews = user_doc.to_dict().get('code_reviews', [])
         updated_reviews = [r for r in reviews if str(r['id']) != review_id]
         user_ref.update({'code_reviews': updated_reviews})
+        print(updated_reviews)
         return jsonify({'message': f'Review with id {review_id} deleted successfully'}), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+
+def infer_language(filename: str) -> str:
+    extension_map = {
+        ".py": "Python",
+        ".js": "JavaScript",
+        ".ts": "TypeScript",
+        ".java": "Java",
+        ".cs": "C#",
+        ".cpp": "C++",
+        ".rb": "Ruby",
+        ".vue": "Vue",
+        ".kt": "Kotlin",
+        ".c": "C"
+    }
+    for ext, lang in extension_map.items():
+        if filename.endswith(ext):
+            return lang
+    return "other"
 
 
 if __name__ == '__main__':
