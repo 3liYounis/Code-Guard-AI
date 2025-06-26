@@ -1,12 +1,32 @@
+import { useState } from "react";
 import { Button, CloseButton, HStack, Portal, Dialog } from "@chakra-ui/react";
 import AddCodeReview from "./AddCodeReview";
 import CodeUpload from "./CodeUpload";
-const NewFileDialog = () => {
+import { addCodeReview } from "@/services/api-client";
+
+interface NewFileDialogProps {
+    isOpen: boolean;
+    onOpenChange: (details: { open: boolean }) => void;
+    onSuccess: () => void; // callback when submission is successful
+}
+
+const NewFileDialog = ({ isOpen, onOpenChange, onSuccess }: NewFileDialogProps) => {
+    const [file, setFile] = useState<File | null>(null);
+
+    const submitNewFile = async () => {
+        if (!file) return;
+        try {
+            await addCodeReview(file);
+            setFile(null);
+            onSuccess();
+        } catch {
+            // handle error if needed
+        }
+    };
+
     return (
         <HStack wrap="wrap" gap="4" justifyContent="center" alignItems="center" width={470}>
-            <Dialog.Root
-                placement="center"
-                motionPreset="slide-in-bottom"
+            <Dialog.Root open={isOpen} onOpenChange={(details) => onOpenChange(details)} placement="center" motionPreset="slide-in-bottom"
             >
                 <Dialog.Trigger>
                     <AddCodeReview />
@@ -19,13 +39,15 @@ const NewFileDialog = () => {
                                 <Dialog.Title>Upload Your Source Code</Dialog.Title>
                             </Dialog.Header>
                             <Dialog.Body>
-                                <CodeUpload />
+                                <CodeUpload onFileSelect={setFile} />
                             </Dialog.Body>
                             <Dialog.Footer>
                                 <Dialog.ActionTrigger asChild>
                                     <Button variant="outline">Cancel</Button>
                                 </Dialog.ActionTrigger>
-                                <Button>Submit</Button>
+                                <Button onClick={submitNewFile} disabled={!file}>
+                                    Submit
+                                </Button>
                             </Dialog.Footer>
                             <Dialog.CloseTrigger asChild>
                                 <CloseButton size="sm" />
@@ -34,8 +56,8 @@ const NewFileDialog = () => {
                     </Dialog.Positioner>
                 </Portal>
             </Dialog.Root>
-        </HStack >
+        </HStack>
     );
-}
+};
 
 export default NewFileDialog;
