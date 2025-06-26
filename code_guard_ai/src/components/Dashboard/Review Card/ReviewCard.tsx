@@ -10,13 +10,13 @@ export interface Suggestion {
 export interface CodeReview {
   id: number;
   name: string;
-  File: File;
-  programmingLanguage: string;
+  file_content: string;
+  programming_language: string;
   security: number;
   cleanliness: number;
   maintainability: number;
   recommendations: Suggestion[];
-  modificationDate: Date;
+  upload_date: number;
 }
 
 interface Props {

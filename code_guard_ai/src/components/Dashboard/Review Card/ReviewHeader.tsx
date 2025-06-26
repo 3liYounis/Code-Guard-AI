@@ -47,7 +47,7 @@ const formatTime = (date: Date) => {
 const formatDate = (date: Date): string => {
   const weekDays = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
   const day = weekDays[date.getDay()];
-  const dateStr = date.toLocaleDateString(); // e.g. 6/25/2025
+  const dateStr = date.toLocaleDateString();
   return `${day} ${dateStr}`;
 };
 const ReviewHeader = ({ name, programmingLanguage, modificationDate }: Props) => {

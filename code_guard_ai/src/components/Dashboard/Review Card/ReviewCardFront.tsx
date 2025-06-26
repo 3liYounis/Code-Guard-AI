@@ -17,8 +17,8 @@ const ReviewCardFront = ({ codeReview, onSwitch }: Props) => {
       <Card.Header>
         <ReviewHeader
           name={codeReview.name}
-          programmingLanguage={codeReview.programmingLanguage}
-          modificationDate={codeReview.modificationDate}
+          programmingLanguage={codeReview.programming_language}
+          modificationDate={new Date(codeReview.upload_date)}
         />
       </Card.Header>
       <Card.Body>
