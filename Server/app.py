@@ -45,9 +45,15 @@ def add_code_review():
             return jsonify({'error': 'No file provided'}), 400
         file = request.files['file']
         file_content = base64.b64encode(file.read()).decode('utf-8')
+        index = file.filename.find('.')
+        if index != -1:
+            file_title = file.filename[:index]
+        else:
+            file_title = file.filename
+        file_title = file.filename.title()
         review = {
             'id': int(datetime.now().timestamp() * 1000),
-            'name': file.filename,
+            'name': file_title,
             'file_content': file_content,
             'programming_language': infer_language(file.filename),
             'security': random.randint(20, 101),
