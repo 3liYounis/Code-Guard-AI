@@ -1,6 +1,19 @@
 import { getIdToken } from "./FirebaseManager"
 import type { CodeReview } from "../components/Dashboard/Review Card/ReviewCard";
 const BASE_URL = "http://localhost:5000/codeReview";
+export const getAllCodeReviews = async (): Promise<CodeReview[]> => {
+    const token = await getIdToken();
+    const response = await fetch(BASE_URL, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+    const result = await response.json();
+    if (!response.ok)
+        throw new Error(result.error || "Failed to fetch code reviews");
+    return result as CodeReview[];
+};
 export const addCodeReview = async (file: File): Promise<CodeReview> => {
     const token = await getIdToken();
     const formData = new FormData();
