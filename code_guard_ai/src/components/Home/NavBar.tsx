@@ -3,6 +3,7 @@ import logo from "../../assets/logo.svg";
 import ColorModeSwitch from "./ColorModeSwitch";
 import ProfileIcon from "../Authentication Cards/ProfileIcon";
 import type { User } from "@/App";
+import SearchBar from "./SearchBar";
 
 interface Props {
   user: User | undefined;
@@ -16,6 +17,7 @@ const NavBar = ({ user, onSignOut }: Props) => {
         <Image src={logo} boxSize="60px"></Image>
         <Heading fontSize="3xl">Code Guard AI</Heading>
       </HStack>
+      {user && <SearchBar onSearch={(file) => {}}></SearchBar>}
       <HStack>
         {user && <ProfileIcon user={user} onSignOut={onSignOut}></ProfileIcon>}
         <ColorModeSwitch />

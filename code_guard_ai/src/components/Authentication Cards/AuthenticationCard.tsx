@@ -26,18 +26,18 @@ function AuthenticationCard({ onSignIn }: Props) {
       justifyItems="center"
       alignItems="center"
     >
-      <Box width="70%" gridArea="1 / 1" p={8} backfaceVisibility="hidden">
+      <Box width="80%" gridArea="1 / 1" p={8} backfaceVisibility="hidden">
         <SignUpForm onSwitch={flip} onSignIn={onSignIn} />
       </Box>
 
       <Box
-        width="70%"
+        width="80%"
         gridArea="1 / 1"
         p={8}
         backfaceVisibility="hidden"
         transform="rotateY(180deg)"
       >
-        <SignInForm onSwitch={flip} onSignIn={onSignIn}/>
+        <SignInForm onSwitch={flip} onSignIn={onSignIn} />
       </Box>
     </MotionBox>
   );

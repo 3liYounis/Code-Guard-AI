@@ -1,4 +1,4 @@
-import { Box, Grid, GridItem } from "@chakra-ui/react";
+import { Grid, GridItem } from "@chakra-ui/react";
 import NavBar from "./components/Home/NavBar";
 import AuthenticationCard from "./components/Authentication Cards/AuthenticationCard";
 import About from "./components/Home/About";
@@ -15,10 +15,32 @@ function App() {
   const [user, setUser] = useState<User | undefined>(undefined);
   if (user) {
     return (
-      <Box>
-        <NavBar user={user} onSignOut={() => setUser(undefined)}></NavBar>
-        <Dashboard></Dashboard>
-      </Box>
+      <Grid
+        height="100dvh"
+        templateAreas={{
+          base: `
+          "nav"
+          "dashboard"
+        `,
+        }}
+        templateColumns={{
+          base: "1fr",
+        }}
+        templateRows="100px 1fr"
+      >
+        <GridItem area="nav">
+          <NavBar
+            user={user}
+            onSignOut={() => {
+              setUser(undefined);
+            }}
+          />
+        </GridItem>
+
+        <GridItem area="dashboard">
+          <Dashboard></Dashboard>
+        </GridItem>
+      </Grid>
     );
   }
   return (
@@ -26,16 +48,16 @@ function App() {
       height="100dvh"
       templateAreas={{
         base: `
-          "nav nav"
-          "about authentication"
+          "nav"
+          "authentication"
         `,
         lg: `
           "nav nav"
-          "aboutauthentication"
+          "about authentication"
         `,
       }}
       templateColumns={{
-        base: "1fr 1fr",
+        base: "1fr",
         lg: "1.5fr 1fr",
       }}
       templateRows="100px 1fr"
@@ -49,11 +71,11 @@ function App() {
         />
       </GridItem>
 
-      <GridItem ml={4} area="about">
+      <GridItem ml={4} area="about" display={{ base: "none", lg: "block" }}>
         <About />
       </GridItem>
 
-      <GridItem mr={4} area="authentication">
+      <GridItem area="authentication">
         <AuthenticationCard onSignIn={(user) => setUser(user)} />
       </GridItem>
     </Grid>
