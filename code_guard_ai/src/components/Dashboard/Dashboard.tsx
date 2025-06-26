@@ -1,8 +1,8 @@
 import { SimpleGrid } from "@chakra-ui/react";
 import ReviewCard, { type CodeReview } from "./Review Card/ReviewCard";
 import ReviewCardSkeleton from "./Review Card/ReviewCardSkeleton";
-import StaticCodeReviews from "@/Data/StaticCodeReviews";
 import NewFileDialog from "./File Dialog/NewFileDialog";
+// import StaticCodeReviews from "@/Data/StaticCodeReviews";
 // const staticData: CodeReview[] = StaticCodeReviews.sort((e1, e2) => e2.modificationDate.getTime() - e1.modificationDate.getTime());
 interface Props {
     codeReviews: CodeReview[];

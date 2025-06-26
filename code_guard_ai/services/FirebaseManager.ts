@@ -9,6 +9,7 @@ export interface UserFromFields {
     displayName: string;
 }
 export interface User {
+    uid: string;
     email: string;
     displayName: string;
     code_reviews: CodeReview[];
@@ -24,6 +25,7 @@ export const signUp = async (user: UserFromFields): Promise<User> => {
         displayName: user.displayName,
     });
     const userDoc: User = {
+        uid: firebaseUser.uid,
         email: firebaseUser.email ?? "",
         displayName: user.displayName,
         code_reviews: [],
@@ -42,6 +44,7 @@ export const signIn = async (email: string, password: string): Promise<User> => 
         codeReviews = data.code_reviews ?? [];
     }
     return {
+        uid: user.uid,
         email: user.email ?? "",
         displayName: user.displayName ?? "",
         code_reviews: codeReviews,
