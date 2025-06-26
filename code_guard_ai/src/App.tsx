@@ -28,7 +28,7 @@ function App() {
         }}
         templateRows="100px 1fr"
       >
-        <GridItem border="solid" area="nav">
+        <GridItem area="nav">
           <NavBar
             user={user}
             onSignOut={() => {
@@ -62,7 +62,7 @@ function App() {
       }}
       templateRows="100px 1fr"
     >
-      <GridItem border="solid" area="nav">
+      <GridItem area="nav">
         <NavBar
           user={user}
           onSignOut={() => {
