@@ -38,25 +38,18 @@ def sign_up():
             email=data['email'],
             password=data['password'],
             display_name=data.get('display_name'),
-            username=data.get('username'),
+            uid=data.get('uid'),
             code_reviews=[]
-        )
-        user = auth.create_user(
-            email=user_obj.email,
-            password=user_obj.password,
-            display_name=user_obj.display_name
         )
         user_doc = {
             'email': user_obj.email,
-            'username': user_obj.username,
             'display_name': user_obj.display_name,
             'code_reviews': []
         }
-        db.collection('users').document(user.uid).set(user_doc)
+        db.collection('users').document(user_obj.uid).set(user_doc)
         return jsonify({"user": user_obj}), 201
     except Exception as e:
         return jsonify({'error': str(e)}), 400
-# Actual Sign in has to be in client-side
 
 
 @app.route('/signIn', methods=['GET', 'POST'])
@@ -73,8 +66,6 @@ def sign_in():
         return jsonify({"user": user_doc.to_dict()}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 400
-
-# signOut should be implemented in client side
 
 
 @app.route('/codeReview', methods=['POST'])

@@ -29,5 +29,4 @@ class User:
     email: str
     password: str
     display_name: str
-    username: str
     code_reviews: List[CodeReview]
