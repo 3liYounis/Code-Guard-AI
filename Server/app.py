@@ -13,6 +13,15 @@ CORS(app, origins="http://localhost:5173",
      methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"])
 
 
+def create_suggestion(suggestion_id: int, suggestion_type: str, content: str, cite: str = "Test"):
+    return {
+        "id": suggestion_id,
+        "type": suggestion_type,
+        "content": content,
+        "cite": cite
+    }
+
+
 @app.route('/codeReview', methods=['GET'])
 @require_auth
 def get_code_reviews():
@@ -23,7 +32,6 @@ def get_code_reviews():
             return jsonify({'error': 'User not found'}), 404
         reviews = user_doc.to_dict().get('code_reviews', [])
         return jsonify(reviews), 200
-
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
@@ -41,7 +49,7 @@ def add_code_review():
             file_title = file.filename[:index]
         else:
             file_title = file.filename
-        file_title = file.filename.title()
+        file_title = file_title.title()
         review = {
             'id': int(datetime.now().timestamp() * 1000),
             'name': file_title,
@@ -50,14 +58,19 @@ def add_code_review():
             'security': random.randint(20, 101),
             'cleanliness': random.randint(20, 101),
             'maintainability': random.randint(20, 101),
-            'recommendations': [],
-            'upload_date': int(datetime.now().timestamp() * 1000)
+            'recommendations': [
+                create_suggestion(1, "Security",
+                                  "new recommendation"),
+                create_suggestion(
+                    2, "Maintainability", "new recommendation"),
+                create_suggestion(3, "Cleanliness",
+                                  "new recommendation")
+            ],            'upload_date': int(datetime.now().timestamp() * 1000)
         }
         user_ref = db.collection('users').document(request.uid)
         user_ref.update({
             'code_reviews': firestore.ArrayUnion([review])
         })
-        print(review['name'])
         return jsonify(review), 201
     except Exception as e:
         return jsonify({'error': str(e)}), 400
@@ -82,7 +95,14 @@ def update_code_review():
             'security': random.randint(20, 101),
             'cleanliness': random.randint(20, 101),
             'maintainability': random.randint(20, 101),
-            'recommendations': [],
+            'recommendations': [
+                create_suggestion(1, "Security",
+                                  "updated recommendation"),
+                create_suggestion(2, "Maintainability",
+                                  "updated recommendation"),
+                create_suggestion(3, "Cleanliness",
+                                  "updated recommendation")
+            ],
             'upload_date': int(datetime.now().timestamp() * 1000)
         }
         user_ref = db.collection('users').document(request.uid)
