@@ -3,15 +3,16 @@ import { Box } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import SignUpForm from "./SignUpForm";
 import SignInForm from "./SignInForm";
-import type { User } from "@/App";
+import type { UserFromFields } from "../../../services/FirebaseManager";
 
 const MotionBox = motion.create(Box);
 
 interface Props {
-  onSignIn: (user: User) => void;
+  onSignIn: (user: UserFromFields) => void;
+  onSignUp: (user: UserFromFields) => void;
 }
 
-function AuthenticationCard({ onSignIn }: Props) {
+function AuthenticationCard({ onSignIn, onSignUp }: Props) {
   const [showSignIn, setShowSignIn] = useState(false);
   const flip = () => setShowSignIn(!showSignIn);
 
@@ -27,7 +28,7 @@ function AuthenticationCard({ onSignIn }: Props) {
       alignItems="center"
     >
       <Box width="80%" gridArea="1 / 1" p={8} backfaceVisibility="hidden">
-        <SignUpForm onSwitch={flip} onSignIn={onSignIn} />
+        <SignUpForm onSwitch={flip} onSignUp={onSignUp} />
       </Box>
 
       <Box

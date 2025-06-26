@@ -11,14 +11,14 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signUpSchema, type SignUpData } from "./schemas";
 import { PasswordInput } from "../ui/password-input";
-import type { User } from "@/App";
+import type { UserFromFields } from "../../../services/FirebaseManager";
 
 interface Props {
   onSwitch: () => void;
-  onSignIn: (user: User) => void;
+  onSignUp: (user: UserFromFields) => void;
 }
 
-function SignUpForm({ onSwitch, onSignIn }: Props) {
+function SignUpForm({ onSwitch, onSignUp }: Props) {
   const {
     register,
     handleSubmit,
@@ -27,8 +27,8 @@ function SignUpForm({ onSwitch, onSignIn }: Props) {
 
   const submit = (data: SignUpData) => {
     console.log("sign-up", data);
-    if (true /* if SignUp was successful */) {
-      onSignIn({ username: data.username, email: data.email });
+    if (true) {
+      onSignUp({ displayName: data.username, email: data.email, password: data.password });
     }
   };
 
@@ -46,7 +46,6 @@ function SignUpForm({ onSwitch, onSignIn }: Props) {
         <Heading size="2xl" textAlign="center">
           Sign Up
         </Heading>
-
         <Field.Root invalid={Boolean(errors.email)} required>
           <Field.Label>
             Email
@@ -57,7 +56,6 @@ function SignUpForm({ onSwitch, onSignIn }: Props) {
             <Field.ErrorText>{errors.email.message}</Field.ErrorText>
           )}
         </Field.Root>
-
         <Field.Root invalid={Boolean(errors.username)} required>
           <Field.Label>
             Username
@@ -68,7 +66,6 @@ function SignUpForm({ onSwitch, onSignIn }: Props) {
             <Field.ErrorText>{errors.username.message}</Field.ErrorText>
           )}
         </Field.Root>
-
         <Field.Root invalid={Boolean(errors.password)} required>
           <Field.Label>
             Password
@@ -79,7 +76,6 @@ function SignUpForm({ onSwitch, onSignIn }: Props) {
             <Field.ErrorText>{errors.password.message}</Field.ErrorText>
           )}
         </Field.Root>
-
         <Field.Root invalid={Boolean(errors.confirmPassword)} required>
           <Field.Label>
             Confirm password
@@ -90,7 +86,6 @@ function SignUpForm({ onSwitch, onSignIn }: Props) {
             <Field.ErrorText>{errors.confirmPassword.message}</Field.ErrorText>
           )}
         </Field.Root>
-
         <Button
           borderRadius="full"
           alignSelf="center"
@@ -108,5 +103,4 @@ function SignUpForm({ onSwitch, onSignIn }: Props) {
     </Box>
   );
 }
-
 export default SignUpForm;

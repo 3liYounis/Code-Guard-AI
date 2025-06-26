@@ -5,12 +5,7 @@ import About from "./components/Home/About";
 import "./App.css";
 import { useState } from "react";
 import Dashboard from "./components/Dashboard/Dashboard";
-
-export interface User {
-  username: string;
-  email: string;
-}
-
+import { signUp, signIn, signOutUser, type User } from "../services/FirebaseManager"
 function App() {
   const [user, setUser] = useState<User | undefined>(undefined);
   if (user) {
@@ -31,9 +26,7 @@ function App() {
         <GridItem area="nav">
           <NavBar
             user={user}
-            onSignOut={() => {
-              setUser(undefined);
-            }}
+            onSignOut={() => { signOutUser(); setUser(undefined) }}
           />
         </GridItem>
 
@@ -65,18 +58,14 @@ function App() {
       <GridItem area="nav">
         <NavBar
           user={user}
-          onSignOut={() => {
-            setUser(undefined);
-          }}
+          onSignOut={() => { }}
         />
       </GridItem>
-
       <GridItem ml={4} area="about" display={{ base: "none", lg: "block" }}>
         <About />
       </GridItem>
-
       <GridItem area="authentication">
-        <AuthenticationCard onSignIn={(user) => setUser(user)} />
+        <AuthenticationCard onSignIn={async (user) => { setUser(await signIn(user.email, user.password)) }} onSignUp={async (user) => setUser(await signUp(user))} />
       </GridItem>
     </Grid>
   );

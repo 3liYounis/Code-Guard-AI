@@ -11,11 +11,11 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signInSchema, type SignInData } from "./schemas";
 import { PasswordInput } from "../ui/password-input";
-import type { User } from "@/App";
+import type { UserFromFields } from "../../../services/FirebaseManager";
 
 interface Props {
   onSwitch: () => void;
-  onSignIn: (user: User) => void;
+  onSignIn: (user: UserFromFields) => void;
 }
 
 function SignInForm({ onSwitch, onSignIn }: Props) {
@@ -27,9 +27,9 @@ function SignInForm({ onSwitch, onSignIn }: Props) {
 
   const submit = (data: SignInData) => {
     console.log("sign-in", data);
-    if (true /* if SignIn was successful */) {
-      let username = "Example"; // fetch username from backend
-      onSignIn({ username: username, email: data.email });
+    if (true) {
+      let username = "Example";
+      onSignIn({ displayName: username, email: data.email, password: data.password });
     }
   };
 
@@ -47,7 +47,6 @@ function SignInForm({ onSwitch, onSignIn }: Props) {
         <Heading size="2xl" textAlign="center">
           Sign In
         </Heading>
-
         <Field.Root invalid={Boolean(errors.email)} required>
           <Field.Label>
             Email
@@ -58,7 +57,6 @@ function SignInForm({ onSwitch, onSignIn }: Props) {
             <Field.ErrorText>{errors.email.message}</Field.ErrorText>
           )}
         </Field.Root>
-
         <Field.Root invalid={Boolean(errors.password)} required>
           <Field.Label>
             Password
@@ -69,7 +67,6 @@ function SignInForm({ onSwitch, onSignIn }: Props) {
             <Field.ErrorText>{errors.password.message}</Field.ErrorText>
           )}
         </Field.Root>
-
         <Button
           borderRadius="full"
           alignSelf="center"
@@ -79,7 +76,6 @@ function SignInForm({ onSwitch, onSignIn }: Props) {
         >
           Sign in
         </Button>
-
         <Link color="blue.400" alignSelf="center" onClick={onSwitch}>
           Don't have an account? Sign Up
         </Link>
