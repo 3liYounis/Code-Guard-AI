@@ -1,4 +1,4 @@
-import { Box, Grid, GridItem } from "@chakra-ui/react";
+import { Grid, GridItem } from "@chakra-ui/react";
 import NavBar from "./components/Home/NavBar";
 import AuthenticationCard from "./components/Authentication Cards/AuthenticationCard";
 import About from "./components/Home/About";
@@ -15,10 +15,32 @@ function App() {
   const [user, setUser] = useState<User | undefined>(undefined);
   if (user) {
     return (
-      <Box>
-        <NavBar user={user} onSignOut={() => setUser(undefined)}></NavBar>
-        <Dashboard></Dashboard>
-      </Box>
+      <Grid
+        height="100dvh"
+        templateAreas={{
+          base: `
+          "nav"
+          "dashboard"
+        `,
+        }}
+        templateColumns={{
+          base: "1fr",
+        }}
+        templateRows="100px 1fr"
+      >
+        <GridItem border="solid" area="nav">
+          <NavBar
+            user={user}
+            onSignOut={() => {
+              setUser(undefined);
+            }}
+          />
+        </GridItem>
+
+        <GridItem area="dashboard">
+          <Dashboard></Dashboard>
+        </GridItem>
+      </Grid>
     );
   }
   return (
@@ -40,7 +62,7 @@ function App() {
       }}
       templateRows="100px 1fr"
     >
-      <GridItem area="nav">
+      <GridItem border="solid" area="nav">
         <NavBar
           user={user}
           onSignOut={() => {
@@ -49,7 +71,7 @@ function App() {
         />
       </GridItem>
 
-      <GridItem ml={4} area="about" display={{base: 'none', lg: 'block'}}>
+      <GridItem ml={4} area="about" display={{ base: "none", lg: "block" }}>
         <About />
       </GridItem>
 
