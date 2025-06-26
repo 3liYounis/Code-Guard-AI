@@ -5,7 +5,7 @@ from firebase_manager import firestore, db
 from data_models import *
 from auth_decorator import require_auth
 from flask_cors import CORS
-
+import random
 app = Flask(__name__)
 CORS(app, origins="http://localhost:5173",
      supports_credentials=True,
@@ -50,9 +50,9 @@ def add_code_review():
             'name': file.filename,
             'file_content': file_content,
             'programming_language': infer_language(file.filename),
-            'security': 0,
-            'cleanliness': 0,
-            'maintainability': 0,
+            'security': random.randint(20, 101),
+            'cleanliness': random.randint(20, 101),
+            'maintainability': random.randint(20, 101),
             'recommendations': [],
             'upload_date': int(datetime.now().timestamp() * 1000)
         }
@@ -82,9 +82,9 @@ def update_code_review():
             'name': file.filename,
             'file_content': file_content,
             'programming_language': infer_language(file.filename),
-            'security': 0,
-            'cleanliness': 0,
-            'maintainability': 0,
+            'security': random.randint(20, 101),
+            'cleanliness': random.randint(20, 101),
+            'maintainability': random.randint(20, 101),
             'recommendations': [],
             'upload_date': int(datetime.now().timestamp() * 1000)
         }

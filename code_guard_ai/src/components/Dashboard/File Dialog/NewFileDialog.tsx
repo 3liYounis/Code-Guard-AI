@@ -7,7 +7,7 @@ import { addCodeReview } from "@/services/api-client";
 interface NewFileDialogProps {
     isOpen: boolean;
     onOpenChange: (details: { open: boolean }) => void;
-    onSuccess: () => void; // callback when submission is successful
+    onSuccess: () => void;
 }
 
 const NewFileDialog = ({ isOpen, onOpenChange, onSuccess }: NewFileDialogProps) => {
@@ -20,7 +20,6 @@ const NewFileDialog = ({ isOpen, onOpenChange, onSuccess }: NewFileDialogProps) 
             setFile(null);
             onSuccess();
         } catch {
-            // handle error if needed
         }
     };
 
