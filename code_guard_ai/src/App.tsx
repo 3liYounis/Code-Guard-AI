@@ -31,7 +31,7 @@ function App() {
         </GridItem>
 
         <GridItem area="dashboard">
-          <Dashboard codeReviews={user.code_reviews}></Dashboard>
+          <Dashboard ></Dashboard>
         </GridItem>
       </Grid>
     );
