@@ -52,7 +52,6 @@ const CardButtonList = ({ codeReview, refresh }: Props) => {
                     setIsDialogOpen(false);
                     refresh();
                 }}
-                inline={true}
                 onSubmit={onDialogSubmit}
             />
             <Stack gap={0.5}>
