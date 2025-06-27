@@ -1,5 +1,5 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, validatePassword, signOut, updateProfile } from "firebase/auth";
-import { getFirestore, collection, getDoc, setDoc, doc } from "firebase/firestore/lite";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, validatePassword, signOut, updateProfile, onAuthStateChanged } from "firebase/auth";
+import { getFirestore, getDoc, setDoc, doc } from "firebase/firestore/lite";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "./FirebaseConfig";
 import type { CodeReview } from "@/components/Dashboard/Review Card/ReviewCard";
@@ -78,4 +78,27 @@ export const getIdToken = async (): Promise<string | null> => {
         console.warn("No user is currently signed in.");
         return null;
     }
+};
+export const onAuthStateChangedListener = (
+    callback: (user: User | undefined) => void
+) => {
+    return onAuthStateChanged(auth, async (firebaseUser) => {
+        if (firebaseUser) {
+            const userDocRef = doc(db, "users", firebaseUser.uid);
+            const userDocSnap = await getDoc(userDocRef);
+            let codeReviews: CodeReview[] = [];
+            if (userDocSnap.exists()) {
+                const data = userDocSnap.data();
+                codeReviews = data.code_reviews ?? [];
+            }
+            callback({
+                uid: firebaseUser.uid,
+                email: firebaseUser.email ?? "",
+                displayName: firebaseUser.displayName ?? "",
+                code_reviews: codeReviews,
+            });
+        }
+        else
+            callback(undefined);
+    });
 };
