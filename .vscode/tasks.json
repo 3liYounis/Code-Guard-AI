@@ -9,7 +9,12 @@
         "cwd": "${workspaceFolder}/code_guard_ai"
       },
       "problemMatcher": [],
-      "isBackground": true
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "frontend"
+      }
     },
     {
       "label": "Start Backend",
@@ -19,12 +24,29 @@
         "cwd": "${workspaceFolder}/Server"
       },
       "problemMatcher": [],
-      "isBackground": true
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "backend"
+      }
     },
     {
       "label": "Run Both Servers",
       "dependsOn": ["Start Frontend", "Start Backend"],
       "dependsOrder": "parallel"
+    },
+    {
+      "label": "Stop Servers",
+      "type": "shell",
+      "command": "echo Stop command triggered. Manually stop if needed.",
+      "problemMatcher": [],
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "new"
+      }
     }
   ]
 }
