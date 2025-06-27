@@ -13,6 +13,15 @@ CORS(app, origins="http://localhost:5173",
      methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"])
 
 
+def format_file_name(filename):
+    index = filename.find('.')
+    if index != -1:
+        file_title = filename[:index]
+    else:
+        file_title = filename
+    return file_title.title()
+
+
 def create_suggestion(suggestion_id: int, suggestion_type: str, content: str, cite: str = "Test"):
     return {
         "id": suggestion_id,
@@ -44,15 +53,9 @@ def add_code_review():
             return jsonify({'error': 'No file provided'}), 400
         file = request.files['file']
         file_content = base64.b64encode(file.read()).decode('utf-8')
-        index = file.filename.find('.')
-        if index != -1:
-            file_title = file.filename[:index]
-        else:
-            file_title = file.filename
-        file_title = file_title.title()
         review = {
             'id': int(datetime.now().timestamp() * 1000),
-            'name': file_title,
+            'name': format_file_name(file.filename),
             'file_content': file_content,
             'programming_language': infer_language(file.filename),
             'security': random.randint(20, 101),
@@ -89,7 +92,7 @@ def update_code_review():
         file_content = base64.b64encode(file.read()).decode('utf-8')
         updated_review = {
             'id': int(review_id),
-            'name': file.filename,
+            'name': format_file_name(file.filename),
             'file_content': file_content,
             'programming_language': infer_language(file.filename),
             'security': random.randint(20, 101),
@@ -114,7 +117,6 @@ def update_code_review():
             updated_review if str(r['id']) == review_id else r for r in reviews
         ]
         user_ref.update({'code_reviews': updated_reviews})
-        print(updated_review['name'])
         return jsonify(updated_review), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
@@ -134,7 +136,6 @@ def delete_code_review():
         reviews = user_doc.to_dict().get('code_reviews', [])
         updated_reviews = [r for r in reviews if str(r['id']) != review_id]
         user_ref.update({'code_reviews': updated_reviews})
-        print(updated_reviews)
         return jsonify({'message': f'Review with id {review_id} deleted successfully'}), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
