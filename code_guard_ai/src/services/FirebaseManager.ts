@@ -80,25 +80,24 @@ export const getIdToken = async (): Promise<string | null> => {
     }
 };
 export const onAuthStateChangedListener = (
-    callback: (user: User | undefined) => void
+    setUser: (user: User | undefined) => void
 ) => {
+    const auth = getAuth();
     return onAuthStateChanged(auth, async (firebaseUser) => {
         if (firebaseUser) {
             const userDocRef = doc(db, "users", firebaseUser.uid);
             const userDocSnap = await getDoc(userDocRef);
-            let codeReviews: CodeReview[] = [];
             if (userDocSnap.exists()) {
                 const data = userDocSnap.data();
-                codeReviews = data.code_reviews ?? [];
+                setUser({
+                    uid: firebaseUser.uid,
+                    email: firebaseUser.email ?? "",
+                    displayName: firebaseUser.displayName ?? "",
+                    code_reviews: data.code_reviews ?? [],
+                });
             }
-            callback({
-                uid: firebaseUser.uid,
-                email: firebaseUser.email ?? "",
-                displayName: firebaseUser.displayName ?? "",
-                code_reviews: codeReviews,
-            });
+        } else {
+            setUser(undefined);
         }
-        else
-            callback(undefined);
     });
 };

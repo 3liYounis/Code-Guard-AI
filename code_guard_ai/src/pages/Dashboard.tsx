@@ -29,8 +29,9 @@ const Dashboard = ({ user, setUser }: Props) => {
         }
     };
     useEffect(() => {
-        fetchReviews();
-    }, []);
+        if (user)
+            fetchReviews();
+    }, [user]);
     const reviews = [...codeReviews].sort(
         (e1, e2) => new Date(e2.upload_date).getTime() - new Date(e1.upload_date).getTime()
     );

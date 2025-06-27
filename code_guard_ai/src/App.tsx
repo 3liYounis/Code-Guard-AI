@@ -7,10 +7,16 @@ import NotFound from "./pages/NotFound";
 import "./App.css";
 function App() {
   const [user, setUser] = useState<User | undefined>(undefined);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    const unsubscribe = onAuthStateChangedListener(setUser);
+    const unsubscribe = onAuthStateChangedListener((user) => {
+      setUser(user);
+      setIsLoading(false);
+    });
     return () => unsubscribe();
   }, []);
+  if (isLoading) return <div>Loading...</div>;
+
   return (
     <Router>
       <Routes>
