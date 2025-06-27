@@ -4,24 +4,27 @@ import ColorModeSwitch from "./ColorModeSwitch";
 import ProfileIcon from "../Authentication Cards/ProfileIcon";
 import type { User } from "../../services/FirebaseManager";
 import SearchBar from "./SearchBar";
-import type { ReactNode } from "react";
-
+import AddCodeReview from "../Dashboard/File Dialog/AddCodeReview";
 interface Props {
   user: User | undefined;
-  onSignOut: () => void;
+  onSignOut?: () => void;
+  onNewFileClick?: () => void;
 }
 
-const NavBar = ({ user, onSignOut }: Props) => {
+const NavBar = ({ user, onSignOut, onNewFileClick }: Props) => {
   return (
     <HStack mt={-3} justifyContent="space-between" p={5}>
       <HStack>
         <Image src={logo} boxSize="60px"></Image>
         <Heading fontSize="3xl">Code Guard AI</Heading>
       </HStack>
-      {user && <SearchBar onSearch={() => { }}></SearchBar>}
       <HStack>
-        {user && <ProfileIcon user={user} onSignOut={onSignOut}></ProfileIcon>}
+        {user && <SearchBar onSearch={() => { }}></SearchBar>}
+      </HStack>
+      <HStack>
+        {user && <AddCodeReview onClicked={onNewFileClick} />}
         <ColorModeSwitch />
+        {user && <ProfileIcon user={user} onSignOut={onSignOut}></ProfileIcon>}
       </HStack>
     </HStack>
   );

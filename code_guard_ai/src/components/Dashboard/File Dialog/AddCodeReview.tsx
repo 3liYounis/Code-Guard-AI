@@ -1,11 +1,18 @@
-import { Button, Heading, Stack } from "@chakra-ui/react";
-import Emoji from "../../ui/Emoji";
-const AddCodeReview = () => {
+import { HStack, Heading, Button, Icon } from "@chakra-ui/react";
+import { BsFileEarmarkCodeFill } from "react-icons/bs";
+
+
+interface Props {
+    onClicked?: () => void;
+}
+const AddCodeReview = ({ onClicked }: Props) => {
     return (
-        <Stack gap={10} justifyContent="center" alignItems="center" height={350} width={350} borderRadius={40} _light={{ bg: "black", color: "white" }} _dark={{ bg: "white", color: "black" }}>
-            <Emoji type="File" />
-            <Heading fontFamily="cursive">Review A New File</Heading>
-        </Stack>
+        <Button onClick={onClicked}>
+            <HStack gap={2} justifyContent="center" alignItems="center">
+                <Icon as={BsFileEarmarkCodeFill} boxSize={6} />
+                <Heading fontFamily="cursive" fontSize={14}>New Review</Heading>
+            </HStack>
+        </Button>
     );
 }
 

@@ -5,7 +5,7 @@ import { FaUser } from "react-icons/fa";
 
 interface ProfileIconProps {
   user: User | undefined;
-  onSignOut: () => void;
+  onSignOut?: () => void;
 }
 
 export default function ProfileIcon({ user, onSignOut }: ProfileIconProps) {

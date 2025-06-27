@@ -1,17 +1,15 @@
 import { useState } from "react";
 import { Button, CloseButton, HStack, Portal, Dialog } from "@chakra-ui/react";
-import AddCodeReview from "./AddCodeReview";
 import CodeUpload from "./CodeUpload";
 
 interface NewFileDialogProps {
     isOpen: boolean;
     onOpenChange: (details: { open: boolean }) => void;
     onSuccess: () => void;
-    inline: boolean;
     onSubmit: (file: File) => void;
 }
 
-const NewFileDialog = ({ isOpen, onOpenChange, onSuccess, inline, onSubmit }: NewFileDialogProps) => {
+const NewFileDialog = ({ isOpen, onOpenChange, onSuccess, onSubmit }: NewFileDialogProps) => {
     const [file, setFile] = useState<File | null>(null);
     const submitNewFile = async () => {
         if (!file) return;
@@ -28,7 +26,6 @@ const NewFileDialog = ({ isOpen, onOpenChange, onSuccess, inline, onSubmit }: Ne
             <Dialog.Root open={isOpen} onOpenChange={(details) => onOpenChange(details)} placement="center" motionPreset="slide-in-bottom"
             >
                 <Dialog.Trigger>
-                    {!inline && <AddCodeReview />}
                 </Dialog.Trigger>
                 <Portal>
                     <Dialog.Backdrop />

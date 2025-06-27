@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { SimpleGrid, Stack } from "@chakra-ui/react";
+import { Flex, SimpleGrid, Stack } from "@chakra-ui/react";
 import ReviewCard, { type CodeReview } from "../components/Dashboard/Review Card/ReviewCard";
 import ReviewCardSkeleton from "../components/Dashboard/Review Card/ReviewCardSkeleton";
 import NewFileDialog from "../components/Dashboard/File Dialog/NewFileDialog";
@@ -36,27 +36,29 @@ const Dashboard = ({ user, setUser }: Props) => {
     );
     return (
         <Stack>
-            <NavBar user={user} onSignOut={() => { signOutUser(); setUser(undefined); navigate("/home"); }} />
-            <SimpleGrid
-                columns={{ sm: 1, md: 2, lg: 3, xl: 3 }}
-                minChildWidth="md"
-                justifyContent="center"
-                alignItems="center"
-            >
-                <NewFileDialog
-                    isOpen={isDialogOpen}
-                    onOpenChange={({ open }) => setIsDialogOpen(open)}
-                    onSuccess={() => {
-                        setIsDialogOpen(false);
-                        fetchReviews();
-                    }}
-                    inline={false}
-                    onSubmit={addCodeReview}
-                />
+            <NavBar user={user} onNewFileClick={() => setIsDialogOpen(true)} onSignOut={() => { signOutUser(); setUser(undefined); navigate("/home"); }} />
+            <NewFileDialog
+                isOpen={isDialogOpen}
+                onOpenChange={({ open }) => setIsDialogOpen(open)}
+                onSuccess={() => {
+                    setIsDialogOpen(false);
+                    fetchReviews();
+                }}
+                onSubmit={addCodeReview}
+            />
+            <Flex wrap="wrap" gap={2} justify="start" padding={20} justifyContent="center" alignItems="center">
                 {isLoading
-                    ? Array.from({ length: 8 }).map((_, i) => <ReviewCardSkeleton key={i} />)
-                    : reviews.map((review) => <ReviewCard codeReview={review} key={review.id} refresh={fetchReviews} />)}
-            </SimpleGrid>
+                    ? Array.from({ length: 8 }).map((_, i) => (
+                        <ReviewCardSkeleton key={i} />
+                    ))
+                    : reviews.map((review) => (
+                        <ReviewCard
+                            codeReview={review}
+                            key={review.id}
+                            refresh={fetchReviews}
+                        />
+                    ))}
+            </Flex>
         </Stack>
     );
 };

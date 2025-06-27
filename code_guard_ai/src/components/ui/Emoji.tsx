@@ -15,7 +15,7 @@ const Emoji = ({ type }: Props) => {
         "Security": { src: security_lock, alt: 'security', boxSize: "20px" },
         "Cleanliness": { src: clean, alt: 'cleanliness', boxSize: "20px" },
         "Maintainability": { src: maintain, alt: 'maintainability', boxSize: "20px" },
-        "File": { src: file, alt: 'file', boxSize: "160px" },
+        "File": { src: file, alt: 'file', boxSize: "25px", marginTop: 0 },
         "View": { src: eye, alt: 'view', boxSize: "20px", marginTop: 0 },
         "Edit": { src: pencil, alt: 'edit', boxSize: "18px", marginTop: 0 },
         "Delete": { src: wrong, alt: 'delete', boxSize: "17px", marginTop: 0 },
