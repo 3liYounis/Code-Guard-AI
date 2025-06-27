@@ -10,6 +10,14 @@ class Suggestion:
     content: str
     cite: str
 
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "type": self.type,
+            "content": self.content,
+            "cite": self.cite
+        }
+
 
 @dataclass
 class CodeReview:
@@ -22,6 +30,18 @@ class CodeReview:
     maintainability: int
     recommendations: List[Suggestion]
     upload_date: datetime
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "programming_language": self.programming_language,
+            "security": self.security,
+            "cleanliness": self.cleanliness,
+            "maintainability": self.maintainability,
+            "recommendations": [s.to_dict() for s in self.recommendations],
+            "upload_date": self.upload_date
+        }
 
 
 @dataclass
