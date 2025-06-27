@@ -17,7 +17,7 @@ const NavBar = ({ user, onSignOut }: Props) => {
         <Image src={logo} boxSize="60px"></Image>
         <Heading fontSize="3xl">Code Guard AI</Heading>
       </HStack>
-      {user && <SearchBar onSearch={(file) => { }}></SearchBar>}
+      {user && <SearchBar onSearch={() => { }}></SearchBar>}
       <HStack>
         {user && <ProfileIcon user={user} onSignOut={onSignOut}></ProfileIcon>}
         <ColorModeSwitch />

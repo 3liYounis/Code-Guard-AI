@@ -1,37 +1,38 @@
-import { Box, HStack, Input, InputGroup, InputElement } from "@chakra-ui/react";
-import { Icon } from "@chakra-ui/react";
-import { MdSearch } from "react-icons/md";
-
-import { useRef } from "react";
-
+import { Input, InputGroup, Kbd, Text } from "@chakra-ui/react";
+import { useRef, useEffect } from "react";
+import { LuSearch } from "react-icons/lu"
 interface Props {
   onSearch: (searchText: string) => void;
 }
-
-const SeartchInput = ({ onSearch }: Props) => {
+const SearchBar = ({ onSearch }: Props) => {
   const ref = useRef<HTMLInputElement>(null);
-
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "f") {
+        e.preventDefault();
+        ref.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
   return (
-    <Box
-      width="100%"
-      as="form"
-      onSubmit={(event) => {
+    <form onSubmit={
+      (event) => {
         event.preventDefault();
-        if (ref.current) onSearch(ref.current.value);
-      }}
-    >
-      <InputGroup justifyContent="center">
-        <HStack width="70%">
-          <Input
-            border="solid"
-            borderRadius={20}
-            ref={ref}
-            placeholder="   Search"
-          ></Input>
-        </HStack>
-      </InputGroup>
-    </Box>
-  );
-};
+        if (ref.current) onSearch(ref.current.value)
+      }}>
+      <InputGroup flex="1" startElement={<LuSearch />} endElement={
+        <>
+          <Kbd>Ctrl</Kbd>
+          <Text marginBottom={1}>+</Text>
+          <Kbd>F</Kbd>
+        </>
+      }>
+        <Input ref={ref} placeholder="Search Code Reviews" borderRadius={20} fontFamily="cursive" variant="subtle" />
+      </InputGroup >
+    </form >
+  )
+}
 
-export default SeartchInput;
+export default SearchBar;
