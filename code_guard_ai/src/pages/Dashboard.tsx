@@ -37,7 +37,7 @@ const Dashboard = ({ user, setUser }: Props) => {
     );
     return (
         <Stack>
-            <NavBar user={user} onNewFileClick={() => setIsDialogOpen(true)} onSignOut={() => { signOutUser(); setUser(undefined); navigate("/home"); }} />
+            <NavBar route={"Dashboard"} user={user} onNewFileClick={() => setIsDialogOpen(true)} onSignOut={() => { signOutUser(); setUser(undefined); navigate("/home"); }} />
             <NewFileDialog
                 isOpen={isDialogOpen}
                 onOpenChange={({ open }) => setIsDialogOpen(open)}

@@ -1,4 +1,4 @@
-import { HStack, Image, Heading } from "@chakra-ui/react";
+import { Stack, HStack, Image, Heading } from "@chakra-ui/react";
 import logo from "../../assets/logo.svg";
 import ColorModeSwitch from "./ColorModeSwitch";
 import ProfileIcon from "../Authentication Cards/ProfileIcon";
@@ -9,14 +9,22 @@ interface Props {
   user: User | undefined;
   onSignOut?: () => void;
   onNewFileClick?: () => void;
+  route: string;
 }
 
-const NavBar = ({ user, onSignOut, onNewFileClick }: Props) => {
+const NavBar = ({ user, onSignOut, onNewFileClick, route }: Props) => {
   return (
     <HStack mt={-3} justifyContent="space-between" p={5}>
       <HStack>
         <Image src={logo} boxSize="60px"></Image>
-        <Heading fontSize="3xl">Code Guard AI</Heading>
+        <Stack gap={0}>
+          <Heading fontSize="2xl" fontFamily="cursive">
+            Code Guard AI
+          </Heading>
+          <Heading fontSize="xl" color="fg.muted" fontFamily="cursive">
+            {route}
+          </Heading>
+        </Stack>
       </HStack>
       <HStack>
         {user && <SearchBar onSearch={() => { }}></SearchBar>}

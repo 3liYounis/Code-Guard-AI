@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Grid, GridItem, Stack, } from "@chakra-ui/react";
 import { signUp, signIn, type User } from "../services/FirebaseManager"
@@ -10,11 +11,12 @@ interface Props {
 }
 function Home({ user, setUser }: Props) {
     const navigate = useNavigate();
-    if (user)
-        navigate("/dashboard")
+    useEffect(() => {
+        if (user) navigate("/dashboard");
+    }, [user, navigate]);
     return (
         <Stack>
-            <NavBar user={user} onSignOut={() => { }} />
+            <NavBar route="Home" user={user} onSignOut={() => { }} />
             <Grid templateColumns="5fr 3fr">
                 <GridItem>
                     <About />
