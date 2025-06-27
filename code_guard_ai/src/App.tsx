@@ -1,77 +1,28 @@
-import { Grid, GridItem } from "@chakra-ui/react";
-import NavBar from "./components/Home/NavBar";
-import AuthenticationCard from "./components/Authentication Cards/AuthenticationCard";
-import About from "./components/Home/About";
-import "./App.css";
 import { useState, useEffect } from "react";
-import Dashboard from "./components/Dashboard/Dashboard";
-import { signUp, signIn, signOutUser, type User, onAuthStateChangedListener } from "./services/FirebaseManager"
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { type User, onAuthStateChangedListener } from "./services/FirebaseManager"
+import Home from "./pages/Home";
+import Dashboard from "./pages/Dashboard";
+import NotFound from "./pages/NotFound";
+import "./App.css";
 function App() {
   const [user, setUser] = useState<User | undefined>(undefined);
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener(setUser);
     return () => unsubscribe();
   }, []);
-  if (user) {
-    return (
-      <Grid
-        height="100dvh"
-        templateAreas={{
-          base: `
-          "nav"
-          "dashboard"
-        `,
-        }}
-        templateColumns={{
-          base: "1fr",
-        }}
-        templateRows="100px 1fr"
-      >
-        <GridItem area="nav">
-          <NavBar
-            user={user}
-            onSignOut={() => { signOutUser(); setUser(undefined) }}
-          />
-        </GridItem>
-
-        <GridItem area="dashboard">
-          <Dashboard ></Dashboard>
-        </GridItem>
-      </Grid>
-    );
-  }
   return (
-    <Grid
-      height="100dvh"
-      templateAreas={{
-        base: `
-          "nav"
-          "authentication"
-        `,
-        lg: `
-          "nav nav"
-          "about authentication"
-        `,
-      }}
-      templateColumns={{
-        base: "1fr",
-        lg: "1.5fr 1fr",
-      }}
-      templateRows="100px 1fr"
-    >
-      <GridItem area="nav">
-        <NavBar
-          user={user}
-          onSignOut={() => { }}
-        />
-      </GridItem>
-      <GridItem ml={4} area="about" display={{ base: "none", lg: "block" }}>
-        <About />
-      </GridItem>
-      <GridItem area="authentication">
-        <AuthenticationCard onSignIn={async (user) => { setUser(await signIn(user.email, user.password)) }} onSignUp={async (user) => setUser(await signUp(user))} />
-      </GridItem>
-    </Grid>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Navigate to="/home" replace />} />
+
+        <Route path="/home" element={<Home user={user} setUser={setUser} />} />
+
+        <Route path="/dashboard" element={<Dashboard user={user} setUser={setUser} />} />
+
+        <Route path="*" element={<NotFound />} />
+      </Routes >
+    </Router >
   );
 }
 

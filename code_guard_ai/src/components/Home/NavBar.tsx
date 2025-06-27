@@ -4,6 +4,7 @@ import ColorModeSwitch from "./ColorModeSwitch";
 import ProfileIcon from "../Authentication Cards/ProfileIcon";
 import type { User } from "../../services/FirebaseManager";
 import SearchBar from "./SearchBar";
+import type { ReactNode } from "react";
 
 interface Props {
   user: User | undefined;

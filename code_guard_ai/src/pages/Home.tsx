@@ -1,0 +1,39 @@
+import { useNavigate } from "react-router-dom";
+import { Grid, GridItem, Stack, } from "@chakra-ui/react";
+import { signUp, signIn, type User } from "../services/FirebaseManager"
+import NavBar from "@/components/Home/NavBar";
+import About from "@/components/Home/About";
+import AuthenticationCard from "@/components/Authentication Cards/AuthenticationCard";
+interface Props {
+    user: User | undefined;
+    setUser: (user: User) => void;
+}
+function Home({ user, setUser }: Props) {
+    const navigate = useNavigate();
+    if (user)
+        navigate("/dashboard")
+    return (
+        <Stack>
+            <NavBar user={user} onSignOut={() => { }} />
+            <Grid templateColumns="5fr 3fr">
+                <GridItem>
+                    <About />
+                </GridItem>
+                <GridItem>
+                    <AuthenticationCard
+                        onSignIn={async (user) => {
+                            setUser(await signIn(user.email, user.password));
+                            navigate("/dashboard");
+                        }}
+                        onSignUp={async (user) => {
+                            setUser(await signUp(user));
+                            navigate("/dashboard");
+                        }}
+                    />
+                </GridItem>
+            </Grid>
+        </Stack >
+    );
+}
+
+export default Home;

@@ -1,5 +1,6 @@
 venv/
 __pycache__/
 *.pyc
+node_modules/
 Server/serviceAccountKey.json
 code_guard_ai/services/FirebaseConfig.ts
