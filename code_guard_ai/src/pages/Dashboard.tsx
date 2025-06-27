@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Flex, Box, Stack } from "@chakra-ui/react";
+import { Flex, Stack } from "@chakra-ui/react";
 import ReviewCard, { type CodeReview } from "../components/Dashboard/Review Card/ReviewCard";
 import ReviewCardSkeleton from "../components/Dashboard/Review Card/ReviewCardSkeleton";
 import NewFileDialog from "../components/Dashboard/File Dialog/NewFileDialog";
@@ -22,15 +22,19 @@ const Dashboard = ({ user, setUser }: Props) => {
         try {
             const reviews = await getAllCodeReviews();
             setCodeReviews(reviews);
-        } catch (error) {
+        }
+        catch (error) {
             console.error("Failed to fetch reviews:", error);
-        } finally {
+        }
+        finally {
             setIsLoading(false);
         }
     };
     useEffect(() => {
         if (user)
             fetchReviews();
+        else
+            navigate("/home")
     }, [user]);
     const reviews = [...codeReviews].sort(
         (e1, e2) => new Date(e2.upload_date).getTime() - new Date(e1.upload_date).getTime()
