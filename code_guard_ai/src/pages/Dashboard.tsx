@@ -47,7 +47,7 @@ const Dashboard = ({ user, setUser }: Props) => {
                 }}
                 onSubmit={addCodeReview}
             />
-            <Flex wrap="wrap" gap={2} justify="start" padding={20} justifyContent="center" alignItems="center">
+            <Flex wrap="wrap" gap={3} justify="start" paddingTop={10} justifyContent="center" alignItems="center">
                 {isLoading
                     ? Array.from({ length: 8 }).map((_, i) => (
                         <ReviewCardSkeleton key={i} />

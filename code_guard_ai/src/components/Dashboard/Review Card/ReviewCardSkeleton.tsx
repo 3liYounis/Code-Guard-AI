@@ -1,14 +1,22 @@
 import { Stack, HStack, Skeleton, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
 const ReviewCardSkeleton = () => {
     return (
-        <Stack width={450} height={540} border="solid" borderRadius={30} marginTop={4}>
-            < HStack padding={8} >
-                <SkeletonCircle size={16} />
+        <Stack width={470} height={540} border="solid" borderColor="fg.subtle" borderRadius={30} marginTop={4}>
+            <HStack gap={19}>
+                <HStack padding={8}>
+                    <SkeletonCircle size={16} />
+                    <Stack>
+                        <SkeletonText noOfLines={1} width={40} />
+                        <SkeletonText noOfLines={1} width={20} />
+                        <SkeletonText noOfLines={1} width={48} />
+                    </Stack>
+                </HStack >
                 <Stack>
-                    <SkeletonText noOfLines={1} width={40} />
-                    <SkeletonText noOfLines={1} width={20} />
+                    <SkeletonText noOfLines={1} width={10} />
+                    <SkeletonText noOfLines={1} width={10} />
+                    <SkeletonText noOfLines={1} width={10} />
                 </Stack>
-            </HStack >
+            </HStack>
             <Stack justifyContent="center" alignItems="center" gap={7}>
                 <Skeleton height="80px" width={370} />
                 <Stack>
