@@ -21,11 +21,12 @@ export interface CodeReview {
 
 interface Props {
   codeReview: CodeReview;
+  refresh: () => Promise<void>;
 }
 
-const ReviewCard = ({ codeReview }: Props) => {
+const ReviewCard = ({ codeReview, refresh }: Props) => {
   return (
-    <AnimatedBox codeReview={codeReview} width={470} height={530}></AnimatedBox>
+    <AnimatedBox codeReview={codeReview} width={470} height={530} refresh={refresh}></AnimatedBox >
   );
 };
 

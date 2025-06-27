@@ -15,11 +15,11 @@ import { GrStatusUnknown } from "react-icons/gr";
 import { IoLogoReact } from "react-icons/io5";
 import { FaVuejs } from "react-icons/fa";
 import CardButtonList from "./Buttons/CardButtonList";
+import type { CodeReview } from "./ReviewCard";
 
 interface Props {
-  name: string;
-  programmingLanguage: string;
-  modificationDate: Date;
+  codeReview: CodeReview;
+  refresh: () => Promise<void>;
 }
 const mapLanguage: { [key: string]: IconType } = {
   "Java": FaJava,
@@ -50,8 +50,9 @@ const formatDate = (date: Date): string => {
   const dateStr = date.toLocaleDateString();
   return `${day} ${dateStr}`;
 };
-const ReviewHeader = ({ name, programmingLanguage, modificationDate }: Props) => {
-  const iconSource = mapLanguage[programmingLanguage] ?? mapLanguage["other"];
+const ReviewHeader = ({ codeReview, refresh }: Props) => {
+  const iconSource = mapLanguage[codeReview.programming_language] ?? mapLanguage["other"];
+  const modificationDate = new Date(codeReview.upload_date);
   const formattedDate =
     modificationDate instanceof Date && !isNaN(modificationDate.getTime()) ? `${formatDate(modificationDate)} - ${formatTime(modificationDate)}` : "Unknown date";
   return (
@@ -61,10 +62,10 @@ const ReviewHeader = ({ name, programmingLanguage, modificationDate }: Props) =>
           < Icon as={iconSource} boxSize={7} />
         </Avatar.Root >
         <Stack gap={0.5} padding={4} width="200px" fontWeight="bold" >
-          <Text fontWeight="bold" whiteSpace="nowrap" fontSize="lg">{name}</Text>
+          <Text fontWeight="bold" whiteSpace="nowrap" fontSize="lg">{codeReview.name}</Text>
           <Stack gap={0} color="fg.muted">
             <Text textStyle="sm">
-              {programmingLanguage}
+              {codeReview.programming_language}
             </Text>
             <Text fontWeight="normal" textStyle="sm" fontStyle="italic">
               {formattedDate}
@@ -72,7 +73,7 @@ const ReviewHeader = ({ name, programmingLanguage, modificationDate }: Props) =>
           </Stack>
         </Stack>
       </HStack >
-      <CardButtonList />
+      <CardButtonList codeReview={codeReview} refresh={refresh} />
     </HStack >
   );
 };

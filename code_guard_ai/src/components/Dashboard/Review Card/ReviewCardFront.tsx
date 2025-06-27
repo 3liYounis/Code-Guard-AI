@@ -8,18 +8,15 @@ import ReviewBar from "./Charts/ReviewBar";
 interface Props {
   codeReview: CodeReview;
   onSwitch: () => void;
+  refresh: () => Promise<void>;
 }
 
-const ReviewCardFront = ({ codeReview, onSwitch }: Props) => {
+const ReviewCardFront = ({ codeReview, onSwitch, refresh }: Props) => {
   const total = (codeReview.security + codeReview.cleanliness + codeReview.maintainability) / 3;
   return (
     <Card.Root height="100%" border="solid" borderRadius={30}>
       <Card.Header>
-        <ReviewHeader
-          name={codeReview.name}
-          programmingLanguage={codeReview.programming_language}
-          modificationDate={new Date(codeReview.upload_date)}
-        />
+        <ReviewHeader codeReview={codeReview} refresh={refresh} />
       </Card.Header>
       <Card.Body>
         <Stack

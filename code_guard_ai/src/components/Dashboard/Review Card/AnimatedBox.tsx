@@ -9,8 +9,9 @@ interface Props {
   width: number;
   height: number;
   codeReview: CodeReview;
+  refresh: () => Promise<void>;
 }
-const AnimatedBox = ({ width, height, codeReview }: Props) => {
+const AnimatedBox = ({ width, height, codeReview, refresh }: Props) => {
   const [flipped, setFlipped] = useState(false);
   const onSwitch = () => {
     setFlipped(!flipped);
@@ -43,7 +44,7 @@ const AnimatedBox = ({ width, height, codeReview }: Props) => {
             borderRadius={40}
             p={4}
           >
-            <ReviewCardFront onSwitch={onSwitch} codeReview={codeReview} />
+            <ReviewCardFront onSwitch={onSwitch} codeReview={codeReview} refresh={refresh} />
           </Box>
           <Box
             position="absolute"
@@ -55,7 +56,7 @@ const AnimatedBox = ({ width, height, codeReview }: Props) => {
             p={4}
             overflowY="auto"
           >
-            <ReviewCardBack onSwitch={onSwitch} codeReview={codeReview} />
+            <ReviewCardBack onSwitch={onSwitch} codeReview={codeReview} refresh={refresh} />
           </Box>
         </MotionBox>
       </Box>

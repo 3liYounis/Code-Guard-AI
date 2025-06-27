@@ -39,10 +39,11 @@ const Dashboard = () => {
                     setIsDialogOpen(false);
                     fetchReviews();
                 }}
+                inline={false}
             />
             {isLoading
                 ? Array.from({ length: 8 }).map((_, i) => <ReviewCardSkeleton key={i} />)
-                : reviews.map((review) => <ReviewCard codeReview={review} key={review.id} />)}
+                : reviews.map((review) => <ReviewCard codeReview={review} key={review.id} refresh={fetchReviews} />)}
         </SimpleGrid>
     );
 };

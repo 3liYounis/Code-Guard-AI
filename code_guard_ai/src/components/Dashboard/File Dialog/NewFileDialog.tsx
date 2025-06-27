@@ -8,9 +8,10 @@ interface NewFileDialogProps {
     isOpen: boolean;
     onOpenChange: (details: { open: boolean }) => void;
     onSuccess: () => void;
+    inline: boolean;
 }
 
-const NewFileDialog = ({ isOpen, onOpenChange, onSuccess }: NewFileDialogProps) => {
+const NewFileDialog = ({ isOpen, onOpenChange, onSuccess, inline }: NewFileDialogProps) => {
     const [file, setFile] = useState<File | null>(null);
 
     const submitNewFile = async () => {
@@ -28,7 +29,7 @@ const NewFileDialog = ({ isOpen, onOpenChange, onSuccess }: NewFileDialogProps) 
             <Dialog.Root open={isOpen} onOpenChange={(details) => onOpenChange(details)} placement="center" motionPreset="slide-in-bottom"
             >
                 <Dialog.Trigger>
-                    <AddCodeReview />
+                    {!inline && <AddCodeReview />}
                 </Dialog.Trigger>
                 <Portal>
                     <Dialog.Backdrop />
