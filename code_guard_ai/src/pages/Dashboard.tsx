@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Flex, SimpleGrid, Stack } from "@chakra-ui/react";
+import { Flex, Box, Stack } from "@chakra-ui/react";
 import ReviewCard, { type CodeReview } from "../components/Dashboard/Review Card/ReviewCard";
 import ReviewCardSkeleton from "../components/Dashboard/Review Card/ReviewCardSkeleton";
 import NewFileDialog from "../components/Dashboard/File Dialog/NewFileDialog";
@@ -47,7 +47,7 @@ const Dashboard = ({ user, setUser }: Props) => {
                 }}
                 onSubmit={addCodeReview}
             />
-            <Flex wrap="wrap" gap={3} justify="start" justifyContent="center" alignItems="center">
+            <Flex wrap="wrap" gap={4} justify="start" justifyContent="center" alignItems="center" mr={7}>
                 {isLoading
                     ? Array.from({ length: 8 }).map((_, i) => (
                         <ReviewCardSkeleton key={i} />
