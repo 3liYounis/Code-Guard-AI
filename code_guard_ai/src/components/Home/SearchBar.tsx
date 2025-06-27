@@ -29,7 +29,7 @@ const SearchBar = ({ onSearch }: Props) => {
           <Kbd>F</Kbd>
         </>
       }>
-        <Input ref={ref} placeholder="Search Code Reviews" borderRadius={20} fontFamily="cursive" variant="subtle" height={10} />
+        <Input ref={ref} placeholder="Search Code Reviews" borderRadius={10} width={80} fontFamily="cursive" variant="subtle" borderColor="ActiveBorder" />
       </InputGroup >
     </form >
   )
