@@ -1,4 +1,4 @@
-import json  # Correct import
+import json
 import os
 import random
 from datetime import datetime
@@ -57,17 +57,17 @@ def query_openai_for_analysis(content: str, language: str) -> dict:
         f"You are a senior software engineer and code reviewer. "
         f"Analyze this {language} code and respond ONLY with a valid JSON object:\n\n"
         f"""{{
-                "security": [0-100],
-                "cleanliness": [0-100],
-                "maintainability": [0-100],
-                "recommendations": [
-                        {{ "type": "Security", "content": "..." }},
-                        {{ "type": "Cleanliness", "content": "..." }},
-                        {{ "type": "Maintainability", "content": "..." }}
-                    ]
-                    }}\n\n"
-                        f"Here is the code:\n{truncated_content}..."
-            """)
+            "security": [0-100],
+            "cleanliness": [0-100],
+            "maintainability": [0-100],
+            "recommendations": [
+                {{ "type": "Security", "content": "maximum length 40 words" }},
+                {{ "type": "Cleanliness", "content": "maximum length 40 words" }},
+                {{ "type": "Maintainability", "content": "maximum length 40 words" }}
+            ]
+            }}\n\nHere is the code:\n{truncated_content}..."""
+    )
+
     model = "gpt-4"
     tokens_used = count_tokens(prompt_template, model=model)
     print(f"Prompt token count: {tokens_used}")

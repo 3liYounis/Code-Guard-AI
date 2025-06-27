@@ -34,29 +34,11 @@ def add_code_review():
             return jsonify({'error': 'No file provided'}), 400
         file = request.files['file']
         review = analyze_code(file)
-        # review = {
-        #     'id': int(datetime.now().timestamp() * 1000),
-        #     'name': format_file_name(file.filename),
-        #     'file_content': file_content,
-        #     'programming_language': infer_language(file.filename),
-        #     'security': random.randint(20, 101),
-        #     'cleanliness': random.randint(20, 101),
-        #     'maintainability': random.randint(20, 101),
-        #     'recommendations': [
-        #         create_suggestion(1, "Security",
-        #                           "new recommendation"),
-        #         create_suggestion(
-        #             2, "Maintainability", "new recommendation"),
-        #         create_suggestion(3, "Cleanliness",
-        #                           "new recommendation")
-        #     ],            'upload_date': int(datetime.now().timestamp() * 1000)
-        # }
-        print(review)
         user_ref = db.collection('users').document(request.uid)
         user_ref.update({
             'code_reviews': firestore.ArrayUnion([review.to_dict()])
         })
-        return jsonify(review), 201
+        return jsonify(review.to_dict()), 201
     except Exception as e:
         print(f"Error occurred: {e}")
         return jsonify({'error': str(e)}), 400
@@ -73,25 +55,6 @@ def update_code_review():
             return jsonify({'error': 'No file provided'}), 400
         file = request.files['file']
         updated_review = analyze_code(file)
-        print(updated_review)
-        # updated_review = {
-        #     'id': int(review_id),
-        #     'name': format_file_name(file.filename),
-        #     'file_content': file_content,
-        #     'programming_language': infer_language(file.filename),
-        #     'security': random.randint(20, 101),
-        #     'cleanliness': random.randint(20, 101),
-        #     'maintainability': random.randint(20, 101),
-        #     'recommendations': [
-        #         create_suggestion(1, "Security",
-        #                           "updated recommendation"),
-        #         create_suggestion(2, "Maintainability",
-        #                           "updated recommendation"),
-        #         create_suggestion(3, "Cleanliness",
-        #                           "updated recommendation")
-        #     ],
-        #     'upload_date': int(datetime.now().timestamp() * 1000)
-        # }
         user_ref = db.collection('users').document(request.uid)
         user_doc = user_ref.get()
         if not user_doc.exists:
@@ -101,7 +64,7 @@ def update_code_review():
             updated_review.to_dict() if str(r['id']) == review_id else r for r in reviews
         ]
         user_ref.update({'code_reviews': updated_reviews})
-        return jsonify(updated_review), 200
+        return jsonify(updated_review.to_dict()), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
