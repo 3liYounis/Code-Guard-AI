@@ -4,6 +4,8 @@ import ReviewCard, { type CodeReview } from "./Review Card/ReviewCard";
 import ReviewCardSkeleton from "./Review Card/ReviewCardSkeleton";
 import NewFileDialog from "./File Dialog/NewFileDialog";
 import { getAllCodeReviews } from "@/services/api-client";
+import { addCodeReview } from "@/services/api-client";
+
 const Dashboard = () => {
     const [codeReviews, setCodeReviews] = useState<CodeReview[]>([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -40,6 +42,7 @@ const Dashboard = () => {
                     fetchReviews();
                 }}
                 inline={false}
+                onSubmit={addCodeReview}
             />
             {isLoading
                 ? Array.from({ length: 8 }).map((_, i) => <ReviewCardSkeleton key={i} />)

@@ -21,7 +21,7 @@ const CardButton = ({ type, onClicked }: Props) => {
             openDelay={500}
             closeDelay={100}
         >
-            <Button onClick={onClicked} height={5}>
+            <Button onClick={onClicked} height={5} width="55px">
                 <Emoji type={type} />
             </Button>
         </Tooltip>
