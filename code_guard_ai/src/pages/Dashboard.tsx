@@ -8,6 +8,7 @@ import { getAllCodeReviews } from "@/services/api-client";
 import { addCodeReview } from "@/services/api-client";
 import NavBar from "@/components/Home/NavBar";
 import { type User, signOutUser } from "@/services/FirebaseManager";
+import StaticCodeReviews from "@/Data/StaticCodeReviews";
 interface Props {
     user: User | undefined;
     setUser: (user: User | undefined) => void;
@@ -56,7 +57,7 @@ const Dashboard = ({ user, setUser }: Props) => {
                     ? Array.from({ length: 8 }).map((_, i) => (
                         <ReviewCardSkeleton key={i} />
                     ))
-                    : reviews.map((review) => (
+                    : StaticCodeReviews.map((review) => (
                         <ReviewCard
                             codeReview={review}
                             key={review.id}
