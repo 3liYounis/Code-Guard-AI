@@ -1,5 +1,8 @@
 import { Stack, HStack, Image, Heading } from "@chakra-ui/react";
+import { useColorMode } from "@/components/ui/color-mode";
 import logo from "../../assets/logo.svg";
+import AnalysisLogoDark from "../../assets/AnalysisLogoDark.png";
+import AnalysisLogoLight from "../../assets/AnalysisLogoLight.png";
 import ColorModeSwitch from "./ColorModeSwitch";
 import ProfileIcon from "../Authentication Cards/ProfileIcon";
 import type { User } from "../../services/FirebaseManager";
@@ -13,10 +16,12 @@ interface Props {
 }
 
 const NavBar = ({ user, onSignOut, onNewFileClick, route }: Props) => {
+  const { colorMode } = useColorMode();
+  var logoSrc = colorMode == "dark" ? AnalysisLogoDark : AnalysisLogoLight;
   return (
     <HStack mt={-3} justifyContent="space-between" p={5}>
-      <HStack>
-        <Image src={logo} boxSize="60px"></Image>
+      <HStack gap={5}>
+        <Image src={logoSrc} boxSize="60px"></Image>
         <Stack gap={0}>
           <Heading fontSize="2xl" fontFamily="cursive">
             Code Guard AI
