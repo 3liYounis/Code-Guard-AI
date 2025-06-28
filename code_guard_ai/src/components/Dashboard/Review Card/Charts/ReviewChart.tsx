@@ -1,5 +1,6 @@
 import { BarList, type BarListData, useChart } from "@chakra-ui/charts";
 import type { CodeReview } from "../ReviewCard";
+
 interface Props {
   codeReview: CodeReview;
 }
@@ -17,7 +18,8 @@ const mapCodeReviewToChart = (codeReview: CodeReview) => {
   return useChart<BarListData>({
     sort: { by: "value", direction: "desc" },
     series: [
-      { name: "name", color: getColor(total), label: "Review Scores Chart" },
+      // { name: "name", color: getColor(total), label: "Review Scores Chart" },
+      { name: "name", color: "gray.800", label: "Review Scores Chart" },
     ],
     data: [
       { name: "Security", value: codeReview.security },
@@ -32,9 +34,9 @@ const ReviewChart = ({ codeReview }: Props) => {
     <BarList.Root chart={chart} width={350}>
       <BarList.Content>
         <BarList.Label title="Aspect" flex={1}>
-          <BarList.Bar />
+          <BarList.Bar color="white" fontWeight={500} fontStyle="italic" />
         </BarList.Label>
-        <BarList.Label title="Score">
+        <BarList.Label title="Score /100">
           <BarList.Value />
         </BarList.Label>
       </BarList.Content>

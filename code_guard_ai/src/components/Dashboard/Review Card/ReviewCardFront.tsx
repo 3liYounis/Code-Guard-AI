@@ -33,11 +33,14 @@ const ReviewCardFront = ({ codeReview, onSwitch, refresh, languageStyles }: Prop
         </Stack>
       </Card.Body>
       <Button
+        color="white"
+        fontWeight={500}
         position="absolute"
         bottom="10px"
         left="50%"
         transform="translateX(-50%)"
         onClick={onSwitch}
+        backgroundImage={languageStyles.gradient}
       >
         Recommendations 💡
       </Button>

@@ -20,11 +20,14 @@ const ReviewCardBack = ({ codeReview, onSwitch, refresh, languageStyles }: Props
         <RecommendationsList recommendations={codeReview.recommendations} />
       </Card.Body>
       <Button
+        color="white"
+        fontWeight={500}
         position="absolute"
         bottom="10px"
         left="50%"
         transform="translateX(-50%)"
         onClick={onSwitch}
+        backgroundImage={languageStyles.gradient}
       >
         Score Chart 📊
       </Button>

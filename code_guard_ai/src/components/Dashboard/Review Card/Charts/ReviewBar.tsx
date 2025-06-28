@@ -34,7 +34,7 @@ const ReviewBar = ({ codeReview }: Props) => {
       <BarSegment.Content>
         <BarSegment.Bar gap="0.5" />
       </BarSegment.Content>
-      <BarSegment.Legend gap="2" textStyle="xs" showPercent />
+      <BarSegment.Legend gap="2" textStyle="xs" showPercent fontWeight={500} />
     </BarSegment.Root>
   );
 };
