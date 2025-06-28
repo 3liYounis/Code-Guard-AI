@@ -1,6 +1,5 @@
 import { Stack, HStack, Image, Heading } from "@chakra-ui/react";
 import { useColorMode } from "@/components/ui/color-mode";
-import logo from "../../assets/logo.svg";
 import AnalysisLogoDark from "../../assets/AnalysisLogoDark.png";
 import AnalysisLogoLight from "../../assets/AnalysisLogoLight.png";
 import ColorModeSwitch from "./ColorModeSwitch";
