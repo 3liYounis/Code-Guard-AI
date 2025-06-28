@@ -3,15 +3,16 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import ReviewCardFront from "./ReviewCardFront";
 import ReviewCardBack from "./ReviewCardBack";
-import type { CodeReview } from "./ReviewCard";
+import type { CodeReview, LanguageStyle } from "./ReviewCard";
 const MotionBox = motion.create(Box);
 interface Props {
   width: number;
   height: number;
   codeReview: CodeReview;
   refresh: () => Promise<void>;
+  languageStyles: LanguageStyle;
 }
-const AnimatedBox = ({ width, height, codeReview, refresh }: Props) => {
+const AnimatedBox = ({ width, height, codeReview, refresh, languageStyles }: Props) => {
   const [flipped, setFlipped] = useState(false);
   const onSwitch = () => {
     setFlipped(!flipped);
@@ -41,10 +42,9 @@ const AnimatedBox = ({ width, height, codeReview, refresh }: Props) => {
             width="100%"
             height="100%"
             backfaceVisibility="hidden"
-            borderRadius={40}
             p={4}
           >
-            <ReviewCardFront onSwitch={onSwitch} codeReview={codeReview} refresh={refresh} />
+            <ReviewCardFront onSwitch={onSwitch} codeReview={codeReview} refresh={refresh} languageStyles={languageStyles} />
           </Box>
           <Box
             position="absolute"
@@ -56,11 +56,11 @@ const AnimatedBox = ({ width, height, codeReview, refresh }: Props) => {
             p={4}
             overflowY="auto"
           >
-            <ReviewCardBack onSwitch={onSwitch} codeReview={codeReview} refresh={refresh} />
+            <ReviewCardBack onSwitch={onSwitch} codeReview={codeReview} refresh={refresh} languageStyles={languageStyles} />
           </Box>
         </MotionBox>
-      </Box>
-    </MotionBox>
+      </Box >
+    </MotionBox >
   );
 };
 export default AnimatedBox;

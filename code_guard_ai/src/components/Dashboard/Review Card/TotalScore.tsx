@@ -43,7 +43,7 @@ const TotalScore = ({ totalScore }: Props) => {
   const iconSource = (statusMap[status?.toString()] ?? statusMap["other"]).icon;
   const color = (statusMap[status?.toString()] ?? statusMap["other"]).color;
   return (
-    <Alert.Root status={status} width={370} variant="outline" color={color}>
+    <Alert.Root status={status} width={370} color="ActiveBorder">
       <Alert.Indicator>
         <Icon as={iconSource} boxSize={5} color={color} />
       </Alert.Indicator>

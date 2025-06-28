@@ -1,4 +1,4 @@
-import type { CodeReview } from "./ReviewCard";
+import type { CodeReview, LanguageStyle } from "./ReviewCard";
 import { Button, Card, Stack } from "@chakra-ui/react";
 import ReviewHeader from "./ReviewHeader";
 import TotalScore from "./TotalScore";
@@ -9,14 +9,15 @@ interface Props {
   codeReview: CodeReview;
   onSwitch: () => void;
   refresh: () => Promise<void>;
+  languageStyles: LanguageStyle;
 }
 
-const ReviewCardFront = ({ codeReview, onSwitch, refresh }: Props) => {
+const ReviewCardFront = ({ codeReview, onSwitch, refresh, languageStyles }: Props) => {
   const total = (codeReview.security + codeReview.cleanliness + codeReview.maintainability) / 3;
   return (
-    <Card.Root height="100%" border="solid" borderRadius={30}>
+    <Card.Root height="100%" border="5px solid transparent" borderImageSlice={1} borderImageSource={languageStyles.gradient}>
       <Card.Header>
-        <ReviewHeader codeReview={codeReview} refresh={refresh} />
+        <ReviewHeader codeReview={codeReview} refresh={refresh} langaugeStyles={languageStyles} />
       </Card.Header>
       <Card.Body>
         <Stack

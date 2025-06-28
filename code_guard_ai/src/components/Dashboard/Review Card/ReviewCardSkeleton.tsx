@@ -1,7 +1,7 @@
 import { Stack, HStack, Skeleton, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
 const ReviewCardSkeleton = () => {
     return (
-        <Stack width={470} height={540} border="solid" borderColor="fg.subtle" borderRadius={30} marginTop={4}>
+        <Stack width={470} height={540} border="solid" borderColor="fg.subtle" marginTop={4}>
             <HStack gap={19}>
                 <HStack padding={8}>
                     <SkeletonCircle size={16} />
