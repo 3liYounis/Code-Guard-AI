@@ -2,36 +2,28 @@ import {
   HStack,
   Avatar,
   Stack,
-  Icon,
+  Image,
   Text,
   defineStyle,
 } from "@chakra-ui/react";
-import type { IconType } from "react-icons";
-import { FaPython, FaJava } from "react-icons/fa6";
-import { SiTypescript } from "react-icons/si";
-import { DiJsBadge, DiRubyRough } from "react-icons/di";
-import { TbBrandCSharp, TbBrandKotlin } from "react-icons/tb";
-import { GrStatusUnknown } from "react-icons/gr";
-import { IoLogoReact } from "react-icons/io5";
-import { FaVuejs } from "react-icons/fa";
 import CardButtonList from "./Buttons/CardButtonList";
 import type { CodeReview } from "./ReviewCard";
-
+import ProgrammingLanguages from "@/assets/Programming Languages/ProgrammingLanguages";
 interface Props {
   codeReview: CodeReview;
   refresh: () => Promise<void>;
 }
-const mapLanguage: { [key: string]: IconType } = {
-  "Java": FaJava,
-  "C#": TbBrandCSharp,
-  "Python": FaPython,
-  "JavaScript": DiJsBadge,
-  "TypeScript": SiTypescript,
-  "Ruby": DiRubyRough,
-  "Kotlin": TbBrandKotlin,
-  "React": IoLogoReact,
-  "Vue.js": FaVuejs,
-  "other": GrStatusUnknown
+const LanguageMap: { [key: string]: { imageSrc: string, color: string } } = {
+  "Python": { imageSrc: ProgrammingLanguages.Python, color: "yellow" },
+  "JavaScript": { imageSrc: ProgrammingLanguages.JavaScript, color: "" },
+  "TypeScript": { imageSrc: ProgrammingLanguages.TypeScript, color: "" },
+  "Java": { imageSrc: ProgrammingLanguages.Java, color: "" },
+  "C#": { imageSrc: ProgrammingLanguages.CSharp, color: "" },
+  "C++": { imageSrc: ProgrammingLanguages.CPlus, color: "" },
+  "C": { imageSrc: ProgrammingLanguages.C, color: "" },
+  "Kotlin": { imageSrc: ProgrammingLanguages.Kotlin, color: "" },
+  "Ruby": { imageSrc: ProgrammingLanguages.Ruby, color: "" },
+  "other": { imageSrc: "", color: "ActiveBorder" },
 };
 const ringCss = defineStyle({
   outlineWidth: "7px",
@@ -51,15 +43,14 @@ const formatDate = (date: Date): string => {
   return `${day} ${dateStr}`;
 };
 const ReviewHeader = ({ codeReview, refresh }: Props) => {
-  const iconSource = mapLanguage[codeReview.programming_language] ?? mapLanguage["other"];
+  const imageSrc = LanguageMap[codeReview.programming_language].imageSrc ?? LanguageMap["other"].imageSrc
   const modificationDate = new Date(codeReview.upload_date);
-  const formattedDate =
-    modificationDate instanceof Date && !isNaN(modificationDate.getTime()) ? `${formatDate(modificationDate)} - ${formatTime(modificationDate)}` : "Unknown date";
+  const formattedDate = modificationDate instanceof Date && !isNaN(modificationDate.getTime()) ? `${formatDate(modificationDate)} - ${formatTime(modificationDate)}` : "Unknown date";
   return (
     <HStack width="100%" justifyContent="space-between">
       <HStack>
         <Avatar.Root css={ringCss} size="xl">
-          < Icon as={iconSource} boxSize={7} />
+          <Image src={imageSrc} boxSize={6} />
         </Avatar.Root >
         <Stack gap={0.5} padding={4} width="200px" fontWeight="bold" >
           <Text fontWeight="bold" whiteSpace="nowrap" fontSize="lg">{codeReview.name}</Text>

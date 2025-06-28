@@ -1,9 +1,8 @@
-// src/components/About/About.tsx
 import { Heading, SimpleGrid, Stack, Text } from "@chakra-ui/react";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import Portfolio from "./Portfolio";
-import AliYounis from "../../assets/Ali-Younis.png";
-import YazanAbomokh from "../../assets/Yazan-Abomokh.jpg";
+import AliYounis from "../../assets/Portraits/Ali-Younis.png";
+import YazanAbomokh from "../../assets/Portraits/Yazan-Abomokh.jpg";
 
 const profiles = [
   {
