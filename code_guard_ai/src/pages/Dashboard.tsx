@@ -57,7 +57,7 @@ const Dashboard = ({ user, setUser }: Props) => {
                     ? Array.from({ length: 8 }).map((_, i) => (
                         <ReviewCardSkeleton key={i} />
                     ))
-                    : StaticCodeReviews.map((review) => (
+                    : reviews.map((review) => (
                         <ReviewCard
                             codeReview={review}
                             key={review.id}

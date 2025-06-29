@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Grid, GridItem, Stack, } from "@chakra-ui/react";
-import { signUp, signIn, type User } from "../services/FirebaseManager"
+import { googleAuth, signUp, signIn, type User } from "../services/FirebaseManager"
 import NavBar from "@/components/Home/NavBar";
 import About from "@/components/Home/About";
 import AuthenticationCard from "@/components/Authentication Cards/AuthenticationCard";
 interface Props {
     user: User | undefined;
-    setUser: (user: User) => void;
+    setUser: (user: User | undefined) => void;
 }
 function Home({ user, setUser }: Props) {
     const navigate = useNavigate();
@@ -29,6 +29,10 @@ function Home({ user, setUser }: Props) {
                         }}
                         onSignUp={async (user) => {
                             setUser(await signUp(user));
+                            navigate("/dashboard");
+                        }}
+                        onGoogleAuth={async () => {
+                            setUser(await googleAuth());
                             navigate("/dashboard");
                         }}
                     />

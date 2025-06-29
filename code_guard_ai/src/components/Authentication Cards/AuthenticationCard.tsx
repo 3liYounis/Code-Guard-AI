@@ -10,9 +10,10 @@ const MotionBox = motion.create(Box);
 interface Props {
   onSignIn: (user: UserFromFields) => void;
   onSignUp: (user: UserFromFields) => void;
+  onGoogleAuth: () => void;
 }
 
-function AuthenticationCard({ onSignIn, onSignUp }: Props) {
+function AuthenticationCard({ onSignIn, onSignUp, onGoogleAuth }: Props) {
   const [showSignIn, setShowSignIn] = useState(false);
   const flip = () => setShowSignIn(!showSignIn);
 
@@ -28,7 +29,7 @@ function AuthenticationCard({ onSignIn, onSignUp }: Props) {
       alignItems="center"
     >
       <Box width="80%" gridArea="1 / 1" p={8} backfaceVisibility="hidden">
-        <SignUpForm onSwitch={flip} onSignUp={onSignUp} />
+        <SignUpForm onSwitch={flip} onSignUp={onSignUp} onGoogleAuth={onGoogleAuth} />
       </Box>
 
       <Box
@@ -38,7 +39,7 @@ function AuthenticationCard({ onSignIn, onSignUp }: Props) {
         backfaceVisibility="hidden"
         transform="rotateY(180deg)"
       >
-        <SignInForm onSwitch={flip} onSignIn={onSignIn} />
+        <SignInForm onSwitch={flip} onSignIn={onSignIn} onGoogleAuth={onGoogleAuth} />
       </Box>
     </MotionBox>
   );

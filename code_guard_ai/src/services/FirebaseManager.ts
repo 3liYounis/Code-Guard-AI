@@ -1,8 +1,10 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, validatePassword, signOut, updateProfile, onAuthStateChanged } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, validatePassword, signOut, updateProfile, onAuthStateChanged, signInWithPopup, signInWithRedirect, getRedirectResult } from "firebase/auth";
+import { GoogleAuthProvider } from "firebase/auth";
 import { getFirestore, getDoc, setDoc, doc } from "firebase/firestore/lite";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "./FirebaseConfig";
 import type { CodeReview } from "@/components/Dashboard/Review Card/ReviewCard";
+
 export interface UserFromFields {
     email: string;
     password: string;
@@ -16,9 +18,32 @@ export interface User {
 }
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const auth = getAuth();
+const auth = await getAuth();
+const provider = new GoogleAuthProvider();
+export const googleAuth = async (): Promise<User | undefined> => {
+    try {
+        const result = await signInWithPopup(auth, provider);
+        const firebaseUser = result.user;
+        const userDocRef = doc(db, "users", firebaseUser.uid);
+        const userDocSnap = await getDoc(userDocRef);
+        var userDoc: User;
+        const data = userDocSnap.data();
+        userDoc = {
+            uid: firebaseUser.uid,
+            email: firebaseUser.email ?? "",
+            displayName: data ? (firebaseUser.displayName ?? data.displayName) : "",
+            code_reviews: data ? data.code_reviews : [],
+        };
+        if (!data)
+            await setDoc(userDocRef, userDoc);
+        return userDoc;
+    }
+    catch (error) {
+        console.error("Google sign-in error:", error);
+        return undefined;
+    }
+};
 export const signUp = async (user: UserFromFields): Promise<User> => {
-    const auth = getAuth();
     const userCredential = await createUserWithEmailAndPassword(auth, user.email, user.password);
     const firebaseUser = userCredential.user;
     await updateProfile(firebaseUser, {
@@ -62,7 +87,6 @@ export const validatePasswordPolicy = async (passwordFromUser: string) => {
     }
 }
 export const getIdToken = async (): Promise<string | null> => {
-    const auth = getAuth();
     const user = auth.currentUser;
     if (user) {
         try {
@@ -79,10 +103,7 @@ export const getIdToken = async (): Promise<string | null> => {
         return null;
     }
 };
-export const onAuthStateChangedListener = (
-    setUser: (user: User | undefined) => void
-) => {
-    const auth = getAuth();
+export const onAuthStateChangedListener = (setUser: (user: User | undefined) => void) => {
     return onAuthStateChanged(auth, async (firebaseUser) => {
         if (firebaseUser) {
             const userDocRef = doc(db, "users", firebaseUser.uid);

@@ -12,13 +12,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { signUpSchema, type SignUpData } from "./schemas";
 import { PasswordInput } from "../ui/password-input";
 import type { UserFromFields } from "../../services/FirebaseManager";
+import GoogleButton from "./GoogleButton";
 
 interface Props {
   onSwitch: () => void;
   onSignUp: (user: UserFromFields) => void;
+  onGoogleAuth: () => void;
 }
 
-function SignUpForm({ onSwitch, onSignUp }: Props) {
+function SignUpForm({ onSwitch, onSignUp, onGoogleAuth }: Props) {
   const {
     register,
     handleSubmit,
@@ -87,14 +89,13 @@ function SignUpForm({ onSwitch, onSignUp }: Props) {
           )}
         </Field.Root>
         <Button
-          borderRadius="full"
           alignSelf="center"
-          marginTop={5}
           type="submit"
           fontSize="18px"
         >
           Create account
         </Button>
+        <GoogleButton onClicked={onGoogleAuth} />
 
         <Link color="blue.400" alignSelf="center" onClick={onSwitch}>
           Already registered? Sign In

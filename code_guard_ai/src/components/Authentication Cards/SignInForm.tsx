@@ -12,13 +12,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { signInSchema, type SignInData } from "./schemas";
 import { PasswordInput } from "../ui/password-input";
 import type { UserFromFields } from "../../services/FirebaseManager";
-
+import GoogleButton from "./GoogleButton";
 interface Props {
   onSwitch: () => void;
   onSignIn: (user: UserFromFields) => void;
+  onGoogleAuth: () => void;
 }
 
-function SignInForm({ onSwitch, onSignIn }: Props) {
+function SignInForm({ onSwitch, onSignIn, onGoogleAuth }: Props) {
   const {
     register,
     handleSubmit,
@@ -67,10 +68,10 @@ function SignInForm({ onSwitch, onSignIn }: Props) {
             <Field.ErrorText>{errors.password.message}</Field.ErrorText>
           )}
         </Field.Root>
+        <GoogleButton onClicked={onGoogleAuth} />
+
         <Button
-          borderRadius="full"
           alignSelf="center"
-          marginTop={10}
           type="submit"
           fontSize="18px"
         >
