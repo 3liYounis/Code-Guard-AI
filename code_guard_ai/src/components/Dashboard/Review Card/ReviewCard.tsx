@@ -32,12 +32,13 @@ const LanguageMap: { [key: string]: LanguageStyle } = {
   Python: {
     imageSrc: ProgrammingLanguages.Python,
     color: "#3572A5",
-    gradient: "linear-gradient(135deg, #3776AB 0%, #FFD43B 100%)"
+    gradient: "linear-gradient(135deg, #FFD43B 0%, #3572A5 100%)"
   },
   JavaScript: {
     imageSrc: ProgrammingLanguages.JavaScript,
     color: "#F7DF1E",
-    gradient: "linear-gradient(135deg, #F7DF1E 0%, #000000 100%)"
+    // gradient: "linear-gradient(135deg, #F7DF1E 0%,rgb(90, 87, 87) 100%)"
+    gradient: "linear-gradient(135deg, rgb(90, 87, 87) 0%,#F7DF1E 100%)"
   },
   TypeScript: {
     imageSrc: ProgrammingLanguages.TypeScript,
@@ -52,7 +53,7 @@ const LanguageMap: { [key: string]: LanguageStyle } = {
   "C#": {
     imageSrc: ProgrammingLanguages.CSharp,
     color: "#9B4F96",
-    gradient: "linear-gradient(135deg, #68217A 0%, #9B4F96 100%)"
+    gradient: "linear-gradient(135deg,rgb(149, 63, 170) 0%,#9B4F96 100%)"
   },
   "C++": {
     imageSrc: ProgrammingLanguages.CPlus,
