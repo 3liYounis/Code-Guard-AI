@@ -19,7 +19,7 @@ const mapCodeReviewToChart = (codeReview: CodeReview) => {
     sort: { by: "value", direction: "desc" },
     series: [
       // { name: "name", color: getColor(total), label: "Review Scores Chart" },
-      { name: "name", color: "gray.800", label: "Review Scores Chart" },
+      { name: "name", color: "ActiveBorder", label: "Review Scores Chart" },
     ],
     data: [
       { name: "Security", value: codeReview.security },
@@ -34,7 +34,7 @@ const ReviewChart = ({ codeReview }: Props) => {
     <BarList.Root chart={chart} width={350}>
       <BarList.Content>
         <BarList.Label title="Aspect" flex={1}>
-          <BarList.Bar color="white" fontWeight={500} fontStyle="italic" />
+          <BarList.Bar _light={{ color: "white" }} _dark={{ color: "black" }} fontWeight={700} fontStyle="italic" fontFamily="cursive" />
         </BarList.Label>
         <BarList.Label title="Score /100">
           <BarList.Value />

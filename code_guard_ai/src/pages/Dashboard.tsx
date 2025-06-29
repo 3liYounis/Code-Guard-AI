@@ -38,6 +38,9 @@ const Dashboard = ({ user, setUser }: Props) => {
         else
             navigate("/home")
     }, [user]);
+    // const reviews = StaticCodeReviews.sort(
+    //     (e1, e2) => new Date(e2.upload_date).getTime() - new Date(e1.upload_date).getTime()
+    // );
     const reviews = [...codeReviews].sort(
         (e1, e2) => new Date(e2.upload_date).getTime() - new Date(e1.upload_date).getTime()
     );
