@@ -18,7 +18,7 @@ const NavBar = ({ user, onSignOut, onNewFileClick, route, showNewFile }: Props) 
     <HStack mt={-3} justifyContent="space-between" p={5}>
       <Logo route={route} />
       <HStack>
-        {user && <SearchBar onSearch={() => { }}></SearchBar>}
+        {/* {user && <SearchBar onSearch={() => { }}></SearchBar>} */}
       </HStack>
       <HStack>
         {showNewFile && <AddCodeReview onClicked={onNewFileClick} />}
