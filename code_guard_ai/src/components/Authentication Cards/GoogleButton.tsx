@@ -1,6 +1,5 @@
-import { Button, HStack, Icon, Text } from "@chakra-ui/react"
-import { FcGoogle } from "react-icons/fc";
-
+import { Button, HStack, Image, Text } from "@chakra-ui/react"
+import Google from "../../assets/Google.svg"
 interface Props {
     onClicked: () => void;
 }
@@ -8,8 +7,8 @@ const GoogleButton = ({ onClicked }: Props) => {
     return (
         <Button onClick={onClicked} alignSelf="center" fontSize="18px">
             <HStack>
+                <Image src={Google} boxSize={6} />
                 <Text>Continue With Google</Text>
-                <Icon as={FcGoogle} />
             </HStack>
         </Button>
     )
