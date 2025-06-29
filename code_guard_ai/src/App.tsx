@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { type User, onAuthStateChangedListener } from "./services/FirebaseManager"
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 import "./App.css";
 import LoadingPage from "./pages/LoadingPage";
+
 function App() {
   const [user, setUser] = useState<User | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(true);
