@@ -9,12 +9,14 @@ interface Props {
   onSwitch: () => void;
   refresh: () => Promise<void>;
   languageStyles: LanguageStyle;
+  onDelete: (reviewID: number) => void;
+
 }
-const ReviewCardBack = ({ codeReview, onSwitch, refresh, languageStyles }: Props) => {
+const ReviewCardBack = ({ codeReview, onSwitch, refresh, languageStyles, onDelete }: Props) => {
   return (
     <Card.Root height="100%" border="5px solid transparent" borderImageSlice={1} borderImageSource={languageStyles.gradient}>
       <Card.Header>
-        <ReviewHeader codeReview={codeReview} refresh={refresh} langaugeStyles={languageStyles} />
+        <ReviewHeader codeReview={codeReview} onDelete={onDelete} refresh={refresh} langaugeStyles={languageStyles} />
       </Card.Header>
       <Card.Body alignItems="center">
         <RecommendationsList recommendations={codeReview.recommendations} />

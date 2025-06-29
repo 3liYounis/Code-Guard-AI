@@ -11,8 +11,10 @@ interface Props {
   codeReview: CodeReview;
   refresh: () => Promise<void>;
   languageStyles: LanguageStyle;
+  onDelete: (reviewID: number) => void;
+
 }
-const AnimatedBox = ({ width, height, codeReview, refresh, languageStyles }: Props) => {
+const AnimatedBox = ({ width, height, codeReview, refresh, languageStyles, onDelete }: Props) => {
   const [flipped, setFlipped] = useState(false);
   const onSwitch = () => {
     setFlipped(!flipped);
@@ -44,7 +46,7 @@ const AnimatedBox = ({ width, height, codeReview, refresh, languageStyles }: Pro
             backfaceVisibility="hidden"
             p={4}
           >
-            <ReviewCardFront onSwitch={onSwitch} codeReview={codeReview} refresh={refresh} languageStyles={languageStyles} />
+            <ReviewCardFront onSwitch={onSwitch} codeReview={codeReview} onDelete={onDelete} refresh={refresh} languageStyles={languageStyles} />
           </Box>
           <Box
             position="absolute"
@@ -56,7 +58,7 @@ const AnimatedBox = ({ width, height, codeReview, refresh, languageStyles }: Pro
             p={4}
             overflowY="auto"
           >
-            <ReviewCardBack onSwitch={onSwitch} codeReview={codeReview} refresh={refresh} languageStyles={languageStyles} />
+            <ReviewCardBack onSwitch={onSwitch} codeReview={codeReview} onDelete={onDelete} refresh={refresh} languageStyles={languageStyles} />
           </Box>
         </MotionBox>
       </Box >

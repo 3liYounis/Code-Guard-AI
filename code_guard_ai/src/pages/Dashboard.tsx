@@ -8,8 +8,8 @@ import { getAllCodeReviews } from "@/services/api-client";
 import { addCodeReview } from "@/services/api-client";
 import NavBar from "@/components/Home/NavBar";
 import { type User, signOutUser } from "@/services/FirebaseManager";
-import StaticCodeReviews from "@/Data/StaticCodeReviews";
 import EmptyDashboard from "@/components/Dashboard/EmptyDashboard";
+import StaticCodeReviews from "@/Data/StaticCodeReviews";
 interface Props {
     user: User | undefined;
     setUser: (user: User | undefined) => void;
@@ -19,22 +19,25 @@ const Dashboard = ({ user, setUser }: Props) => {
     const [codeReviews, setCodeReviews] = useState<CodeReview[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const deleteReview = (reviewID: number) => {
+        setCodeReviews(codeReviews.filter(review => review.id != reviewID))
+    }
     const fetchReviews = async () => {
         setIsLoading(true);
         try {
             const reviews = await getAllCodeReviews();
             setCodeReviews(reviews);
+            setIsLoading(false);
         }
         catch (error) {
             console.error("Failed to fetch reviews:", error);
         }
-        finally {
-            setIsLoading(false);
-        }
     };
     useEffect(() => {
-        if (user)
-            fetchReviews();
+        if (user) {
+            setCodeReviews(user.code_reviews);
+            setIsLoading(false);
+        }
         else
             navigate("/home")
     }, [user]);
@@ -58,9 +61,9 @@ const Dashboard = ({ user, setUser }: Props) => {
                 onSubmit={addCodeReview}
             />
             <Flex wrap="wrap" gap={4} justify="start" justifyContent="center" alignItems="center">
-                {emptyReviews && <EmptyDashboard onNewFileClick={() => setIsDialogOpen(true)} />}
+                {(emptyReviews && !isLoading) && <EmptyDashboard onNewFileClick={() => setIsDialogOpen(true)} />}
                 {isLoading
-                    ? Array.from({ length: 8 }).map((_, i) => (
+                    ? Array.from({ length: reviews.length + 1 }).map((_, i) => (
                         <ReviewCardSkeleton key={i} />
                     ))
                     : reviews.map((review) => (
@@ -68,6 +71,7 @@ const Dashboard = ({ user, setUser }: Props) => {
                             codeReview={review}
                             key={review.id}
                             refresh={fetchReviews}
+                            onDelete={deleteReview}
                         />
                     ))}
             </Flex>

@@ -10,14 +10,16 @@ interface Props {
   onSwitch: () => void;
   refresh: () => Promise<void>;
   languageStyles: LanguageStyle;
+  onDelete: (reviewID: number) => void;
+
 }
 
-const ReviewCardFront = ({ codeReview, onSwitch, refresh, languageStyles }: Props) => {
+const ReviewCardFront = ({ codeReview, onSwitch, refresh, languageStyles, onDelete }: Props) => {
   const total = (codeReview.security + codeReview.cleanliness + codeReview.maintainability) / 3;
   return (
     <Card.Root height="100%" border="5px solid transparent" borderImageSlice={1} borderImageSource={languageStyles.gradient}>
       <Card.Header>
-        <ReviewHeader codeReview={codeReview} refresh={refresh} langaugeStyles={languageStyles} />
+        <ReviewHeader codeReview={codeReview} onDelete={onDelete} refresh={refresh} langaugeStyles={languageStyles} />
       </Card.Header>
       <Card.Body>
         <Stack

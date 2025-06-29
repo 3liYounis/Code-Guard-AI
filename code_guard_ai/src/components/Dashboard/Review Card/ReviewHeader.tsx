@@ -12,6 +12,8 @@ interface Props {
   codeReview: CodeReview;
   refresh: () => Promise<void>;
   langaugeStyles: LanguageStyle;
+  onDelete: (reviewID: number) => void;
+
 }
 const formatTime = (date: Date) => {
   const hours = date.getHours().toString().padStart(2, "0");
@@ -24,7 +26,7 @@ const formatDate = (date: Date): string => {
   const dateStr = date.toLocaleDateString();
   return `${day} ${dateStr}`;
 };
-const ReviewHeader = ({ codeReview, refresh, langaugeStyles }: Props) => {
+const ReviewHeader = ({ codeReview, refresh, langaugeStyles, onDelete }: Props) => {
   const ringCss = defineStyle({
     outlineWidth: "7px",
     outlineColor: langaugeStyles.color,
@@ -51,7 +53,7 @@ const ReviewHeader = ({ codeReview, refresh, langaugeStyles }: Props) => {
           </Stack>
         </Stack>
       </HStack >
-      <CardButtonList codeReview={codeReview} refresh={refresh} />
+      <CardButtonList codeReview={codeReview} onDelete={onDelete} refresh={refresh} />
     </HStack >
   );
 };

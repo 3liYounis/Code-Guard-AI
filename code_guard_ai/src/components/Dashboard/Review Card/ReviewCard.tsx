@@ -26,10 +26,9 @@ export interface CodeReview {
 interface Props {
   codeReview: CodeReview;
   refresh: () => Promise<void>;
+  onDelete: (reviewID: number) => void;
 }
-const LanguageMap: {
-  [key: string]: LanguageStyle
-} = {
+const LanguageMap: { [key: string]: LanguageStyle } = {
   Python: {
     imageSrc: ProgrammingLanguages.Python,
     color: "#3572A5",
@@ -81,10 +80,10 @@ const LanguageMap: {
     gradient: "linear-gradient(135deg, #CBD5E0 0%, #A0AEC0 100%)"
   }
 };
-const ReviewCard = ({ codeReview, refresh }: Props) => {
+const ReviewCard = ({ codeReview, refresh, onDelete }: Props) => {
   const langaugeStyles = (LanguageMap[codeReview.programming_language] ?? LanguageMap["other"])
   return (
-    <AnimatedBox codeReview={codeReview} width={470} height={530} refresh={refresh} languageStyles={langaugeStyles}></AnimatedBox >
+    <AnimatedBox codeReview={codeReview} width={470} height={530} refresh={refresh} onDelete={onDelete} languageStyles={langaugeStyles}></AnimatedBox >
   );
 };
 

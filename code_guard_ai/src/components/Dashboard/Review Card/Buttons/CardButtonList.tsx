@@ -8,9 +8,11 @@ import NewFileDialog from "../../File Dialog/NewFileDialog";
 interface Props {
     codeReview: CodeReview;
     refresh: () => Promise<void>;
+    onDelete: (reviewID: number) => void;
+
 }
 
-const CardButtonList = ({ codeReview, refresh }: Props) => {
+const CardButtonList = ({ codeReview, refresh, onDelete }: Props) => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [editingReviewId, setEditingReviewId] = useState<number | null>(null);
     const handleEdit = async (reviewId: number, file: File) => {
@@ -25,8 +27,8 @@ const CardButtonList = ({ codeReview, refresh }: Props) => {
     };
     const handleDelete = async (reviewId: number) => {
         try {
+            onDelete(reviewId);
             await deleteCodeReview(reviewId);
-            await refresh();
             console.log("Review deleted successfully");
         } catch (error) {
             console.error("Failed to delete review:", error);
