@@ -23,7 +23,7 @@ class Suggestion:
 class CodeReview:
     id: int
     name: str
-    file: TextIO
+    file_content: str
     programming_language: str
     security: int
     cleanliness: int
@@ -35,6 +35,7 @@ class CodeReview:
         return {
             "id": self.id,
             "name": self.name,
+            "file_content": self.file_content,
             "programming_language": self.programming_language,
             "security": self.security,
             "cleanliness": self.cleanliness,

@@ -27,8 +27,9 @@ interface Props {
   codeReview: CodeReview;
   refresh: () => Promise<void>;
   onDelete: (reviewID: number) => void;
+  setShowCode: () => void;
 }
-const LanguageMap: { [key: string]: LanguageStyle } = {
+export const LanguageMap: { [key: string]: LanguageStyle } = {
   Python: {
     imageSrc: ProgrammingLanguages.Python,
     color: "#3572A5",
@@ -37,7 +38,6 @@ const LanguageMap: { [key: string]: LanguageStyle } = {
   JavaScript: {
     imageSrc: ProgrammingLanguages.JavaScript,
     color: "#F7DF1E",
-    // gradient: "linear-gradient(135deg, #F7DF1E 0%,rgb(90, 87, 87) 100%)"
     gradient: "linear-gradient(135deg, rgb(90, 87, 87) 0%,#F7DF1E 100%)"
   },
   TypeScript: {
@@ -81,10 +81,10 @@ const LanguageMap: { [key: string]: LanguageStyle } = {
     gradient: "linear-gradient(135deg, #CBD5E0 0%, #A0AEC0 100%)"
   }
 };
-const ReviewCard = ({ codeReview, refresh, onDelete }: Props) => {
+const ReviewCard = ({ codeReview, refresh, onDelete, setShowCode }: Props) => {
   const langaugeStyles = (LanguageMap[codeReview.programming_language] ?? LanguageMap["other"])
   return (
-    <AnimatedBox codeReview={codeReview} width={470} height={530} refresh={refresh} onDelete={onDelete} languageStyles={langaugeStyles}></AnimatedBox >
+    <AnimatedBox codeReview={codeReview} width={470} height={530} refresh={refresh} onDelete={onDelete} languageStyles={langaugeStyles} setShowCode={setShowCode}></AnimatedBox >
   );
 };
 

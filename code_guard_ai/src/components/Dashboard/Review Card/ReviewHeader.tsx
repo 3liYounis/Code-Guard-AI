@@ -10,23 +10,24 @@ import CardButtonList from "./Buttons/CardButtonList";
 import type { CodeReview, LanguageStyle } from "./ReviewCard";
 interface Props {
   codeReview: CodeReview;
-  refresh: () => Promise<void>;
   langaugeStyles: LanguageStyle;
+  refresh: () => Promise<void>;
   onDelete: (reviewID: number) => void;
+  setShowCode: () => void;
 
 }
-const formatTime = (date: Date) => {
+export const formatTime = (date: Date) => {
   const hours = date.getHours().toString().padStart(2, "0");
   const minutes = date.getMinutes().toString().padStart(2, "0");
   return `${hours}:${minutes}`;
 };
-const formatDate = (date: Date): string => {
+export const formatDate = (date: Date): string => {
   const weekDays = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
   const day = weekDays[date.getDay()];
   const dateStr = date.toLocaleDateString();
   return `${day} ${dateStr}`;
 };
-const ReviewHeader = ({ codeReview, refresh, langaugeStyles, onDelete }: Props) => {
+const ReviewHeader = ({ codeReview, refresh, langaugeStyles, onDelete, setShowCode }: Props) => {
   const ringCss = defineStyle({
     outlineWidth: "7px",
     outlineColor: langaugeStyles.color,
@@ -53,7 +54,7 @@ const ReviewHeader = ({ codeReview, refresh, langaugeStyles, onDelete }: Props) 
           </Stack>
         </Stack>
       </HStack >
-      <CardButtonList codeReview={codeReview} onDelete={onDelete} refresh={refresh} />
+      <CardButtonList codeReview={codeReview} onDelete={onDelete} refresh={refresh} setShowCode={setShowCode} />
     </HStack >
   );
 };

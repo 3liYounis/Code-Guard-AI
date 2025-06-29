@@ -107,7 +107,7 @@ def query_openai_for_analysis(content: str, language: str) -> dict:
 
 
 def analyze_code(file: TextIO) -> CodeReview:
-    content = file.read()
+    content = file.read().decode('utf-8')
     file.seek(0)
     filename = format_file_name(file.filename)
     language = infer_language(file.filename)
@@ -120,7 +120,7 @@ def analyze_code(file: TextIO) -> CodeReview:
     return CodeReview(
         id=int(datetime.now().timestamp() * 1000),
         name=os.path.basename(filename),
-        file=file,
+        file_content=content,
         programming_language=language,
         security=ai_result.get("security", 0),
         cleanliness=ai_result.get("cleanliness", 0),

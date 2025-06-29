@@ -9,10 +9,10 @@ interface Props {
     codeReview: CodeReview;
     refresh: () => Promise<void>;
     onDelete: (reviewID: number) => void;
-
+    setShowCode: () => void;
 }
 
-const CardButtonList = ({ codeReview, refresh, onDelete }: Props) => {
+const CardButtonList = ({ codeReview, refresh, onDelete, setShowCode }: Props) => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [editingReviewId, setEditingReviewId] = useState<number | null>(null);
     const handleEdit = async (reviewId: number, file: File) => {
@@ -57,7 +57,7 @@ const CardButtonList = ({ codeReview, refresh, onDelete }: Props) => {
                 onSubmit={onDialogSubmit}
             />
             <Stack gap={0.5}>
-                <CardButton type="View" onClicked={() => { }} />
+                <CardButton type="View" onClicked={setShowCode} />
                 <CardButton
                     type="Edit"
                     onClicked={() => openEditDialog(codeReview.id)}

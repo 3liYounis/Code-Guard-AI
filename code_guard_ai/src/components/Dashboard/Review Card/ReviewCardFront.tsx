@@ -4,6 +4,7 @@ import ReviewHeader from "./ReviewHeader";
 import TotalScore from "./TotalScore";
 import ReviewChart from "./Charts/ReviewChart";
 import ReviewBar from "./Charts/ReviewBar";
+import SourceCodeViewer from "../SourceCodeViewer";
 
 interface Props {
   codeReview: CodeReview;
@@ -11,15 +12,15 @@ interface Props {
   refresh: () => Promise<void>;
   languageStyles: LanguageStyle;
   onDelete: (reviewID: number) => void;
-
+  setShowCode: () => void;
 }
 
-const ReviewCardFront = ({ codeReview, onSwitch, refresh, languageStyles, onDelete }: Props) => {
+const ReviewCardFront = ({ codeReview, onSwitch, refresh, languageStyles, onDelete, setShowCode }: Props) => {
   const total = (codeReview.security + codeReview.cleanliness + codeReview.maintainability) / 3;
   return (
     <Card.Root height="100%" border="5px solid transparent" borderImageSlice={1} borderImageSource={languageStyles.gradient}>
       <Card.Header>
-        <ReviewHeader codeReview={codeReview} onDelete={onDelete} refresh={refresh} langaugeStyles={languageStyles} />
+        <ReviewHeader codeReview={codeReview} onDelete={onDelete} refresh={refresh} langaugeStyles={languageStyles} setShowCode={setShowCode} />
       </Card.Header>
       <Card.Body>
         <Stack
