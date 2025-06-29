@@ -9,6 +9,7 @@ import { addCodeReview } from "@/services/api-client";
 import NavBar from "@/components/Home/NavBar";
 import { type User, signOutUser } from "@/services/FirebaseManager";
 import StaticCodeReviews from "@/Data/StaticCodeReviews";
+import EmptyDashboard from "@/components/Dashboard/EmptyDashboard";
 interface Props {
     user: User | undefined;
     setUser: (user: User | undefined) => void;
@@ -40,9 +41,10 @@ const Dashboard = ({ user, setUser }: Props) => {
     const reviews = [...codeReviews].sort(
         (e1, e2) => new Date(e2.upload_date).getTime() - new Date(e1.upload_date).getTime()
     );
+    const emptyReviews = reviews.length == 0;
     return (
         <Stack>
-            <NavBar route={"Dashboard"} user={user} onNewFileClick={() => setIsDialogOpen(true)} onSignOut={() => { signOutUser(); setUser(undefined); navigate("/home"); }} />
+            <NavBar route={"Dashboard"} user={user} showNewFile={!emptyReviews} onNewFileClick={() => setIsDialogOpen(true)} onSignOut={() => { signOutUser(); setUser(undefined); navigate("/home"); }} />
             <NewFileDialog
                 isOpen={isDialogOpen}
                 onOpenChange={({ open }) => setIsDialogOpen(open)}
@@ -52,7 +54,8 @@ const Dashboard = ({ user, setUser }: Props) => {
                 }}
                 onSubmit={addCodeReview}
             />
-            <Flex wrap="wrap" gap={4} justify="start" justifyContent="center" alignItems="center" mr={7}>
+            <Flex wrap="wrap" gap={4} justify="start" justifyContent="center" alignItems="center">
+                {emptyReviews && <EmptyDashboard onNewFileClick={() => setIsDialogOpen(true)} />}
                 {isLoading
                     ? Array.from({ length: 8 }).map((_, i) => (
                         <ReviewCardSkeleton key={i} />

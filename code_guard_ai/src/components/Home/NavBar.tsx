@@ -10,9 +10,10 @@ interface Props {
   onSignOut?: () => void;
   onNewFileClick?: () => void;
   route: string;
+  showNewFile: boolean;
 }
 
-const NavBar = ({ user, onSignOut, onNewFileClick, route }: Props) => {
+const NavBar = ({ user, onSignOut, onNewFileClick, route, showNewFile }: Props) => {
   return (
     <HStack mt={-3} justifyContent="space-between" p={5}>
       <Logo route={route} />
@@ -20,7 +21,7 @@ const NavBar = ({ user, onSignOut, onNewFileClick, route }: Props) => {
         {user && <SearchBar onSearch={() => { }}></SearchBar>}
       </HStack>
       <HStack>
-        {user && <AddCodeReview onClicked={onNewFileClick} />}
+        {showNewFile && <AddCodeReview onClicked={onNewFileClick} />}
         <ColorModeSwitch />
         {user && <ProfileIcon user={user} onSignOut={onSignOut}></ProfileIcon>}
       </HStack>
