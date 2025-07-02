@@ -38,7 +38,7 @@ function AuthenticationCard({ onSignIn, onSignUp, onGoogleAuth }: Props) {
       </Box>
 
       <Box
-        width="60%" gridArea="1 / 1" p={8} backfaceVisibility="hidden"
+        width="80%" gridArea="1 / 1" p={8} backfaceVisibility="hidden"
         transform="rotateY(180deg)"
       >
         <SignInForm
