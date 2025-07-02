@@ -1,4 +1,3 @@
-// Portfolio.tsx
 import { Box, Flex, Image, Text, HStack, Link, Icon } from "@chakra-ui/react";
 import type { IconType } from "react-icons";
 

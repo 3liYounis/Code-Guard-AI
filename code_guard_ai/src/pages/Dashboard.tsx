@@ -9,7 +9,6 @@ import { addCodeReview } from "@/services/api-client";
 import NavBar from "@/components/Home/NavBar";
 import { type User, signOutUser } from "@/services/FirebaseManager";
 import EmptyDashboard from "@/components/Dashboard/EmptyDashboard";
-import StaticCodeReviews from "@/Data/StaticCodeReviews";
 import SourceCodeViewer from "@/components/Dashboard/SourceCodeViewer";
 interface Props {
     user: User | undefined;

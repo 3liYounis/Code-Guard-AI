@@ -47,7 +47,6 @@ const profiles = [
 ];
 
 export default function About() {
-  // Chakra’s hook lets you pick different values in light vs. dark mode
 
   return (
     <Stack h="100%" justify="center" align="center" gap={10} textAlign="center">
