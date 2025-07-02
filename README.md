@@ -2,7 +2,7 @@
 
 > ⚡ _AI-powered code review and quality analysis tool._
 
-***is a full-stack developer tool that allows users to submit source code and receive structured feedback, quality scoring, and improvement recommendations!***
+***A full-stack developer tool that allows users to submit source code and receive structured feedback, quality scoring, and improvement recommendations!***
 
 **All powered by Artificial Intelligence and modern frontend frameworks :)**
 
@@ -57,7 +57,7 @@ Code-Guard-AI/
 ▶️ Run the Project (Windows)
 
       To launch the application with one command:
-      `./run.bat`
+      ./run.bat
       This will:
                 1. Navigate to the frontend directory
                 2. Install all npm dependencies
