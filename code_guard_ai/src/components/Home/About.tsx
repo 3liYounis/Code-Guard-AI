@@ -78,7 +78,6 @@ export default function About() {
       </Heading>
 
       <Separator
-        w="600px"
         borderColor="gray.300"
         borderWidth="2px"
         borderRadius="full"
@@ -97,7 +96,7 @@ export default function About() {
         commits, making it easier than ever to ship secure, robust software.
       </Text>
 
-      <SimpleGrid columns={{ base: 1, lg: 2 }} gap={10} w="full" maxW="700px">
+      <SimpleGrid columns={{ base: 1, md: 1, lg: 2 }} gap={10} w="full" maxW="700px">
         {profiles.map((p) => (
           <Portfolio key={p.name} {...p} />
         ))}
