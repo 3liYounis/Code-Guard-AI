@@ -47,6 +47,7 @@ const profiles = [
 ];
 
 export default function About() {
+
   return (
     <Stack h="100%" justify="center" align="center" gap={8} textAlign="center">
       {/* <Box w="full" maxW="2xl"> */}
