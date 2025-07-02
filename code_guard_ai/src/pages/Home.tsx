@@ -25,28 +25,22 @@ export default function Home({ user, setUser }: Props) {
 
   return (
     <Stack minH="100dvh">
-      <NavBar route="Home" user={user} showNewFile={false} onSignOut={() => { }} />
+      <NavBar
+        route="Home"
+        user={user}
+        showNewFile={false}
+        onSignOut={() => { }}
+      />
 
       <Grid
-        templateColumns={{ base: "1fr", lg: "repeat(2, 1fr)" }}
-        flex="1"
+        templateColumns={{ base: "1fr", lg: "repeat(2, minmax(0, 1fr))" }}
+        templateRows={{ base: "1fr 1fr", lg: "1fr" }}
       >
-        <GridItem
-          display={{ base: "none", lg: "flex" }}
-          flexDir="column"
-          justifyContent="center"
-          alignItems="center"
-          p={{ base: 0, md: 8 }}
-        >
+        <GridItem minW={0} p={10}>
           <About />
         </GridItem>
 
-        <GridItem
-          display="flex"
-          flexDir="column"
-          justifyContent="center"
-          alignItems="center"
-        >
+        <GridItem minW={0}>
           <AuthenticationCard
             onSignIn={async (c) => {
               setUser(await signIn(c.email, c.password));

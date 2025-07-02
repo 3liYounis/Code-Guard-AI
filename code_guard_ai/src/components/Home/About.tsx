@@ -95,7 +95,7 @@ export default function About() {
         and maintain clean, high-quality codebases.
       </Text>
 
-      <SimpleGrid columns={{ base: 1, lg: 2 }} gap={10} w="full" maxW="700px">
+      <SimpleGrid columns={{ base: 1, md: 1, lg: 2 }} gap={10} w="full" maxW="700px">
         {profiles.map((p) => (
           <Portfolio key={p.name} {...p} />
         ))}
