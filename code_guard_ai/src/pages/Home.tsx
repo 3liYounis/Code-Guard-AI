@@ -29,7 +29,7 @@ export default function Home({ user, setUser }: Props) {
         route="Home"
         user={user}
         showNewFile={false}
-        onSignOut={() => {}}
+        onSignOut={() => { }}
       />
 
       <Grid
