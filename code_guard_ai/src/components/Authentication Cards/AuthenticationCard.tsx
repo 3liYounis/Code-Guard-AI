@@ -19,8 +19,9 @@ function AuthenticationCard({ onSignIn, onSignUp, onGoogleAuth }: Props) {
 
   return (
     <MotionBox
-      height="100%"
-      width="100%"
+      w="100%"
+      h="100%"
+      minW="450px"
       display="grid"
       transformStyle="preserve-3d"
       animate={{ rotateY: showSignIn ? 180 : 0 }}
@@ -29,7 +30,11 @@ function AuthenticationCard({ onSignIn, onSignUp, onGoogleAuth }: Props) {
       alignItems="center"
     >
       <Box width="80%" gridArea="1 / 1" p={8} backfaceVisibility="hidden">
-        <SignUpForm onSwitch={flip} onSignUp={onSignUp} onGoogleAuth={onGoogleAuth} />
+        <SignUpForm
+          onSwitch={flip}
+          onSignUp={onSignUp}
+          onGoogleAuth={onGoogleAuth}
+        />
       </Box>
 
       <Box
@@ -39,7 +44,11 @@ function AuthenticationCard({ onSignIn, onSignUp, onGoogleAuth }: Props) {
         backfaceVisibility="hidden"
         transform="rotateY(180deg)"
       >
-        <SignInForm onSwitch={flip} onSignIn={onSignIn} onGoogleAuth={onGoogleAuth} />
+        <SignInForm
+          onSwitch={flip}
+          onSignIn={onSignIn}
+          onGoogleAuth={onGoogleAuth}
+        />
       </Box>
     </MotionBox>
   );

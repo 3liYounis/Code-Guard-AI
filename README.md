@@ -1,8 +1,8 @@
 # Code Guard AI
 
-> ⚡ *AI-powered code review and quality analysis tool.*
+> ⚡ _AI-powered code review and quality analysis tool._
 
-**Code Guard AI** is a full-stack developer tool that allows users to submit source code and receive structured feedback, quality scoring, and improvement recommendations!
+\*\*\*\* is a full-stack developer tool that allows users to submit source code and receive structured feedback, quality scoring, and improvement recommendations!
 
 **All powered by Artificial Intelligence and modern frontend frameworks :)**
 
@@ -28,7 +28,9 @@ Code-Guard-AI/
 ├── run.bat             # Script to start both servers
 └── README.md           # Project documentation
 ```
+
 ## 📦 Tech Stack
+
 ```bash
 
 🖌️ Frontend: React 19, Chakra UI, React Router, Vite TypeScript
@@ -46,13 +48,13 @@ Code-Guard-AI/
 
 ## 🔧 Setup Instructions
 
-  ✅ Prerequisites:
+✅ Prerequisites:
 
       Node.js v18+
       Python 3.9+
       Virtual Environment (Optional But Highly Recommended)
 
-  ▶️ Run the Project (Windows)
+▶️ Run the Project (Windows)
 
       To launch the application with one command:
       `./run.bat`
@@ -63,4 +65,5 @@ Code-Guard-AI/
                 4. Start the Python Flask API server in a new terminal window
 
 ## 🙌 Contribution
+
 > **Feel free to open an issue or submit a PR. All contributions are welcome!**

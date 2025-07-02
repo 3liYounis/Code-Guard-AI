@@ -2,15 +2,14 @@ import { HStack } from "@chakra-ui/react";
 import ColorModeSwitch from "./ColorModeSwitch";
 import ProfileIcon from "../Authentication Cards/ProfileIcon";
 import type { User } from "../../services/FirebaseManager";
-import SearchBar from "./SearchBar";
 import AddCodeReview from "../Dashboard/File Dialog/AddCodeReview";
 import Logo from "./Logo";
 interface Props {
   user: User | undefined;
-  onSignOut?: () => void;
-  onNewFileClick?: () => void;
   route: string;
   showNewFile: boolean;
+  onSignOut?: () => void;
+  onNewFileClick?: () => void;
 }
 
 const NavBar = ({ user, onSignOut, onNewFileClick, route, showNewFile }: Props) => {
