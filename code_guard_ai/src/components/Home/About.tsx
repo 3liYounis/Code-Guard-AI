@@ -16,16 +16,32 @@ const profiles = [
     name: "Yazan Abomokh",
     image: YazanAbomokh,
     links: [
-      { href: "https://www.linkedin.com/in/yazan-a-390840292/", icon: FaLinkedin },
-      { href: "https://github.com/Yazanabomokh", icon: FaGithub },
+      {
+        href: "https://www.linkedin.com/in/yazan-a-390840292/",
+        icon: FaLinkedin,
+        hoverColor: "blue.500",
+      },
+      {
+        href: "https://github.com/Yazanabomokh",
+        icon: FaGithub,
+        hoverColor: "gray.400",
+      },
     ],
   },
   {
     name: "Ali Younis",
     image: AliYounis,
     links: [
-      { href: "https://www.linkedin.com/in/aliyounis20/", icon: FaLinkedin },
-      { href: "https://github.com/3liYounis", icon: FaGithub },
+      {
+        href: "https://www.linkedin.com/in/aliyounis20/",
+        icon: FaLinkedin,
+        hoverColor: "blue.500",
+      },
+      {
+        href: "https://github.com/3liYounis",
+        icon: FaGithub,
+        hoverColor: "gray.400",
+      },
     ],
   },
 ];
@@ -34,13 +50,7 @@ export default function About() {
   // Chakra’s hook lets you pick different values in light vs. dark mode
 
   return (
-    <Stack
-      h="100%"
-      justify="center"
-      align="center"
-      gap={10}
-      textAlign="center"
-    >
+    <Stack h="100%" justify="center" align="center" gap={10} textAlign="center">
       <Box w="full" maxW="2xl">
         <Heading
           alignSelf="flex-start"
@@ -69,11 +79,11 @@ export default function About() {
       </Heading>
 
       <Separator
-          w="600px"
-          borderColor="gray.300"
-          borderWidth="2px"
-          borderRadius="full"
-        />
+        w="600px"
+        borderColor="gray.300"
+        borderWidth="2px"
+        borderRadius="full"
+      />
 
       <Text
         fontSize={{ base: "md", md: "lg" }}
@@ -88,12 +98,7 @@ export default function About() {
         commits, making it easier than ever to ship secure, robust software.
       </Text>
 
-      <SimpleGrid
-        columns={{ base: 1, lg: 2 }}
-        gap={10}
-        w="full"
-        maxW="700px"
-      >
+      <SimpleGrid columns={{ base: 1, lg: 2 }} gap={10} w="full" maxW="700px">
         {profiles.map((p) => (
           <Portfolio key={p.name} {...p} />
         ))}
