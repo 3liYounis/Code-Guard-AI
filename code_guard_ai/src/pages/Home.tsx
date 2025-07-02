@@ -25,7 +25,7 @@ export default function Home({ user, setUser }: Props) {
 
   return (
     <Stack minH="100dvh">
-      <NavBar route="Home" user={user} showNewFile={false} onSignOut={() => {}} />
+      <NavBar route="Home" user={user} showNewFile={false} onSignOut={() => { }} />
 
       <Grid
         templateColumns={{ base: "1fr", lg: "repeat(2, 1fr)" }}
