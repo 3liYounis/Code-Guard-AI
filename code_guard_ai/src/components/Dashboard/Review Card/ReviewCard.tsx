@@ -1,6 +1,7 @@
 import AnimatedBox from "./AnimatedBox";
 import ProgrammingLanguages from "@/assets/Programming Languages/ProgrammingLanguages";
 import question from "../../../assets/Emojies/question.svg"
+import type { Timestamp } from "firebase/firestore/lite";
 export interface LanguageStyle {
   imageSrc: string;
   color: string;
@@ -21,7 +22,7 @@ export interface CodeReview {
   cleanliness: number;
   maintainability: number;
   recommendations: Suggestion[];
-  upload_date: number;
+  upload_date: Timestamp;
 }
 interface Props {
   codeReview: CodeReview;

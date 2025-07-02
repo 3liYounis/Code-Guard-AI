@@ -37,7 +37,7 @@ def count_tokens(text: str, model="gpt-4") -> int:
     return len(enc.encode(text))
 
 
-def fallback_json() -> dict:
+def fallback_json() -> CodeReview:
     return {
         "security": random.randint(40, 90),
         "cleanliness": random.randint(40, 90),
