@@ -2,7 +2,7 @@
 
 > ⚡ _AI-powered code review and quality analysis tool._
 
-\*\*\*\* is a full-stack developer tool that allows users to submit source code and receive structured feedback, quality scoring, and improvement recommendations!
+***is a full-stack developer tool that allows users to submit source code and receive structured feedback, quality scoring, and improvement recommendations!***
 
 **All powered by Artificial Intelligence and modern frontend frameworks :)**
 
