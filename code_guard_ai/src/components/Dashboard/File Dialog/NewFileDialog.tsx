@@ -11,13 +11,17 @@ interface NewFileDialogProps {
 
 const NewFileDialog = ({ isOpen, onOpenChange, onSuccess, onSubmit }: NewFileDialogProps) => {
     const [file, setFile] = useState<File | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
     const submitNewFile = async () => {
         if (!file) return;
         try {
+            setIsLoading(true);
             await onSubmit(file);
+            setIsLoading(false);
             setFile(null);
             onSuccess();
-        } catch {
+        }
+        catch {
         }
     };
 
@@ -41,7 +45,7 @@ const NewFileDialog = ({ isOpen, onOpenChange, onSuccess, onSubmit }: NewFileDia
                                 <Dialog.ActionTrigger asChild>
                                     <Button variant="outline">Cancel</Button>
                                 </Dialog.ActionTrigger>
-                                <Button onClick={submitNewFile} disabled={!file}>
+                                <Button onClick={submitNewFile} disabled={!file || isLoading}>
                                     Submit
                                 </Button>
                             </Dialog.Footer>

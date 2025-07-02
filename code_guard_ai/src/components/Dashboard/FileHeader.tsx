@@ -12,7 +12,7 @@ const FileHeader = ({ codeReview }: Props) => {
         outlineOffset: "7px",
         outlineStyle: "solid",
     });
-    const modificationDate = codeReview.upload_date.toDate();
+    const modificationDate = new Date(codeReview.upload_date);
     const formattedDate = modificationDate instanceof Date && !isNaN(modificationDate.getTime()) ? `${formatDate(modificationDate)} - ${formatTime(modificationDate)}` : "Unknown date";
     return (
         <HStack width="100%" justifyContent="space-between">

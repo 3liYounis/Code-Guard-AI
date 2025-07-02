@@ -22,7 +22,7 @@ export interface CodeReview {
   cleanliness: number;
   maintainability: number;
   recommendations: Suggestion[];
-  upload_date: Timestamp;
+  upload_date: number;
 }
 interface Props {
   codeReview: CodeReview;

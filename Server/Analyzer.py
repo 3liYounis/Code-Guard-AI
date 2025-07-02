@@ -37,7 +37,7 @@ def count_tokens(text: str, model="gpt-4") -> int:
     return len(enc.encode(text))
 
 
-def fallback_json() -> CodeReview:
+def fallback_json() -> dict:
     return {
         "security": random.randint(40, 90),
         "cleanliness": random.randint(40, 90),
@@ -127,5 +127,5 @@ def analyze_code(file: TextIO) -> CodeReview:
         maintainability=ai_result.get(
             "maintainability", 0),
         recommendations=suggestions,
-        upload_date=datetime.now()
+        upload_date=int(datetime.now().timestamp() * 1000)
     )

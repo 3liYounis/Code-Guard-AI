@@ -24,8 +24,10 @@ export const formatTime = (date: Date) => {
 export const formatDate = (date: Date): string => {
   const weekDays = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
   const day = weekDays[date.getDay()];
-  const dateStr = date.toLocaleDateString();
-  return `${day} ${dateStr}`;
+  const dd = String(date.getDate()).padStart(2, "0");
+  const mm = String(date.getMonth() + 1).padStart(2, "0");
+  const yyyy = date.getFullYear();
+  return `${day} ${dd}/${mm}/${yyyy}`;
 };
 const ReviewHeader = ({ codeReview, refresh, langaugeStyles, onDelete, setShowCode }: Props) => {
   const ringCss = defineStyle({
@@ -34,8 +36,9 @@ const ReviewHeader = ({ codeReview, refresh, langaugeStyles, onDelete, setShowCo
     outlineOffset: "7px",
     outlineStyle: "solid",
   });
-  const modificationDate = codeReview.upload_date.toDate();
-  const formattedDate = modificationDate instanceof Date && !isNaN(modificationDate.getTime()) ? `${formatDate(modificationDate)} - ${formatTime(modificationDate)}` : "Unknown date";
+  const modificationDate = new Date(codeReview.upload_date);
+  console.log(modificationDate)
+  const formattedDate = modificationDate instanceof Date && !isNaN(modificationDate.getTime()) ? `${formatDate(modificationDate)} - ${formatTime(modificationDate)} ` : "Unknown date";
   return (
     <HStack width="100%" justifyContent="space-between">
       <HStack>
