@@ -37,7 +37,6 @@ const ReviewHeader = ({ codeReview, refresh, langaugeStyles, onDelete, setShowCo
     outlineStyle: "solid",
   });
   const modificationDate = new Date(codeReview.upload_date);
-  console.log(modificationDate)
   const formattedDate = modificationDate instanceof Date && !isNaN(modificationDate.getTime()) ? `${formatDate(modificationDate)} - ${formatTime(modificationDate)} ` : "Unknown date";
   return (
     <HStack width="100%" justifyContent="space-between">

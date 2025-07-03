@@ -10,6 +10,7 @@ import NavBar from "@/components/Home/NavBar";
 import { type User, signOutUser } from "@/services/FirebaseManager";
 import EmptyDashboard from "@/components/Dashboard/EmptyDashboard";
 import SourceCodeViewer from "@/components/Dashboard/SourceCodeViewer";
+import StaticCodeReviews from "@/Data/StaticCodeReviews";
 interface Props {
     user: User | undefined;
     setUser: (user: User | undefined) => void;
@@ -43,12 +44,12 @@ const Dashboard = ({ user, setUser }: Props) => {
         else
             navigate("/home")
     }, [user]);
-    // const reviews = StaticCodeReviews.sort(
-    //  (e1, e2) => (e2.upload_date) - (e1.upload_date)
-    // );
-    const reviews = [...codeReviews].sort(
+    const reviews = StaticCodeReviews.sort(
         (e1, e2) => (e2.upload_date) - (e1.upload_date)
     );
+    // const reviews = [...codeReviews].sort(
+    //     (e1, e2) => (e2.upload_date) - (e1.upload_date)
+    // );
     const emptyReviews = reviews.length == 0;
     return (
         <Stack>

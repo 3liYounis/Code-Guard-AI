@@ -1,4 +1,4 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, validatePassword, signOut, updateProfile, onAuthStateChanged, signInWithPopup, signInWithRedirect, getRedirectResult } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, validatePassword, signOut, updateProfile, onAuthStateChanged, signInWithPopup, signInWithRedirect, getRedirectResult, type Auth } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
 import { getFirestore, getDoc, setDoc, doc } from "firebase/firestore/lite";
 import { initializeApp } from "firebase/app";
@@ -18,7 +18,7 @@ export interface User {
 }
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const auth = await getAuth();
+const auth = getAuth();
 const provider = new GoogleAuthProvider();
 export const googleAuth = async (): Promise<User | undefined> => {
     try {
