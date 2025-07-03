@@ -17,7 +17,7 @@ const ReviewCardBack = ({ codeReview, onSwitch, refresh, languageStyles, onDelet
   return (
     <Card.Root height="100%" border="5px solid transparent" borderImageSlice={1} borderImageSource={languageStyles.gradient}>
       <Card.Header>
-        <ReviewHeader codeReview={codeReview} onDelete={onDelete} refresh={refresh} langaugeStyles={languageStyles} setShowCode={setShowCode} />
+        <ReviewHeader codeReview={codeReview} onDelete={onDelete} refresh={refresh} langaugeStyles={languageStyles} setShowCode={setShowCode} clickable={false} />
       </Card.Header>
       <Card.Body alignItems="center">
         <RecommendationsList recommendations={codeReview.recommendations} />

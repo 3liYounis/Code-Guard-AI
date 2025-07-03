@@ -20,11 +20,11 @@ const ReviewCardFront = ({ codeReview, onSwitch, refresh, languageStyles, onDele
   return (
     <Card.Root height="100%" border="5px solid transparent" borderImageSlice={1} borderImageSource={languageStyles.gradient}>
       <Card.Header>
-        <ReviewHeader codeReview={codeReview} onDelete={onDelete} refresh={refresh} langaugeStyles={languageStyles} setShowCode={setShowCode} />
+        <ReviewHeader codeReview={codeReview} onDelete={onDelete} refresh={refresh} langaugeStyles={languageStyles} setShowCode={setShowCode} clickable={false} />
       </Card.Header>
       <Card.Body>
         <Stack
-          gap={5}
+          gap={10}
           alignItems="center"
           justifyContent="center"
           paddingTop={2}

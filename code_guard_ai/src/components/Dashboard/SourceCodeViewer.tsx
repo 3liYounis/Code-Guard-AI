@@ -19,8 +19,8 @@ const SourceCodeViewer = ({ codeReview, isOpen, onOpenChange }: Props) => {
     return (
         <Dialog.Root open={isOpen} onOpenChange={onOpenChange}>
             <Dialog.Backdrop />
-            <Dialog.Positioner>
-                <Dialog.Content maxW="90vw" width="100%" maxHeight="90vh" overflowY="auto">
+            <Dialog.Positioner mt={10}>
+                <Dialog.Content maxW="90%" w="100%" maxH="full" h="86%" width="100%" overflowY="auto">
                     <Dialog.CloseTrigger asChild>
                         <CloseButton size="sm" />
                     </Dialog.CloseTrigger>

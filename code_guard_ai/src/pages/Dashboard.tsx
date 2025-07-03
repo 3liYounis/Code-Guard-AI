@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Flex, Stack } from "@chakra-ui/react";
-import ReviewCard, { type CodeReview } from "../components/Dashboard/Review Card/ReviewCard";
+import ReviewCard, { LanguageMap, type CodeReview } from "../components/Dashboard/Review Card/ReviewCard";
 import ReviewCardSkeleton from "../components/Dashboard/Review Card/ReviewCardSkeleton";
 import NewFileDialog from "../components/Dashboard/File Dialog/NewFileDialog";
 import { getAllCodeReviews } from "@/services/api-client";
@@ -11,6 +11,9 @@ import { type User, signOutUser } from "@/services/FirebaseManager";
 import EmptyDashboard from "@/components/Dashboard/EmptyDashboard";
 import SourceCodeViewer from "@/components/Dashboard/SourceCodeViewer";
 import StaticCodeReviews from "@/Data/StaticCodeReviews";
+import ReviewCardDialog from "../components/Dashboard/Review Card/ReviewCardDialog";
+import ReviewCover from "@/components/Dashboard/ReviewCover";
+import ReviewCardCoverSkeleton from "@/components/Dashboard/ReviewCardCoverSkeleton";
 interface Props {
     user: User | undefined;
     setUser: (user: User | undefined) => void;
@@ -18,8 +21,13 @@ interface Props {
 const Dashboard = ({ user, setUser }: Props) => {
     const navigate = useNavigate();
     const [codeReviews, setCodeReviews] = useState<CodeReview[]>([]);
+
     const [showCode, setShowCode] = useState<CodeReview | null>(null);
     const [isSourceDialogOpen, setIsSourceDialogOpen] = useState(false);
+
+    const [showCard, setShowCard] = useState<CodeReview | null>(null);
+    const [isCardDialogOpen, setIsCardDialogOpen] = useState(false);
+
     const [isLoading, setIsLoading] = useState(true);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const deleteReview = (reviewID: number) => {
@@ -68,30 +76,62 @@ const Dashboard = ({ user, setUser }: Props) => {
                 isOpen={isSourceDialogOpen}
                 onOpenChange={({ open }) => {
                     if (!open) {
+                        setShowCard(showCode);
+                        setIsCardDialogOpen(true);
                         setIsSourceDialogOpen(false);
                         setShowCode(null);
                     }
                 }}
 
             />
-            <Flex wrap="wrap" gap={4} justify="start" justifyContent="center" alignItems="center">
+            <ReviewCardDialog
+                isOpen={isCardDialogOpen}
+                codeReview={showCard}
+                onClose={() => {
+                    setShowCard(null);
+                    setIsCardDialogOpen(false);
+                }}
+                refresh={fetchReviews}
+                onDelete={deleteReview}
+                setShowCode={(review) => {
+                    setIsCardDialogOpen(false);
+                    setShowCode(review);
+                    setIsSourceDialogOpen(true);
+                }}
+            />
+            <Flex wrap="wrap" gap={10} justify="start" justifyContent="center" alignItems="center">
                 {(emptyReviews && !isLoading) && <EmptyDashboard onNewFileClick={() => setIsDialogOpen(true)} />}
-                {isLoading
-                    ? Array.from({ length: reviews.length + 1 }).map((_, i) => (
-                        <ReviewCardSkeleton key={i} />
+                {isLoading ?
+                    Array.from({ length: reviews.length + 1 }).map((_, i) => (
+                        <ReviewCardCoverSkeleton key={i} />
                     ))
+                    // ? Array.from({length: reviews.length + 1 }).map((_, i) => (
+                    //     <ReviewCardSkeleton key={i} />
+                    // ))
+                    // : reviews.map((review) => (
+                    // <ReviewCard
+                    //     codeReview={review}
+                    //     key={review.id}
+                    //     refresh={fetchReviews}
+                    //     onDelete={deleteReview}
+                    //     setShowCode={() => {
+                    //         setShowCode(review);
+                    //         setIsSourceDialogOpen(true);
+                    //     }}
+                    // />
+                    // ))
                     : reviews.map((review) => (
-                        <ReviewCard
+                        <ReviewCover
                             codeReview={review}
+                            langaugeStyles={LanguageMap[review.programming_language]}
                             key={review.id}
-                            refresh={fetchReviews}
-                            onDelete={deleteReview}
-                            setShowCode={() => {
-                                setShowCode(review);
-                                setIsSourceDialogOpen(true);
+                            setShowCard={() => {
+                                setShowCard(review);
+                                setIsCardDialogOpen(true);
                             }}
                         />
-                    ))}
+                    ))
+                }
             </Flex>
         </Stack>
     );

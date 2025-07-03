@@ -6,6 +6,7 @@ import bulb from "../../assets/Emojies/bulb.png"
 import eye from "../../assets/Emojies/eye.png"
 import pencil from "../../assets/Emojies/pencil.png"
 import wrong from "../../assets/Emojies/wrong.png"
+import report from "../../assets/Emojies/report.png"
 interface Props {
     type: string;
 }
@@ -17,6 +18,7 @@ const Emoji = ({ type }: Props) => {
         "View": { src: eye, alt: 'view', boxSize: "20px", marginTop: 0 },
         "Edit": { src: pencil, alt: 'edit', boxSize: "18px", marginTop: 0 },
         "Delete": { src: wrong, alt: 'delete', boxSize: "17px", marginTop: 0 },
+        "Report": { src: report, alt: "report", boxSize: "17px", marginTop: 0 },
         "other": { src: bulb, alt: 'other', boxSize: "20px", marginTop: 0 },
     }
     return (

@@ -5,6 +5,7 @@ import {
   Image,
   Text,
   defineStyle,
+  Button
 } from "@chakra-ui/react";
 import CardButtonList from "./Buttons/CardButtonList";
 import type { CodeReview, LanguageStyle } from "./ReviewCard";
@@ -14,6 +15,7 @@ interface Props {
   refresh: () => Promise<void>;
   onDelete: (reviewID: number) => void;
   setShowCode: () => void;
+  clickable: boolean;
 
 }
 export const formatTime = (date: Date) => {
@@ -29,7 +31,7 @@ export const formatDate = (date: Date): string => {
   const yyyy = date.getFullYear();
   return `${day} ${dd}/${mm}/${yyyy}`;
 };
-const ReviewHeader = ({ codeReview, refresh, langaugeStyles, onDelete, setShowCode }: Props) => {
+const ReviewHeader = ({ codeReview, refresh, langaugeStyles, onDelete, setShowCode, clickable }: Props) => {
   const ringCss = defineStyle({
     outlineWidth: "7px",
     outlineColor: langaugeStyles.color,
@@ -56,7 +58,8 @@ const ReviewHeader = ({ codeReview, refresh, langaugeStyles, onDelete, setShowCo
           </Stack>
         </Stack>
       </HStack >
-      <CardButtonList codeReview={codeReview} onDelete={onDelete} refresh={refresh} setShowCode={setShowCode} />
+      {clickable && <Button>Open As Card</Button>}
+      {!clickable && <CardButtonList codeReview={codeReview} onDelete={onDelete} refresh={refresh} setShowCode={setShowCode} />}
     </HStack >
   );
 };
