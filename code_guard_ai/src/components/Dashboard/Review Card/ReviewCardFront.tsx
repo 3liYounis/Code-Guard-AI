@@ -4,8 +4,6 @@ import ReviewHeader from "./ReviewHeader";
 import TotalScore from "./TotalScore";
 import ReviewChart from "./Charts/ReviewChart";
 import ReviewBar from "./Charts/ReviewBar";
-import SourceCodeViewer from "../SourceCodeViewer";
-
 interface Props {
   codeReview: CodeReview;
   onSwitch: () => void;

@@ -11,7 +11,6 @@ import { Tooltip } from "@/components/ui/tooltip"
 import type { CodeReview, LanguageStyle } from "./Review Card/ReviewCard";
 import { formatDate, formatTime } from "./Review Card/ReviewHeader";
 import Emoji from "@/components/ui/Emoji";
-import { color } from "framer-motion";
 interface Props {
     codeReview: CodeReview;
     langaugeStyles: LanguageStyle;

@@ -1,5 +1,5 @@
 import { HStack, Avatar, Stack, Image, Text, defineStyle } from "@chakra-ui/react";
-import { LanguageMap, type CodeReview, type LanguageStyle } from "../Dashboard/Review Card/ReviewCard";
+import { LanguageMap, type CodeReview } from "../Dashboard/Review Card/ReviewCard";
 import { formatDate, formatTime } from "./Review Card/ReviewHeader";
 interface Props {
     codeReview: CodeReview;

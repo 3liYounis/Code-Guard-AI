@@ -2,8 +2,6 @@ import type { CodeReview, LanguageStyle } from "./ReviewCard";
 import { Button, Card } from "@chakra-ui/react";
 import ReviewHeader from "./ReviewHeader";
 import RecommendationsList from "./Recommendation/RecommendationsList";
-import SourceCodeViewer from "../SourceCodeViewer";
-
 
 interface Props {
   codeReview: CodeReview;

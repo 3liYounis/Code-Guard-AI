@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Flex, Stack } from "@chakra-ui/react";
-import ReviewCard, { LanguageMap, type CodeReview } from "../components/Dashboard/Review Card/ReviewCard";
-import ReviewCardSkeleton from "../components/Dashboard/Review Card/ReviewCardSkeleton";
+import { LanguageMap, type CodeReview } from "../components/Dashboard/Review Card/ReviewCard";
 import NewFileDialog from "../components/Dashboard/File Dialog/NewFileDialog";
 import { getAllCodeReviews } from "@/services/api-client";
 import { addCodeReview } from "@/services/api-client";
