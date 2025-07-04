@@ -7,3 +7,4 @@ Server/serviceAccountKey.json
 code_guard_ai/services/FirebaseConfig.ts
 Server/openai_key.json
 Server/openai_keys.json
+.vercel

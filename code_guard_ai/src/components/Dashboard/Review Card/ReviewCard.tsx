@@ -1,7 +1,6 @@
 import AnimatedBox from "./AnimatedBox";
 import ProgrammingLanguages from "@/assets/Programming Languages/ProgrammingLanguages";
 import question from "../../../assets/Emojies/question.svg"
-import type { Timestamp } from "firebase/firestore/lite";
 export interface LanguageStyle {
   imageSrc: string;
   color: string;
@@ -28,7 +27,7 @@ interface Props {
   codeReview: CodeReview;
   refresh: () => Promise<void>;
   onDelete: (reviewID: number) => void;
-  setShowCode: () => void;
+  setShowCode: (review: CodeReview) => void;
 }
 export const LanguageMap: { [key: string]: LanguageStyle } = {
   Python: {
@@ -85,7 +84,7 @@ export const LanguageMap: { [key: string]: LanguageStyle } = {
 const ReviewCard = ({ codeReview, refresh, onDelete, setShowCode }: Props) => {
   const langaugeStyles = (LanguageMap[codeReview.programming_language] ?? LanguageMap["other"])
   return (
-    <AnimatedBox codeReview={codeReview} width={470} height={530} refresh={refresh} onDelete={onDelete} languageStyles={langaugeStyles} setShowCode={setShowCode}></AnimatedBox >
+    <AnimatedBox codeReview={codeReview} width={500} height={600} refresh={refresh} onDelete={onDelete} languageStyles={langaugeStyles} setShowCode={() => setShowCode(codeReview)}></AnimatedBox >
   );
 };
 
