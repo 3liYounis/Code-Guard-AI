@@ -19,7 +19,12 @@
     {
       "label": "Start Backend",
       "type": "shell",
-      "command": "flask run",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-Command",
+        "& { .\\venv\\Scripts\\Activate.ps1; flask run }"
+      ],
       "options": {
         "cwd": "${workspaceFolder}/Server"
       },
