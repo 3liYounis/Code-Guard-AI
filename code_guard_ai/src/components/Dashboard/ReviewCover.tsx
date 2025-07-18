@@ -46,7 +46,7 @@ const ReviewCover = ({ codeReview, langaugeStyles, setShowCard }: Props) => {
             <Tooltip
                 showArrow
                 content="Open Full Review"
-                contentProps={{ css: { color: "ActiveBorder", background: "gray.600" } }}
+                contentProps={{ css: { color: "ActiveBorder", background: "gray.400" } }}
                 positioning={{ offset: { mainAxis: 2, crossAxis: 2 }, placement: "left-start" }}
                 openDelay={500}
                 closeDelay={100}

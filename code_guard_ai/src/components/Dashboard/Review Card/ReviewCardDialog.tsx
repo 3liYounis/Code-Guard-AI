@@ -18,7 +18,7 @@ const ReviewCardDialog = ({ isOpen, onClose, codeReview, refresh, onDelete, setS
         <Dialog.Root open={isOpen} onOpenChange={({ open }) => { if (!open) onClose(); }}>
             <Dialog.Backdrop />
             <Dialog.Positioner mt={10}>
-                <Dialog.Content maxW="90%" w="100%" maxH="full" h="86%" width="100%">
+                <Dialog.Content maxW="90%" w="100%" maxH="full" h="86%" width="100%" bg="rgba(0, 0, 0, 0.65)" backdropFilter="blur(7px)">
                     <Dialog.CloseTrigger asChild>
                         <CloseButton size="sm" position="absolute" top="4" right="4" />
                     </Dialog.CloseTrigger>
