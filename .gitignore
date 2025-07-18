@@ -8,3 +8,4 @@ code_guard_ai/services/FirebaseConfig.ts
 Server/openai_key.json
 Server/openai_keys.json
 .vercel
+code_guard_ai/src/services/FirebaseConfig.ts
