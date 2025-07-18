@@ -29,7 +29,7 @@ function AuthenticationCard({ onSignIn, onSignUp, onGoogleAuth }: Props) {
       justifyItems="center"
       alignItems="center"
     >
-      <Box width="60%" gridArea="1 / 1" p={8} backfaceVisibility="hidden">
+      <Box width="80%" gridArea="1 / 1" p={8} backfaceVisibility="hidden">
         <SignUpForm
           onSwitch={flip}
           onSignUp={onSignUp}
