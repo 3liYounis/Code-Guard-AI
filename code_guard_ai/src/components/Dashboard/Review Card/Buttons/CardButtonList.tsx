@@ -18,6 +18,7 @@ const CardButtonList = ({ codeReview, refresh, onDelete, setShowCode, onClose }:
     const [editingReviewId, setEditingReviewId] = useState<number | null>(null);
     const handleEdit = async (reviewId: number, file: File) => {
         try {
+            onClose();
             await updateCodeReview(reviewId, file);
             await refresh();
         }
@@ -26,8 +27,8 @@ const CardButtonList = ({ codeReview, refresh, onDelete, setShowCode, onClose }:
     const handleDelete = async (reviewId: number) => {
         try {
             onDelete(reviewId);
+            onClose();
             await deleteCodeReview(reviewId);
-            await refresh();
         }
         catch (error) { }
     };

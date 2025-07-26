@@ -51,12 +51,12 @@ const Dashboard = ({ user, setUser }: Props) => {
         else
             navigate("/home")
     }, [user]);
-    const reviews = StaticCodeReviews.sort(
-        (e1, e2) => (e2.upload_date) - (e1.upload_date)
-    );
-    // const reviews = [...codeReviews].sort(
+    // const reviews = StaticCodeReviews.sort(
     //     (e1, e2) => (e2.upload_date) - (e1.upload_date)
     // );
+    const reviews = [...codeReviews].sort(
+        (e1, e2) => (e2.upload_date) - (e1.upload_date)
+    );
     const emptyReviews = reviews.length == 0;
     return (
         <Stack>
