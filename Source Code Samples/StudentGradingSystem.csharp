@@ -1,0 +1,54 @@
+using System;
+using System.Collections;
+
+class P {
+    static Hashtable grades = new Hashtable();
+
+    static void AddGrade() {
+        Console.Write("Student name: ");
+        string name = Console.ReadLine();
+        Console.Write("Grade: ");
+        int grade = Convert.ToInt32(Console.ReadLine());
+        grades[name] = grade;
+    }
+
+    static void Show() {
+        foreach(DictionaryEntry e in grades) {
+            Console.WriteLine(e.Key + ": " + e.Value);
+        }
+    }
+
+    static void SaveToFile() {
+        Console.Write("filename: ");
+        string f = Console.ReadLine();
+        System.IO.StreamWriter w = new System.IO.StreamWriter(f);
+        foreach(DictionaryEntry e in grades) {
+            w.WriteLine(e.Key + " => " + e.Value);
+        }
+        w.Close();
+        Console.WriteLine("Saved!");
+    }
+
+    static void LoadFromFile() {
+        Console.Write("filename: ");
+        string f = Console.ReadLine();
+        string[] lines = System.IO.File.ReadAllLines(f);
+        foreach (var l in lines) {
+            string[] parts = l.Split("=>");
+            grades[parts[0].Trim()] = Convert.ToInt32(parts[1]);
+        }
+    }
+
+    static void Main(string[] args) {
+        while(true){
+            Console.WriteLine("1-Add\n2-Show\n3-Save\n4-Load\n5-Quit");
+            string c = Console.ReadLine();
+            if(c=="1") AddGrade();
+            else if(c=="2") Show();
+            else if(c=="3") SaveToFile();
+            else if(c=="4") LoadFromFile();
+            else if(c=="5") break;
+            else Console.WriteLine("???");
+        }
+    }
+}
