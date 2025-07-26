@@ -19,7 +19,7 @@ function AuthenticationCard({ onSignIn, onSignUp, onGoogleAuth }: Props) {
 
   return (
     <MotionBox
-      w="100%"
+      w="70%"
       h="100%"
       minW="450px"
       display="grid"

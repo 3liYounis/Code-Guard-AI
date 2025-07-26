@@ -45,7 +45,7 @@ function SignInForm({ onSwitch, onSignIn, onGoogleAuth }: Props) {
       onSubmit={handleSubmit(submit)}
     >
       <Stack gap="4">
-        <Heading size="2xl" textAlign="center">
+        <Heading size="2xl" textAlign="center" fontFamily="cursive">
           Sign In
         </Heading>
         <Field.Root invalid={Boolean(errors.email)} required>
@@ -68,15 +68,16 @@ function SignInForm({ onSwitch, onSignIn, onGoogleAuth }: Props) {
             <Field.ErrorText>{errors.password.message}</Field.ErrorText>
           )}
         </Field.Root>
-        <GoogleButton onClicked={onGoogleAuth} />
 
         <Button
           alignSelf="center"
           type="submit"
           fontSize="18px"
+          fontFamily="cursive"
         >
           Sign in
         </Button>
+        <GoogleButton onClicked={onGoogleAuth} />
         <Link color="blue.400" alignSelf="center" onClick={onSwitch}>
           Don't have an account? Sign Up
         </Link>

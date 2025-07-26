@@ -28,7 +28,6 @@ function SignUpForm({ onSwitch, onSignUp, onGoogleAuth }: Props) {
   } = useForm<SignUpData>({ resolver: zodResolver(signUpSchema) });
 
   const submit = (data: SignUpData) => {
-    console.log("sign-up", data);
     if (true) {
       onSignUp({ displayName: data.username, email: data.email, password: data.password });
     }
@@ -45,7 +44,7 @@ function SignUpForm({ onSwitch, onSignUp, onGoogleAuth }: Props) {
       onSubmit={handleSubmit(submit)}
     >
       <Stack gap="5">
-        <Heading size="2xl" textAlign="center">
+        <Heading size="2xl" textAlign="center" fontFamily="cursive">
           Sign Up
         </Heading>
         <Field.Root invalid={Boolean(errors.email)} required>
@@ -92,6 +91,7 @@ function SignUpForm({ onSwitch, onSignUp, onGoogleAuth }: Props) {
           alignSelf="center"
           type="submit"
           fontSize="18px"
+          fontFamily="cursive"
         >
           Create account
         </Button>
@@ -101,7 +101,7 @@ function SignUpForm({ onSwitch, onSignUp, onGoogleAuth }: Props) {
           Already registered? Sign In
         </Link>
       </Stack>
-    </Box>
+    </Box >
   );
 }
 export default SignUpForm;

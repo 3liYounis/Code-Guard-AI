@@ -8,7 +8,7 @@ const GoogleButton = ({ onClicked }: Props) => {
         <Button onClick={onClicked} alignSelf="center" fontSize="18px">
             <HStack>
                 <Image src={Google} boxSize={6} />
-                <Text>Continue With Google</Text>
+                <Text fontFamily="cursive">Continue With Google</Text>
             </HStack>
         </Button>
     )
