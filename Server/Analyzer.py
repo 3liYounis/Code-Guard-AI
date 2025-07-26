@@ -68,7 +68,7 @@ def query_openai_for_analysis(content: str, language: str) -> dict:
             }}\n\nHere is the code:\n{truncated_content}..."""
     )
 
-    model = "gpt-4"
+    model = "GPT-4o"
     tokens_used = count_tokens(prompt_template, model=model)
     print(f"Prompt token count: {tokens_used}")
     try:
@@ -114,7 +114,7 @@ def analyze_code(file: TextIO) -> CodeReview:
     ai_result = query_openai_for_analysis(content, language)
     suggestions = [
         Suggestion(i + 1, item.get("type", "Unknown"),
-                   item.get("content", ""), "ChatGPT")
+                   item.get("content", ""), "GPT 3.5 Turbo")
         for i, item in enumerate(ai_result.get("recommendations", []))
     ]
     return CodeReview(
