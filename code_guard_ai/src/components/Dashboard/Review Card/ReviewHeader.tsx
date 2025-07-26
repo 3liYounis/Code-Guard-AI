@@ -16,6 +16,7 @@ interface Props {
   onDelete: (reviewID: number) => void;
   setShowCode: () => void;
   clickable: boolean;
+  onClose: () => void;
 
 }
 export const formatTime = (date: Date) => {
@@ -31,7 +32,7 @@ export const formatDate = (date: Date): string => {
   const yyyy = date.getFullYear();
   return `${day} ${dd}/${mm}/${yyyy}`;
 };
-const ReviewHeader = ({ codeReview, refresh, langaugeStyles, onDelete, setShowCode, clickable }: Props) => {
+const ReviewHeader = ({ codeReview, refresh, langaugeStyles, onDelete, setShowCode, clickable, onClose }: Props) => {
   const ringCss = defineStyle({
     outlineWidth: "7px",
     outlineColor: langaugeStyles.color,
@@ -59,7 +60,7 @@ const ReviewHeader = ({ codeReview, refresh, langaugeStyles, onDelete, setShowCo
         </Stack>
       </HStack >
       {clickable && <Button>Open As Card</Button>}
-      {!clickable && <CardButtonList codeReview={codeReview} onDelete={onDelete} refresh={refresh} setShowCode={setShowCode} />}
+      {!clickable && <CardButtonList codeReview={codeReview} onDelete={onDelete} refresh={refresh} setShowCode={setShowCode} onClose={onClose} />}
     </HStack >
   );
 };

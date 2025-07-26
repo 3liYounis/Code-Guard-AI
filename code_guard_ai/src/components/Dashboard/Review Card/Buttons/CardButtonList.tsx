@@ -10,29 +10,26 @@ interface Props {
     refresh: () => Promise<void>;
     onDelete: (reviewID: number) => void;
     setShowCode: () => void;
+    onClose: () => void;
 }
 
-const CardButtonList = ({ codeReview, refresh, onDelete, setShowCode }: Props) => {
+const CardButtonList = ({ codeReview, refresh, onDelete, setShowCode, onClose }: Props) => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [editingReviewId, setEditingReviewId] = useState<number | null>(null);
     const handleEdit = async (reviewId: number, file: File) => {
         try {
-            const updatedReview = await updateCodeReview(reviewId, file);
+            await updateCodeReview(reviewId, file);
             await refresh();
-            console.log("Review updated successfully:", updatedReview);
         }
-        catch (error) {
-            console.error("Failed to update review:", error);
-        }
+        catch (error) { }
     };
     const handleDelete = async (reviewId: number) => {
         try {
             onDelete(reviewId);
             await deleteCodeReview(reviewId);
-            console.log("Review deleted successfully");
-        } catch (error) {
-            console.error("Failed to delete review:", error);
+            await refresh();
         }
+        catch (error) { }
     };
     const openEditDialog = (reviewId: number) => {
         setEditingReviewId(reviewId);

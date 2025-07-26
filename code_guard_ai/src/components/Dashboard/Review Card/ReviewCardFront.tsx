@@ -11,14 +11,15 @@ interface Props {
   languageStyles: LanguageStyle;
   onDelete: (reviewID: number) => void;
   setShowCode: () => void;
+  onClose: () => void;
 }
 
-const ReviewCardFront = ({ codeReview, onSwitch, refresh, languageStyles, onDelete, setShowCode }: Props) => {
+const ReviewCardFront = ({ codeReview, onSwitch, refresh, languageStyles, onDelete, setShowCode, onClose }: Props) => {
   const total = (codeReview.security + codeReview.cleanliness + codeReview.maintainability) / 3;
   return (
     <Card.Root height="100%" border="5px solid transparent" borderImageSlice={1} borderImageSource={languageStyles.gradient}>
       <Card.Header>
-        <ReviewHeader codeReview={codeReview} onDelete={onDelete} refresh={refresh} langaugeStyles={languageStyles} setShowCode={setShowCode} clickable={false} />
+        <ReviewHeader codeReview={codeReview} onDelete={onDelete} refresh={refresh} langaugeStyles={languageStyles} setShowCode={setShowCode} clickable={false} onClose={onClose} />
       </Card.Header>
       <Card.Body>
         <Stack
